@@ -19,6 +19,7 @@ pointe vers <https://monespace.certimens.fr/>.
 ├── assets/
 │   ├── css/style.css                   Feuille de style unique
 │   ├── js/site.js                      Menu mobile + formulaire mailto
+│   ├── fonts/                          Plus Jakarta Sans (500/700/800), auto-hébergée
 │   └── img/                            Images reprises du site d'origine
 ├── .github/
 │   ├── workflows/deploy.yml            CI + publication sur GitHub Pages
@@ -35,6 +36,30 @@ Les permaliens du site WordPress (`/elementor-487/`, `/elementor-543/`,
 `/index.php/contact/`, `/hub-etudiant/`, `/espace-enseignant/`…) ne sont pas
 repris : les liens qui les utilisent encore arrivent sur la page `404.html`,
 qui renvoie vers l'accueil et le contact.
+
+## Charte graphique
+
+Les jetons de `assets/css/style.css` reprennent
+`engine/docs/charte-graphique.md`, pour que le site et l'espace client soient
+rigoureusement identiques :
+
+| Rôle | Valeur |
+| --- | --- |
+| Ardoise (primaire) | `#1E293B`, variantes `#334155` / `#0F172A` |
+| Or laiton (accent) | `#C5A059`, survol `#D4AC5F`, **texte `#705E3A`** |
+| Texte / secondaire | `#1A202C` / `#54595F` |
+| Fond / filet | `#F8FAFC` / `#E5E5E5` |
+| Rayon | 12 px, surfaces plates (filet, pas d'ombre) |
+| Graisses | titres 800, libellés et boutons 700, corps 500 |
+
+La règle à ne pas enfreindre : **l'or n'est jamais du texte sur blanc**
+(`#C5A059` y donne 2,46:1, sous le seuil WCAG AA). Là où il doit se lire, c'est
+`#705E3A` (6,27:1) ; là où il est une surface, il porte du texte foncé
+(`#1A202C` sur or : 6,64:1). Toutes les paires du site passent le niveau AA.
+
+La police est auto-hébergée depuis `assets/fonts/` — les mêmes fichiers que
+ceux embarqués par l'application via `@fontsource`, pour un rendu identique et
+zéro appel à Google Fonts.
 
 ## Développement local
 

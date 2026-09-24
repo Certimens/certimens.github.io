@@ -1,27 +1,89 @@
 /* ==========================================================================
    Certimens — feuille de style unique
-   Charte reprise du site d'origine : navy #1E293B, or #C5A059,
-   typographie Plus Jakarta Sans.
+
+   Les jetons suivent la charte graphique du produit (engine/docs/
+   charte-graphique.md) pour que le site et l'espace client soient identiques :
+   ardoise #1E293B dominante, or laiton #C5A059 en accent unique, Plus Jakarta
+   Sans en 800 / 700 / 500, surfaces plates au rayon de 12 px.
+
+   Règle importante : l'or n'est JAMAIS du texte sur blanc (2,3:1, sous le
+   seuil WCAG AA). Là où il doit se lire, c'est l'or sombre --gold-dark
+   (5,7:1) ; là où il est une surface, il porte du texte foncé.
    ========================================================================== */
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-ext-500-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-ext-700-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-ext-800-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
 
 :root {
   --navy: #1e293b;
+  --navy-light: #334155;
   --navy-dark: #0f172a;
   --gold: #c5a059;
-  --gold-hover: #caa04e;
+  --gold-light: #d4ac5f;
+  --gold-dark: #705e3a;
   --gold-soft: #f3ead9;
   --text: #1a202c;
   --muted: #54595f;
-  --muted-light: #6b7280;
-  --line: #e4e8ee;
+  --line: #e5e5e5;
   --bg: #ffffff;
-  --bg-soft: #f5f7fa;
-  --bg-softer: #f9f9fb;
+  --bg-soft: #f8fafc;
 
-  --radius: 14px;
+  --radius: 12px;
   --radius-sm: 8px;
-  --shadow: 0 4px 20px rgba(30, 41, 59, 0.08);
-  --shadow-lg: 0 12px 40px rgba(30, 41, 59, 0.12);
+  /* Seule ombre conservée : le menu mobile, qui flotte au-dessus du contenu.
+     Les cartes sont plates, séparées par un filet — comme dans l'application. */
+  --shadow-overlay: 0 12px 40px rgba(30, 41, 59, 0.12);
 
   --container: 1200px;
   --gutter: 20px;
@@ -68,7 +130,7 @@ a {
 }
 
 a:hover {
-  color: var(--gold);
+  color: var(--gold-dark);
 }
 
 h1,
@@ -134,10 +196,6 @@ ul {
   background: var(--bg-soft);
 }
 
-.section--softer {
-  background: var(--bg-softer);
-}
-
 .section--navy {
   background: var(--navy);
   color: #fff;
@@ -167,7 +225,7 @@ ul {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-dark);
   margin-bottom: 12px;
 }
 
@@ -191,6 +249,19 @@ ul {
   color: #fff;
 }
 
+/* Le focus clavier doit rester visible partout : l'or sombre se lit sur blanc
+   comme sur ardoise. */
+:focus-visible {
+  outline: 2px solid var(--gold-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.section--navy :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--gold);
+}
+
 /* --- Boutons -------------------------------------------------------------- */
 
 .btn {
@@ -200,40 +271,36 @@ ul {
   border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   cursor: pointer;
   text-align: center;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease,
-    transform 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .btn--primary {
   background: var(--navy);
   color: #fff;
-  text-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
 .btn--primary:hover,
 .btn--primary:focus {
   background: var(--gold);
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: var(--text);
+  text-shadow: none;
 }
 
 .btn--gold {
   background: var(--gold);
-  color: #fff;
+  color: var(--text);
   padding: 15px 35px;
   font-size: 0.94rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .btn--gold:hover,
 .btn--gold:focus {
-  background: var(--gold-hover);
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  background: var(--gold-light);
+  color: var(--text);
 }
 
 .btn--ghost {
@@ -246,7 +313,7 @@ ul {
 .btn--ghost:hover,
 .btn--ghost:focus {
   border-color: var(--gold);
-  color: var(--gold);
+  color: var(--gold-dark);
 }
 
 /* --- En-tête -------------------------------------------------------------- */
@@ -324,7 +391,7 @@ ul {
 
 .site-nav .nav-login a:hover {
   background: var(--gold);
-  color: #fff;
+  color: var(--text);
 }
 
 .site-nav .nav-login a::after {
@@ -375,13 +442,11 @@ ul {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 36px 30px;
-  box-shadow: var(--shadow);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: border-color 0.18s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  border-color: var(--gold);
 }
 
 .card p {
@@ -403,6 +468,7 @@ ul {
 
 .card:hover .card__icon {
   background: var(--gold);
+  color: var(--text);
 }
 
 /* --- Comparatif ----------------------------------------------------------- */
@@ -422,7 +488,6 @@ ul {
 
 .compare__col--highlight {
   border: 2px solid var(--gold);
-  box-shadow: var(--shadow-lg);
 }
 
 .compare__col h3 {
@@ -435,7 +500,7 @@ ul {
 }
 
 .compare__col--highlight h3 {
-  color: var(--gold);
+  color: var(--gold-dark);
 }
 
 .compare li {
@@ -456,7 +521,7 @@ ul {
 }
 
 .compare .ico-yes {
-  color: var(--gold);
+  color: var(--gold-dark);
 }
 
 /* --- Bloc image + texte --------------------------------------------------- */
@@ -469,8 +534,8 @@ ul {
 }
 
 .split img {
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
 }
 
 .checklist li {
@@ -484,7 +549,7 @@ ul {
 .checklist svg {
   flex: 0 0 auto;
   margin-top: 4px;
-  color: var(--gold);
+  color: var(--gold-dark);
 }
 
 /* --- Bandeau d'appel à l'action ------------------------------------------- */
@@ -521,7 +586,6 @@ ul {
 
 .faq details[open] {
   border-color: var(--gold);
-  box-shadow: var(--shadow);
 }
 
 .faq summary {
@@ -545,8 +609,8 @@ ul {
   flex: 0 0 auto;
   width: 10px;
   height: 10px;
-  border-right: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold-dark);
+  border-bottom: 2px solid var(--gold-dark);
   transform: rotate(45deg);
   transition: transform 0.2s ease;
 }
@@ -607,7 +671,7 @@ ul {
 .contact-info svg {
   flex: 0 0 auto;
   margin-top: 3px;
-  color: var(--gold);
+  color: var(--gold-dark);
 }
 
 .contact-info span {
@@ -616,7 +680,7 @@ ul {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted-light);
+  color: var(--muted);
 }
 
 .form {
@@ -624,7 +688,6 @@ ul {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 36px;
-  box-shadow: var(--shadow);
 }
 
 .form label {
@@ -671,7 +734,7 @@ ul {
 .form__note {
   margin: 18px 0 0;
   font-size: 0.85rem;
-  color: var(--muted-light);
+  color: var(--muted);
 }
 
 /* --- Pages légales -------------------------------------------------------- */
@@ -689,7 +752,7 @@ ul {
 .legal h3 {
   margin-top: 1.6em;
   font-size: 1rem;
-  color: var(--gold);
+  color: var(--gold-dark);
 }
 
 .legal ul {
@@ -750,7 +813,7 @@ ul {
 }
 
 .site-footer a:hover {
-  color: var(--gold);
+  color: var(--gold-dark);
 }
 
 .site-footer li {
@@ -805,7 +868,7 @@ ul {
     right: 0;
     background: #fff;
     border-bottom: 1px solid var(--line);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-overlay);
     padding: 12px var(--gutter) 22px;
   }
 

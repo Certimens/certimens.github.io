@@ -28,11 +28,19 @@
     <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-500-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-800-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
@@ -103,8 +111,8 @@
       <section class="section section--soft" id="certification">
         <div class="container">
           <div class="section-head">
-            <h2 class="section-title">CERTIMENS</h2>
-            <span class="eyebrow">Le label de confiance</span>
+            <span class="eyebrow">Certimens</span>
+            <h2 class="section-title">Le label de confiance</h2>
           </div>
 
           <div class="grid-3">
@@ -117,8 +125,8 @@
               </div>
               <h3>Analyse de la frappe</h3>
               <p>
-                Notre outil analyse la dynamique de frappe et les pauses
-                cognitives en temps réel, sans intrusion.
+                Notre outil mesure la dynamique de frappe et les pauses
+                cognitives en temps réel, sans jamais enregistrer le texte saisi.
               </p>
             </article>
 
@@ -158,7 +166,7 @@
       <section class="section">
         <div class="container">
           <div class="section-head">
-            <h2 class="section-title">De la suspicion à la preuve : le nouveau standard d'évaluation</h2>
+            <h2 class="section-title">De la suspicion à la preuve&nbsp;: le nouveau standard d'évaluation</h2>
           </div>
 
           <div class="compare">
@@ -189,11 +197,11 @@
                 </li>
                 <li>
                   <svg class="ico-yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
-                  <span>Preuve d'effort humaine incontestable (zéro faux positif)</span>
+                  <span>Preuve fondée sur le déroulé de la rédaction, pas sur une probabilité</span>
                 </li>
                 <li>
                   <svg class="ico-yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
-                  <span>Décision et certification immédiates</span>
+                  <span>Certificat d'authenticité généré automatiquement</span>
                 </li>
               </ul>
             </div>
@@ -202,7 +210,7 @@
       </section>
 
       <!-- Bénéfices -->
-      <section class="section section--softer">
+      <section class="section section--soft">
         <div class="container split">
           <img
             src="/assets/img/etudiants.jpg"
@@ -222,19 +230,19 @@
             <ul class="checklist">
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
-                <span>Zéro installation complexe pour les étudiants</span>
+                <span>Word, Word Online, Google Docs et LibreOffice Writer</span>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
-                <span>Restauration de la confiance académique</span>
+                <span>Windows, macOS, Linux et navigateur</span>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
-                <span>S'intègre sur Microsoft Word</span>
+                <span>Une extension ou un complément à installer, rien à déployer sur les postes</span>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
-                <span>Compatible macOS et Windows</span>
+                <span>Aucun texte saisi n'est enregistré, seulement des compteurs</span>
               </li>
             </ul>
           </div>
@@ -244,7 +252,7 @@
       <!-- Appel à l'action -->
       <section class="section section--navy">
         <div class="container cta">
-          <h2>Prêt à restaurer la valeur de vos diplômes ?</h2>
+          <h2>Prêt à restaurer la valeur de vos diplômes&nbsp;?</h2>
           <p>
             Rejoignez notre programme pilote et garantissez l'intégrité de vos
             évaluations face aux IA génératives.
@@ -254,7 +262,7 @@
       </section>
 
       <!-- FAQ -->
-      <section class="section section--softer" id="faq">
+      <section class="section section--soft" id="faq">
         <div class="container">
           <div class="section-head">
             <h2 class="section-title">Questions Fréquentes</h2>
@@ -264,7 +272,7 @@
             <details>
               <summary>
                 Comment Certimens se différencie-t-il des détecteurs d'IA
-                classiques ?
+                classiques&nbsp;?
               </summary>
               <div class="faq__body">
                 <p>
@@ -283,7 +291,7 @@
             <details>
               <summary>
                 Le processus d'analyse respecte-t-il le RGPD et la vie privée des
-                étudiants ?
+                étudiants&nbsp;?
               </summary>
               <div class="faq__body">
                 <p>
@@ -291,33 +299,39 @@
                   données sont au cœur de notre infrastructure. Certimens
                   n'enregistre aucune donnée personnelle sensible et n'utilise pas
                   de surveillance intrusive (pas de webcam, pas de blocage de
-                  navigateur). L'analyse de la dynamique de travail est entièrement
-                  anonymisée et chiffrée. Notre solution est 100 % conforme aux
-                  exigences de la CNIL et au RGPD.
+                  navigateur). Aucun texte saisi ni aucune touche n'est
+                  enregistré&nbsp;: seulement des compteurs agrégés par fenêtre de
+                  mesure, à partir desquels aucun contenu ne peut être reconstitué.
+                  Les échanges sont chiffrés, et notre
+                  <a href="/politique-de-confidentialite/">politique de confidentialité</a>
+                  détaille chaque donnée traitée, sa finalité et sa durée de
+                  conservation.
                 </p>
               </div>
             </details>
 
             <details>
               <summary>
-                L'outil est-il complexe à intégrer à nos systèmes actuels ?
+                L'outil est-il complexe à intégrer à nos systèmes actuels&nbsp;?
               </summary>
               <div class="faq__body">
                 <p>
-                  Non, l'intégration a été pensée pour être la plus fluide
-                  possible. Certimens se déploie facilement sans perturber
-                  l'écosystème numérique de votre établissement. Il n'alourdit pas
-                  la charge de travail de vos équipes informatiques et s'intègre de
-                  manière transparente dans les habitudes de rédaction de vos
-                  étudiants.
+                  Non. Il n'y a rien à installer sur vos serveurs&nbsp;: l'étudiant
+                  ajoute une extension à son navigateur pour Google Docs et Word
+                  Online, ou un complément Office pour Word, ou encore l'extension
+                  LibreOffice Writer. Chacun s'installe depuis le magasin de son
+                  éditeur et fonctionne dans les habitudes de rédaction existantes.
+                  Les mesures partent en arrière-plan et sont mises en file
+                  d'attente si la connexion tombe, sans rien demander à
+                  l'étudiant.
                 </p>
               </div>
             </details>
 
             <details>
               <summary>
-                Quelle est la valeur ajoutée du « Label d'Excellence » pour nos
-                diplômes ?
+                Quelle est la valeur ajoutée du «&nbsp;Label d'Excellence&nbsp;» pour nos
+                diplômes&nbsp;?
               </summary>
               <div class="faq__body">
                 <p>
@@ -364,7 +378,7 @@
                 <strong>dynamique comportementale</strong> (temps de pause,
                 construction de la pensée), nous avons créé une certification qui
                 valorise le <strong>véritable effort intellectuel</strong>.
-                Remettre la cognition humaine au centre de l'évaluation : voilà
+                Remettre la cognition humaine au centre de l'évaluation&nbsp;: voilà
                 notre mission.
               </p>
             </div>

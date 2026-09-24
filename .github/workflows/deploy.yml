@@ -33,16 +33,36 @@ jobs:
           log_level: INFO
 
       # lychee vérifie les liens internes *et* externes, ainsi que les ancres.
-      # --base résout les chemins commençant par « / » depuis la racine du dépôt.
+      #
+      # --root-dir résout les liens commençant par « / » (le site en est truffé :
+      # /assets/…, /contact/…). Il exige un chemin absolu, d'où github.workspace.
+      # C'est bien --root-dir et non --base-url, qui attend un domaine.
+      #
+      # --index-files fait pointer un lien vers un dossier sur son index.html,
+      # comme le ferait le serveur. Sans lui, « /#faq » vise le dossier racine et
+      # l'ancre est déclarée introuvable ; c'est aussi ce qui rend « /contact/ »
+      # réellement vérifié plutôt qu'accepté parce que le dossier existe.
+      #
+      # --accept garde toute la plage 2xx (la valeur par défaut) et y ajoute 403
+      # et 429, renvoyés par certains sites tiers qui filtrent les robots : sans
+      # eux, une protection anti-bot ferait échouer le déploiement.
+      #
+      # --exclude écarte notre propre domaine de production, vers lequel pointent
+      # les URL canoniques et Open Graph. La CI s'exécute *avant* le déploiement :
+      # une page nouvelle ou renommée n'existe donc pas encore à cette adresse et
+      # serait signalée à tort. (Aujourd'hui certimens.fr sert encore l'ancien
+      # site WordPress, où /mentions-legales/ renvoie un 404.)
       - name: Liens et ancres
         uses: lycheeverse/lychee-action@v2.9.0
         with:
           args: >-
-            --base .
+            --root-dir ${{ github.workspace }}
+            --index-files index.html
             --include-fragments
             --no-progress
             --max-retries 3
-            --accept 200,206,403,429
+            --accept 200..=299,403,429
+            --exclude '^https://certimens\.fr'
             './**/*.html'
           fail: true
 

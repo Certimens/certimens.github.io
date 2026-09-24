@@ -17,11 +17,19 @@
     <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-500-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-800-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
@@ -72,7 +80,7 @@
 
       <section class="section">
         <div class="container container--narrow legal">
-          <p class="lead">Dernière mise à jour : 24 septembre 2026.</p>
+          <p class="lead">Dernière mise à jour&nbsp;: 24 septembre 2026.</p>
 
           <h2>1. Responsable du traitement</h2>
           <p>
@@ -80,18 +88,18 @@
             Maxime Sidorenko, pour Certimens.
           </p>
           <ul>
-            <li>Contact : <a href="mailto:contact@certimens.fr">contact@certimens.fr</a></li>
-            <li>Adresse postale : <span class="todo">[à compléter]</span></li>
+            <li>Contact&nbsp;: <a href="mailto:contact@certimens.fr">contact@certimens.fr</a></li>
+            <li>Adresse postale&nbsp;: <span class="todo">[à compléter]</span></li>
           </ul>
 
           <h2>2. Champ d'application</h2>
           <p>
-            Cette politique couvre deux ensembles distincts :
+            Cette politique couvre deux ensembles distincts&nbsp;:
           </p>
           <ul>
             <li>
               <strong>Le site vitrine</strong> (certimens.fr), purement
-              informatif : il ne dépose aucun cookie, n'utilise aucune mesure
+              informatif&nbsp;: il ne dépose aucun cookie, n'utilise aucune mesure
               d'audience et ne collecte aucune donnée. Son formulaire de contact
               ouvre votre logiciel de messagerie, sans rien enregistrer.
             </li>
@@ -106,11 +114,11 @@
 
           <h3>3.1 Compte utilisateur</h3>
           <p>
-            Adresse e-mail, mot de passe (jamais conservé en clair : seule une
+            Adresse e-mail, mot de passe (jamais conservé en clair&nbsp;: seule une
             empreinte bcrypt est stockée), rôle (étudiant, enseignant,
             administrateur d'établissement ou administrateur de la plateforme),
             établissement et classe de rattachement, langue d'affichage, date de
-            création du compte. Les comptes sont créés par invitation : un jeton
+            création du compte. Les comptes sont créés par invitation&nbsp;: un jeton
             d'activation à usage unique, assorti d'une date d'expiration, est
             associé au compte jusqu'à son activation.
           </p>
@@ -121,30 +129,36 @@
             sous forme d'empreinte</strong> et jamais en clair, accompagnés de
             leur date de création, de dernière utilisation et d'expiration. Un
             utilisateur peut à tout moment consulter et révoquer ses jetons depuis
-            son espace.
+            son espace. L'agent conserve localement, sur le poste de l'étudiant,
+            son adresse e-mail et un jeton d'accès révocable&nbsp;; le mot de passe
+            n'y est jamais conservé.
           </p>
 
           <h3>3.3 Documents déposés</h3>
           <p>
             Le nom du document, son type de contenu, son contenu lui-même, le
-            devoir auquel il est rattaché et son éventuel statut public. Un
+            devoir auquel il est rattaché et son éventuel statut public. Le
+            document n'est transmis que lorsque l'étudiant le demande
+            explicitement&nbsp;; il ne part jamais pendant la mesure. Un
             document n'est visible que par son auteur, par les enseignants et
             responsables de son établissement une fois rendu, et par la
-            plateforme ; il ne devient accessible plus largement que si son auteur
+            plateforme&nbsp;; il ne devient accessible plus largement que si son auteur
             le rend explicitement public.
           </p>
 
           <h3>3.4 Métriques de frappe</h3>
           <p>
-            C'est le cœur du service. L'agent Certimens mesure, par fenêtres de
-            temps, des <strong>compteurs numériques agrégés</strong> :
+            C'est le cœur du service. L'agent Certimens — extension de
+            navigateur pour Google&nbsp;Docs et Word&nbsp;Online, complément Office
+            pour Word, ou extension pour LibreOffice&nbsp;Writer — mesure, par
+            fenêtres de temps, des <strong>compteurs numériques agrégés</strong>&nbsp;:
           </p>
           <ul>
-            <li>volume réel du document et nombre total de frappes ;</li>
-            <li>temps de frappe effectif et nombre de caractères insérés ou collés ;</li>
-            <li>corrections immédiates, reformulations différées, révisions massives ;</li>
-            <li>sauts de navigation dans le document ;</li>
-            <li>pauses cognitives ;</li>
+            <li>volume réel du document et nombre total de frappes&nbsp;;</li>
+            <li>temps de frappe effectif et nombre de caractères insérés ou collés&nbsp;;</li>
+            <li>corrections immédiates, reformulations différées, révisions massives&nbsp;;</li>
+            <li>sauts de navigation dans le document&nbsp;;</li>
+            <li>pauses cognitives&nbsp;;</li>
             <li>
               régularité du rythme de frappe (écart absolu médian des intervalles
               entre frappes) et, pour l'agent Google Docs, cadence médiane,
@@ -157,12 +171,12 @@
             révision et la fluidité de navigation.
           </p>
           <p>
-            <strong>Ce que nous ne collectons pas :</strong> aucune séquence de
+            <strong>Ce que nous ne collectons pas&nbsp;:</strong> aucune séquence de
             touches n'est enregistrée, aucun texte saisi n'est capté par l'agent,
             aucune capture d'écran, aucun accès à la webcam ou au microphone,
             aucun blocage ni surveillance du navigateur. Les mesures sont des
-            nombres — par exemple « 42 pauses cognitives entre 14 h 03 et
-            14 h 18 » — et ne permettent pas de reconstituer ce qui a été écrit.
+            nombres — par exemple «&nbsp;42 pauses cognitives entre 14 h 03 et
+            14 h 18&nbsp;» — et ne permettent pas de reconstituer ce qui a été écrit.
           </p>
 
           <h3>3.5 Données techniques</h3>
@@ -184,16 +198,16 @@
           <h2>5. Base légale</h2>
           <ul>
             <li>
-              <strong>L'exécution d'un contrat ou de mesures précontractuelles :</strong>
+              <strong>L'exécution d'un contrat ou de mesures précontractuelles&nbsp;:</strong>
               fourniture du service de certification aux établissements et à leurs
               utilisateurs.
             </li>
             <li>
-              <strong>L'intérêt légitime :</strong> sécurité du service,
+              <strong>L'intérêt légitime&nbsp;:</strong> sécurité du service,
               prévention des abus, amélioration du produit.
             </li>
             <li>
-              <strong>Le consentement :</strong> pour les demandes que vous nous
+              <strong>Le consentement&nbsp;:</strong> pour les demandes que vous nous
               adressez spontanément.
             </li>
           </ul>
@@ -201,20 +215,20 @@
           <h2>6. Durées de conservation</h2>
           <ul>
             <li>
-              <strong>Compte et données scolaires :</strong> conservés pendant la
+              <strong>Compte et données scolaires&nbsp;:</strong> conservés pendant la
               durée de la relation avec l'établissement, puis supprimés.
             </li>
             <li>
-              <strong>Documents et métriques :</strong> conservés le temps
+              <strong>Documents et métriques&nbsp;:</strong> conservés le temps
               nécessaire à la certification et à son éventuelle contestation, dans
               la limite de l'année universitaire en cours et de la suivante.
             </li>
             <li>
-              <strong>Jetons d'authentification :</strong> supprimés à la
+              <strong>Jetons d'authentification&nbsp;:</strong> supprimés à la
               déconnexion, à leur révocation ou à leur expiration.
             </li>
             <li>
-              <strong>Journaux techniques :</strong> conservés au maximum douze
+              <strong>Journaux techniques&nbsp;:</strong> conservés au maximum douze
               mois.
             </li>
           </ul>
@@ -227,10 +241,10 @@
           <p>
             Vos données ne sont ni vendues, ni louées, ni cédées à des tiers à des
             fins commerciales. Au sein de l'application, l'accès est strictement
-            encadré par le rôle : un enseignant ne voit que les travaux rendus par
+            encadré par le rôle&nbsp;: un enseignant ne voit que les travaux rendus par
             ses classes, un administrateur que son établissement.
           </p>
-          <p>Les seuls sous-traitants techniques sont :</p>
+          <p>Les seuls sous-traitants techniques sont&nbsp;:</p>
           <ul>
             <li>
               <strong>OVH SAS</strong> — hébergement du serveur applicatif, de la
@@ -240,11 +254,6 @@
             <li>
               <strong>GitHub, Inc.</strong> — hébergement du site vitrine
               statique, qui ne reçoit aucune donnée applicative.
-            </li>
-            <li>
-              <strong>Google LLC</strong> — service Google Fonts, qui reçoit
-              l'adresse IP des visiteurs du site vitrine au chargement des
-              polices de caractères.
             </li>
           </ul>
           <p>
@@ -277,29 +286,30 @@
 
           <h2>10. Transferts hors Union européenne</h2>
           <p>
-            Les données de l'application sont hébergées en France. Seuls la
-            consultation du site vitrine (GitHub, Inc.) et le chargement des
-            polices de caractères (Google LLC) impliquent des acteurs
-            états-uniens, sur la base du <em>Data Privacy Framework</em>
-            UE–États-Unis. Aucune donnée de certification n'est concernée.
+            Les données de l'application sont hébergées en France. Seule la
+            consultation du site vitrine implique un acteur états-unien
+            (GitHub,&nbsp;Inc., pour l'hébergement des pages), sur la base du
+            <em>Data Privacy Framework</em> UE–États-Unis. Aucune donnée de
+            certification n'est concernée, et le site vitrine ne charge aucune
+            ressource tierce.
           </p>
 
           <h2>11. Vos droits</h2>
           <p>
             Conformément au RGPD et à la loi Informatique et Libertés, vous
-            disposez des droits suivants :
+            disposez des droits suivants&nbsp;:
           </p>
           <ul>
-            <li><strong>Droit d'accès :</strong> obtenir la confirmation que vos données sont traitées et en obtenir une copie.</li>
-            <li><strong>Droit de rectification :</strong> faire corriger des données inexactes ou incomplètes.</li>
-            <li><strong>Droit à l'effacement :</strong> demander la suppression de vos données.</li>
-            <li><strong>Droit à la limitation :</strong> demander le gel temporaire de leur utilisation.</li>
-            <li><strong>Droit d'opposition :</strong> vous opposer à un traitement pour des raisons tenant à votre situation particulière.</li>
-            <li><strong>Droit à la portabilité :</strong> récupérer les données que vous nous avez fournies dans un format structuré.</li>
+            <li><strong>Droit d'accès&nbsp;:</strong> obtenir la confirmation que vos données sont traitées et en obtenir une copie.</li>
+            <li><strong>Droit de rectification&nbsp;:</strong> faire corriger des données inexactes ou incomplètes.</li>
+            <li><strong>Droit à l'effacement&nbsp;:</strong> demander la suppression de vos données.</li>
+            <li><strong>Droit à la limitation&nbsp;:</strong> demander le gel temporaire de leur utilisation.</li>
+            <li><strong>Droit d'opposition&nbsp;:</strong> vous opposer à un traitement pour des raisons tenant à votre situation particulière.</li>
+            <li><strong>Droit à la portabilité&nbsp;:</strong> récupérer les données que vous nous avez fournies dans un format structuré.</li>
           </ul>
           <p>
             Si vous êtes étudiant ou enseignant d'un établissement client, votre
-            établissement est votre interlocuteur de premier niveau ; nous
+            établissement est votre interlocuteur de premier niveau&nbsp;; nous
             intervenons en qualité de sous-traitant pour son compte.
           </p>
 
