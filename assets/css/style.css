@@ -564,33 +564,7 @@ ul {
   margin-bottom: 0;
 }
 
-/* --- Revue de presse ------------------------------------------------------ */
-
-.press {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-bottom: 80px;
-}
-
-.press blockquote {
-  margin: 0;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--gold);
-  border-radius: var(--radius);
-  padding: 30px 28px;
-  color: var(--muted);
-  font-style: italic;
-}
-
-.press cite {
-  display: block;
-  margin-top: 16px;
-  font-style: normal;
-  font-weight: 700;
-  color: var(--navy);
-}
+/* --- Manifeste ------------------------------------------------------------ */
 
 .manifesto strong {
   color: var(--navy);
@@ -809,8 +783,7 @@ ul {
   }
 
   .grid-3,
-  .compare,
-  .press {
+  .compare {
     grid-template-columns: 1fr;
   }
 
