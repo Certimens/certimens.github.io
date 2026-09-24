@@ -26,13 +26,8 @@ jobs:
       - name: Liens internes et ancres
         run: python3 scripts/check-links.py
 
-      - name: Validation HTML
-        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
-        with:
-          root: .
-          blacklist: node_modules
-          # Les pages de redirection n'ont volontairement pas de <h1>.
-          log_level: INFO
+      - name: Contrôles HTML
+        run: python3 scripts/check-html.py
 
       - name: Les redirections sont à jour
         run: |

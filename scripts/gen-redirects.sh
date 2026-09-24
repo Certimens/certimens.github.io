@@ -28,6 +28,7 @@ for entry in "${REDIRECTS[@]}"; do
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Redirection — Certimens</title>
     <meta name="robots" content="noindex, follow" />
     <link rel="canonical" href="$dst" />

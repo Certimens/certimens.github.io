@@ -22,7 +22,8 @@ pointe vers <https://monespace.certimens.fr/>.
 │   └── img/                            Images reprises du site d'origine
 ├── scripts/
 │   ├── gen-redirects.sh                Régénère les redirections d'anciennes URLs
-│   └── check-links.py                  Vérifie liens internes et ancres
+│   ├── check-links.py                  Vérifie liens internes et ancres
+│   └── check-html.py                   Contrôles HTML (balises, title, alt, lang…)
 ├── CNAME                               Domaine personnalisé (certimens.fr)
 ├── .nojekyll                           Désactive Jekyll sur GitHub Pages
 ├── robots.txt
@@ -54,17 +55,20 @@ python3 -m http.server 8000
 # puis http://localhost:8000
 ```
 
-Avant de pousser :
+Avant de pousser, les deux contrôles que la CI rejouera :
 
 ```bash
 python3 scripts/check-links.py
+python3 scripts/check-html.py
 ```
+
+Ils n'ont aucune dépendance : Python 3 suffit.
 
 ## Déploiement
 
 Le workflow `.github/workflows/deploy.yml` s'exécute à chaque push :
 
-1. **Vérifications** — liens internes et ancres, validation HTML, cohérence des
+1. **Vérifications** — liens internes et ancres, contrôles HTML, cohérence des
    redirections. Ce job tourne aussi sur les pull requests.
 2. **Déploiement** — uniquement sur `main`, publie le dépôt sur GitHub Pages.
 
