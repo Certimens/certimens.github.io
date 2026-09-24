@@ -21,7 +21,6 @@ pointe vers <https://monespace.certimens.fr/>.
 │   ├── js/site.js                      Menu mobile + formulaire mailto
 │   └── img/                            Images reprises du site d'origine
 ├── scripts/
-│   ├── gen-redirects.sh                Régénère les redirections d'anciennes URLs
 │   ├── check-links.py                  Vérifie liens internes et ancres
 │   └── check-html.py                   Contrôles HTML (balises, title, alt, lang…)
 ├── CNAME                               Domaine personnalisé (certimens.fr)
@@ -30,22 +29,12 @@ pointe vers <https://monespace.certimens.fr/>.
 └── sitemap.xml
 ```
 
-### Redirections des anciennes URLs
+### Anciennes URLs WordPress
 
-Les permaliens WordPress sont conservés via des pages de redirection
-(GitHub Pages ne sait pas faire de redirection côté serveur) :
-
-| Ancienne URL                       | Destination                        |
-| ---------------------------------- | ---------------------------------- |
-| `/elementor-543/`, `/connexion/`   | `https://monespace.certimens.fr/`  |
-| `/espace-enseignant/`              | `https://monespace.certimens.fr/`  |
-| `/elementor-487/`                  | `/mentions-legales/`               |
-| `/elementor-515/`                  | `/politique-de-confidentialite/`   |
-| `/index.php/contact/`              | `/contact/`                        |
-
-Pour en ajouter une, éditez le tableau `REDIRECTS` dans
-`scripts/gen-redirects.sh` puis relancez le script. La CI vérifie que les
-fichiers générés correspondent bien au script.
+Les permaliens du site WordPress (`/elementor-487/`, `/elementor-543/`,
+`/index.php/contact/`, `/hub-etudiant/`, `/espace-enseignant/`…) ne sont pas
+repris : les liens qui les utilisent encore arrivent sur la page `404.html`,
+qui renvoie vers l'accueil et le contact.
 
 ## Développement local
 
@@ -67,8 +56,8 @@ Ils n'ont aucune dépendance : Python 3 suffit.
 
 Le workflow `.github/workflows/deploy.yml` s'exécute à chaque push :
 
-1. **Vérifications** — liens internes et ancres, contrôles HTML, cohérence des
-   redirections. Ce job tourne aussi sur les pull requests.
+1. **Vérifications** — liens internes et ancres, contrôles HTML. Ce job tourne
+   aussi sur les pull requests.
 2. **Déploiement** — uniquement sur `main`, publie le dépôt sur GitHub Pages.
 
 ### Mise en route (une seule fois)

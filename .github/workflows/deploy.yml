@@ -29,16 +29,6 @@ jobs:
       - name: Contrôles HTML
         run: python3 scripts/check-html.py
 
-      - name: Les redirections sont à jour
-        run: |
-          ./scripts/gen-redirects.sh > /dev/null
-          if ! git diff --quiet; then
-            echo "::error::Les pages de redirection diffèrent de scripts/gen-redirects.sh."
-            echo "Lancez ./scripts/gen-redirects.sh et committez le résultat."
-            git diff --stat
-            exit 1
-          fi
-
   deploy:
     name: Déploiement
     needs: check
