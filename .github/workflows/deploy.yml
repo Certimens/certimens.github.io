@@ -1,0 +1,73 @@
+name: CI / Déploiement GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Permet de relancer un déploiement à la main depuis l'onglet Actions.
+  workflow_dispatch:
+
+# Un seul déploiement à la fois ; on ne coupe pas celui en cours.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Vérifications
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Liens internes et ancres
+        run: python3 scripts/check-links.py
+
+      - name: Validation HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          blacklist: node_modules
+          # Les pages de redirection n'ont volontairement pas de <h1>.
+          log_level: INFO
+
+      - name: Les redirections sont à jour
+        run: |
+          ./scripts/gen-redirects.sh > /dev/null
+          if ! git diff --quiet; then
+            echo "::error::Les pages de redirection diffèrent de scripts/gen-redirects.sh."
+            echo "Lancez ./scripts/gen-redirects.sh et committez le résultat."
+            git diff --stat
+            exit 1
+          fi
+
+  deploy:
+    name: Déploiement
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - name: Préparer l'artefact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Publier sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
