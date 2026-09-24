@@ -21,13 +21,30 @@ jobs:
     name: Vérifications
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
 
-      - name: Liens internes et ancres
-        run: python3 scripts/check-links.py
+      # Nu Html Checker (le validateur du W3C) : conformité HTML réelle,
+      # hiérarchie des titres, attributs ARIA, etc.
+      - name: Validation HTML
+        uses: Cyb3r-Jak3/html5validator-action@v8.0.0
+        with:
+          root: .
+          css: true
+          log_level: INFO
 
-      - name: Contrôles HTML
-        run: python3 scripts/check-html.py
+      # lychee vérifie les liens internes *et* externes, ainsi que les ancres.
+      # --base résout les chemins commençant par « / » depuis la racine du dépôt.
+      - name: Liens et ancres
+        uses: lycheeverse/lychee-action@v2.9.0
+        with:
+          args: >-
+            --base .
+            --include-fragments
+            --no-progress
+            --max-retries 3
+            --accept 200,206,403,429
+            './**/*.html'
+          fail: true
 
   deploy:
     name: Déploiement
@@ -44,15 +61,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6.0.0
 
       - name: Préparer l'artefact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: .
 
       - name: Publier sur GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.1

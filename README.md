@@ -20,9 +20,9 @@ pointe vers <https://monespace.certimens.fr/>.
 │   ├── css/style.css                   Feuille de style unique
 │   ├── js/site.js                      Menu mobile + formulaire mailto
 │   └── img/                            Images reprises du site d'origine
-├── scripts/
-│   ├── check-links.py                  Vérifie liens internes et ancres
-│   └── check-html.py                   Contrôles HTML (balises, title, alt, lang…)
+├── .github/
+│   ├── workflows/deploy.yml            CI + publication sur GitHub Pages
+│   └── dependabot.yml                  Maintient les actions à jour
 ├── CNAME                               Domaine personnalisé (certimens.fr)
 ├── .nojekyll                           Désactive Jekyll sur GitHub Pages
 ├── robots.txt
@@ -43,22 +43,33 @@ python3 -m http.server 8000
 # puis http://localhost:8000
 ```
 
-Avant de pousser, les deux contrôles que la CI rejouera :
+Les contrôles tournent en CI (voir ci-dessous). Pour les rejouer en local,
+il faut Docker :
 
 ```bash
-python3 scripts/check-links.py
-python3 scripts/check-html.py
-```
+# Validation HTML (Nu Html Checker, le validateur du W3C)
+docker run --rm -v "$PWD":/data ghcr.io/validator/validator \
+  vnu --skip-non-html /data
 
-Ils n'ont aucune dépendance : Python 3 suffit.
+# Liens et ancres
+docker run --rm -v "$PWD":/input lycheeverse/lychee \
+  --base /input --include-fragments '/input/**/*.html'
+```
 
 ## Déploiement
 
 Le workflow `.github/workflows/deploy.yml` s'exécute à chaque push :
 
-1. **Vérifications** — liens internes et ancres, contrôles HTML. Ce job tourne
-   aussi sur les pull requests.
+1. **Vérifications** — ce job tourne aussi sur les pull requests :
+   - [`html5validator-action`](https://github.com/Cyb3r-Jak3/html5validator-action)
+     fait passer le **Nu Html Checker** (le validateur du W3C) sur les pages et
+     la CSS : conformité HTML, hiérarchie des titres, attributs ARIA ;
+   - [`lychee-action`](https://github.com/lycheeverse/lychee-action) vérifie les
+     liens **internes et externes** ainsi que les ancres `#…`.
 2. **Déploiement** — uniquement sur `main`, publie le dépôt sur GitHub Pages.
+
+Les actions sont épinglées à une version exacte ; `dependabot.yml` ouvre une PR
+mensuelle quand une mise à jour sort.
 
 ### Mise en route (une seule fois)
 

@@ -91,6 +91,13 @@ h2 {
   font-weight: 700;
 }
 
+/* Titre de section : un <h2> pour respecter la hiérarchie des niveaux (un seul
+   <h1> par page), mais rendu à la taille d'un titre principal. */
+.section-title {
+  font-size: clamp(2rem, 4.2vw, 2.9rem);
+  font-weight: 800;
+}
+
 h3 {
   font-size: 1.15rem;
   font-weight: 700;
