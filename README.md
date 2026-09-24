@@ -105,14 +105,23 @@ Et, pour le `www` :
 
 ## Points restés à compléter
 
-Ces éléments étaient déjà des placeholders sur le site WordPress ; ils sont
-surlignés en doré sur les pages légales pour être repérables.
+Les pages légales ont été rédigées d'après le fonctionnement réel du moteur
+(dépôt `engine`). Ne restent que les informations d'identité juridique, qui ne
+figurent nulle part dans le code — elles sont surlignées en doré sur les pages :
 
-- **Mentions légales** : statut juridique, adresse, email, téléphone, SIRET,
+- **Mentions légales** : statut juridique, adresse du siège, SIRET, téléphone,
   nom du directeur de la publication.
-- **Politique de confidentialité** : email et adresse postale du responsable de
+- **Politique de confidentialité** : adresse postale du responsable de
   traitement.
-- **Page contact** : le numéro `06.00.00.00.00` est un placeholder.
+
+Deux engagements de la politique de confidentialité relèvent d'une décision, pas
+du code, et ne sont pas encore appliqués automatiquement par le moteur :
+
+- les **durées de conservation** annoncées (documents et métriques sur l'année
+  universitaire en cours et la suivante, journaux techniques à douze mois) —
+  aucune tâche de purge n'existe côté `engine` ;
+- la qualification de **sous-traitant** vis-à-vis des établissements clients,
+  qui suppose un contrat de sous-traitance (article 28 du RGPD).
 
 ## Formulaire de contact
 
