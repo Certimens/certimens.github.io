@@ -10,7 +10,6 @@ cd "$(dirname "$0")/.."
 REDIRECTS=(
   "elementor-543|https://monespace.certimens.fr/"
   "connexion|https://monespace.certimens.fr/"
-  "hub-etudiant|https://monespace.certimens.fr/"
   "espace-enseignant|https://monespace.certimens.fr/"
   "elementor-487|/mentions-legales/"
   "elementor-515|/politique-de-confidentialite/"

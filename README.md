@@ -38,7 +38,6 @@ Les permaliens WordPress sont conservés via des pages de redirection
 | Ancienne URL                       | Destination                        |
 | ---------------------------------- | ---------------------------------- |
 | `/elementor-543/`, `/connexion/`   | `https://monespace.certimens.fr/`  |
-| `/hub-etudiant/`                   | `https://monespace.certimens.fr/`  |
 | `/espace-enseignant/`              | `https://monespace.certimens.fr/`  |
 | `/elementor-487/`                  | `/mentions-legales/`               |
 | `/elementor-515/`                  | `/politique-de-confidentialite/`   |
