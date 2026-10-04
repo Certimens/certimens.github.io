@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+# La charte graphique est versionnée ici pour que les dépôts privés s'y
+# réfèrent ; elle n'a pas à être indexée avec les pages du site.
+Disallow: /docs/
+
+Sitemap: https://certimens.fr/sitemap.xml

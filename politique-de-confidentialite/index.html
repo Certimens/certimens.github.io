@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Politique de Confidentialité — Certimens</title>
+    <meta
+      name="description"
+      content="Politique de confidentialité de certimens.fr : données collectées, finalités, base légale, durée de conservation et droits RGPD."
+    />
+    <link
+      rel="canonical"
+      href="https://certimens.fr/politique-de-confidentialite/"
+    />
+    <!-- Versions linguistiques. x-default renvoie vers le français : c'est la
+         langue par défaut du site, et certimens.com redirige vers /en/. -->
+    <link rel="alternate" hreflang="fr" href="https://certimens.fr/politique-de-confidentialite/" />
+    <link rel="alternate" hreflang="en" href="https://certimens.fr/en/privacy-policy/" />
+    <link rel="alternate" hreflang="x-default" href="https://certimens.fr/politique-de-confidentialite/" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+
+    <link
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-500-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-800-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-logo" href="/" aria-label="Certimens — accueil">
+          <img src="/assets/img/logo.png" alt="Certimens" width="300" height="300" />
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+          <ul>
+            <li><a href="/#certification">La Certification</a></li>
+            <li><a href="/#expertise">Notre Expertise</a></li>
+            <li><a href="/#faq">Questions Fréquentes</a></li>
+            <li><a href="/plugins/">Plugins</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li class="nav-lang">
+              <a href="/en/privacy-policy/" lang="en" hreflang="en" aria-label="Switch to English">EN</a>
+            </li>
+            <li class="nav-login">
+              <a href="https://monespace.certimens.fr/">Connexion</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Politique de Confidentialité</h1>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container container--narrow legal">
+          <p class="lead">Dernière mise à jour&nbsp;: 13 octobre 2026.</p>
+
+          <h2>1. Responsable du traitement</h2>
+          <p>
+            Le responsable du traitement des données à caractère personnel est
+            Maxime Sidorenko, pour Certimens.
+          </p>
+          <ul>
+            <li>Contact&nbsp;: <a href="mailto:contact@certimens.fr">contact@certimens.fr</a></li>
+            <li>Adresse postale&nbsp;: <span class="todo">[à compléter]</span></li>
+          </ul>
+
+          <h2>2. Champ d'application</h2>
+          <p>
+            Cette politique couvre deux ensembles distincts&nbsp;:
+          </p>
+          <ul>
+            <li>
+              <strong>Le site vitrine</strong> (certimens.fr, dans ses deux
+              versions linguistiques, y compris les pages d'installation des
+              agents sous <code>/plugins/</code>), purement informatif&nbsp;: il ne
+              dépose aucun cookie, n'utilise aucune mesure d'audience et ne
+              collecte aucune donnée. Son formulaire de contact ouvre votre
+              logiciel de messagerie, sans rien enregistrer.
+            </li>
+            <li>
+              <strong>L'application de certification</strong>
+              (monespace.certimens.fr), accessible sur compte, où se trouvent
+              l'essentiel des traitements décrits ci-dessous.
+            </li>
+          </ul>
+
+          <h2>3. Données collectées</h2>
+
+          <h3>3.1 Compte utilisateur</h3>
+          <p>
+            Adresse e-mail, mot de passe (jamais conservé en clair&nbsp;: seule une
+            empreinte bcrypt est stockée), rôle, établissement et classe de
+            rattachement, langue d'affichage, date de création du compte. Les
+            rôles sont&nbsp;: compte autonome sans établissement, étudiant,
+            enseignant, administrateur d'établissement et administrateur de la
+            plateforme.
+          </p>
+          <p>
+            Un compte naît de trois façons. <strong>Sur invitation</strong> d'un
+            établissement&nbsp;: le compte est créé sans mot de passe et porte un
+            jeton d'activation à usage unique, assorti d'une date d'expiration,
+            jusqu'à ce que son titulaire le active. Par
+            <strong>auto-inscription</strong>, qui crée un compte sans
+            établissement ni classe, confirmé par un e-mail de vérification. Ou
+            lors d'une <strong>première connexion par un fournisseur
+            externe</strong> — celui de votre établissement, Google, Microsoft, ou
+            un lancement depuis votre Moodle (voir 3.2). Dans les deux premiers
+            cas, une demande portant sur une adresse déjà connue reçoit la même
+            réponse qu'une autre&nbsp;: la plateforme ne permet pas de savoir si une
+            adresse a un compte.
+          </p>
+          <p>
+            Un compte créé par un fournisseur externe <strong>n'a pas de mot de
+            passe du tout</strong>, et n'en a pas besoin&nbsp;: c'est le
+            fournisseur qui atteste de qui vous êtes. À l'inverse, un compte qui
+            avait déjà un mot de passe le garde&nbsp;: déclarer un fournisseur
+            ajoute une porte, il n'en ferme aucune.
+          </p>
+          <p>
+            La langue est conservée sur le compte, et non déduite de votre
+            navigateur, parce que certains e-mails partent en dehors de toute
+            visite — une réinitialisation déclenchée par un administrateur, par
+            exemple. C'est la seule façon d'écrire au destinataire dans sa langue
+            plutôt que dans celle de qui a déclenché l'envoi.
+          </p>
+          <p>
+            Le compte peut aussi porter un <strong>prénom, un nom et une photo de
+            profil</strong>. Les trois sont facultatifs&nbsp;: un compte qui n'en
+            a aucun fonctionne à l'identique. Une photo déposée est
+            <strong>redimensionnée et ré-encodée par le serveur</strong> avant
+            d'être stockée — jamais les octets reçus —, ce qui supprime les
+            métadonnées du fichier d'origine, dont les coordonnées GPS que les
+            téléphones y inscrivent couramment&nbsp;: nous ne conservons donc pas
+            l'endroit où la photo a été prise. Seuls le PNG et le JPEG sont
+            stockés, au plus 512 pixels de côté et 512 Ko.
+          </p>
+          <p>
+            Dans l'application, la photo d'un compte est visible des personnes à
+            qui une liste qu'elles avaient le droit de lire la présente&nbsp;: un
+            enseignant et l'administration voient leurs élèves et leurs collègues,
+            un élève voit son enseignant.
+          </p>
+          <p>
+            Un établissement peut renseigner le nom et la photo de ses comptes en
+            important son trombinoscope. Un import <strong>complète, il ne
+            remplace jamais</strong>&nbsp;: il ne pose un nom ou une photo que sur
+            un compte qui n'en a pas, et la règle est tenue par le serveur et non
+            par l'interface. Chacun peut à tout moment modifier ou retirer les
+            siens depuis la page «&nbsp;Mon compte&nbsp;».
+          </p>
+          <p>
+            Le compte porte enfin deux réglages&nbsp;: la réception ou non des
+            <strong>notifications par e-mail</strong> (voir 3.8) et l'autorisation
+            d'être <strong>nommé en entier sur la liste publique</strong> (voir
+            3.3), modifiables à tout moment, le second étant désactivé par défaut.
+            Le thème clair ou sombre, lui, n'est pas stocké sur le compte&nbsp;: il
+            reste dans le navigateur.
+          </p>
+
+          <h3>3.2 Données d'authentification</h3>
+          <p>
+            Les connexions produisent des jetons d'accès opaques, <strong>stockés
+            sous forme d'empreinte</strong> et jamais en clair, accompagnés de
+            leur date de création, de dernière utilisation et d'expiration. Un
+            utilisateur peut à tout moment consulter et révoquer ses jetons depuis
+            son espace. La valeur brute d'un jeton n'est affichée qu'une seule
+            fois, à sa création.
+          </p>
+          <p>
+            Les jetons destinés à l'agent portent en plus un libellé, et leur
+            expiration est <strong>facultative</strong>&nbsp;: un jeton d'agent est
+            créé sans, parce que l'agent travaille sans surveillance et qu'un jeton
+            qui expirerait en cours de trimestre arrêterait silencieusement la
+            mesure d'une classe entière. Il vaut donc jusqu'à sa révocation —
+            depuis votre espace, ou depuis l'agent lui-même quand vous l'y
+            déconnectez.
+          </p>
+          <p>
+            <strong>Aucun agent ne vous demande votre mot de passe</strong>, et il
+            n'y en a pas à demander&nbsp;: un compte peut n'en avoir aucun (voir
+            3.1). L'agent s'apparie par un <strong>code court</strong> qu'il
+            affiche et que vous confirmez dans votre espace Certimens — le même
+            mécanisme que pour un téléviseur ou une console
+            (<em>device authorization grant</em>, RFC&nbsp;8628). L'écran de
+            confirmation vous dit quel agent demande l'appairage, et vous pouvez le
+            refuser&nbsp;; un refus est enregistré, de sorte qu'un code que l'on
+            vous aurait soutiré cesse immédiatement d'être utilisable. Le code vaut
+            dix minutes. Ce qui est conservé sur votre poste, à l'issue de
+            l'appairage, est le jeton et rien d'autre&nbsp;: jamais un mot de
+            passe. Un logiciel qui se présente comme un agent Certimens et réclame
+            un mot de passe n'est pas le nôtre.
+          </p>
+          <p>
+            <strong>Connexion par un fournisseur externe.</strong> Votre
+            établissement peut ouvrir la connexion à son propre fournisseur
+            d'identité, ou à Google, Microsoft et Facebook, et peut laisser son
+            Moodle vous amener directement depuis un cours (LTI&nbsp;1.3). Ce que
+            nous conservons alors est l'<strong>identifiant opaque</strong> que le
+            fournisseur nous donne pour vous, associé au nom de ce fournisseur —
+            pas un jeton, pas un mot de passe, et rien qui permette d'agir chez lui
+            en votre nom. Le reste de ce qu'il envoie — nom, prénom, adresse,
+            langue — sert <strong>une fois</strong>, à créer le compte, et devient
+            de la donnée de compte ordinaire que vous pouvez corriger&nbsp;: rien
+            n'est resynchronisé en silence derrière vous. Un lancement depuis un
+            Moodle ajoute le <strong>cours</strong> d'où vous venez, ce qui vous
+            rattache à une classe exactement comme l'aurait fait un import
+            administratif. Les secrets des échanges en cours sont à usage unique et
+            vivent entre une et dix minutes, et <strong>aucun cookie</strong> n'est
+            posé à cette occasion (voir 10).
+          </p>
+
+          <h3>3.3 Documents déposés</h3>
+          <p>
+            Le nom du document, son type de contenu, son contenu lui-même, le
+            devoir auquel il est rattaché et son éventuel statut public. Le
+            document n'est transmis que lorsque l'étudiant le demande
+            explicitement&nbsp;; il ne part jamais pendant la mesure. Un
+            document n'est visible que par son auteur, par les enseignants et
+            responsables de son établissement une fois rendu, et par la
+            plateforme&nbsp;; il ne devient accessible plus largement que si son auteur
+            le rend explicitement public — et la façon dont vous y êtes nommé est
+            décrite ci-dessous.
+          </p>
+          <p>
+            Sur cette liste publique, lisible sans aucun compte, vous êtes nommé
+            «&nbsp;Prénom N.&nbsp;» — votre prénom et l'initiale de votre nom — et
+            votre photo n'est pas affichée. C'est le réglage par défaut, celui d'un
+            compte qui n'a jamais ouvert ses paramètres, y compris un compte créé
+            par l'import d'un administrateur. Si vous n'avez renseigné aucun nom,
+            <strong>rien n'est publié à votre sujet</strong>&nbsp;: surtout pas
+            votre adresse e-mail. Vous pouvez choisir d'être nommé en entier, avec
+            votre photo, depuis «&nbsp;Mon compte&nbsp;»&nbsp;; ce choix ne
+            concerne que les documents que vous rendez publics, et il est
+            réversible à tout moment.
+          </p>
+          <p>
+            Seuls les formats d'un devoir rédigé sont acceptés&nbsp;: Word
+            (<code>.docx</code>), OpenDocument (<code>.odt</code>), PDF, texte
+            brut (<code>.txt</code>, <code>.md</code>) et les fichiers de code
+            source, pour un devoir rendu en code. Le format est
+            <strong>reconnu sur le contenu du fichier</strong>, jamais d'après son
+            nom&nbsp;; tout autre contenu — image, vidéo, archive, exécutable — est
+            refusé avant le moindre octet stocké.
+          </p>
+          <p>
+            Au dépôt, le nombre de caractères du document est compté côté serveur.
+            Ce chiffre sert à recouper le volume déclaré par l'agent (voir 3.5)
+            et ne donne lieu à aucune conservation du texte&nbsp;: c'est un nombre.
+          </p>
+
+          <h3>3.4 Métriques de frappe</h3>
+          <p>
+            C'est le cœur du service. L'agent Certimens — extension de
+            navigateur pour Google&nbsp;Docs, Word&nbsp;Online et Overleaf,
+            complément Office pour Word, extension pour LibreOffice&nbsp;Writer, ou
+            extension pour Visual&nbsp;Studio&nbsp;Code, qui mesure un projet de
+            code fichier par fichier — mesure, par fenêtres de temps, des
+            <strong>compteurs numériques agrégés</strong>&nbsp;:
+          </p>
+          <ul>
+            <li>volume réel du document et nombre total de frappes&nbsp;;</li>
+            <li>temps de frappe effectif et nombre de caractères insérés ou collés&nbsp;;</li>
+            <li>corrections immédiates, reformulations différées, révisions massives&nbsp;;</li>
+            <li>sauts de navigation dans le document&nbsp;;</li>
+            <li>
+              pauses cognitives — les reprises après trois secondes à cinq minutes
+              d'inactivité&nbsp;;
+            </li>
+            <li>
+              régularité du rythme de frappe (écart absolu médian des intervalles
+              entre frappes) et, selon l'agent, cadence médiane, nombre de
+              collages et nombre de sorties du document&nbsp;: chacun n'envoie que
+              ce que son éditeur lui permet d'observer réellement.
+            </li>
+          </ul>
+          <p>
+            Une fenêtre est close et envoyée toutes les 200 frappes, après deux
+            secondes d'inactivité, à l'enregistrement ou lorsque vous quittez le
+            document&nbsp;; un document en produit quelques centaines. Sa période
+            va de la première à la dernière activité&nbsp;: le temps mort n'y entre
+            pas.
+            La mesure peut être <strong>suspendue à tout moment</strong> depuis
+            l'agent&nbsp;: plus rien n'est alors compté, et la suspension dure jusqu'à
+            ce que l'étudiant la lève, même après un redémarrage.
+            De ces mesures est dérivé l'<strong>Indice de Friction Cognitive</strong>,
+            un score sur 100 combinant quatre dimensions&nbsp;: le rythme des pauses
+            cognitives, le taux de remaniement, la régularité du rythme de frappe
+            et la fluidité de navigation (voir le point 6).
+          </p>
+          <p>
+            Une fenêtre peut être <strong>déclarée hors ligne</strong>&nbsp;:
+            privé de réseau, l'agent met ses mesures en file d'attente et les
+            envoie au retour de la connexion, en indiquant qu'elles ont été
+            produites ainsi. Le certificat porte alors la part des frappes saisies
+            hors ligne. C'est un énoncé, pas une sanction&nbsp;: cette part
+            n'entre pas dans le score, et déclarer une fenêtre hors ligne ne fait
+            disparaître aucun des signaux du point 3.5 — un envoi tardif reste
+            signalé comme tel, qu'il s'annonce ou non comme un rattrapage.
+          </p>
+          <p>
+            <strong>Au-delà des éditeurs reconnus</strong>, l'extension de
+            navigateur peut mesurer un site que <strong>vous désignez
+            vous-même</strong>&nbsp;: le Moodle de votre établissement, son wiki,
+            l'outil où un devoir se rédige en ligne. Votre établissement peut
+            proposer une liste de ces adresses, que l'extension affiche dans ses
+            options&nbsp;; proposer n'est pas accorder — c'est votre navigateur qui
+            vous demande l'autorisation, pour cette adresse seule, et rien n'est
+            mesuré sur un site que vous n'avez pas accepté. L'adresse de la page
+            sert à identifier le document et <strong>ne quitte pas votre
+            poste</strong>&nbsp;: seul son titre est envoyé. Une autorisation se
+            retire à tout moment depuis les options de l'extension.
+          </p>
+          <p>
+            <strong>Une mémoire locale, et une seule.</strong> Pour distinguer un
+            paragraphe que vous déplacez dans votre propre document d'un texte
+            importé d'ailleurs, l'agent retient ce qui <em>sort</em> du document —
+            ce que vous copiez ou coupez — sous forme d'<strong>empreintes
+            numériques</strong> de quatre mots consécutifs, jamais le texte. Cinq
+            extraits au plus, en mémoire vive, effacés au bout de dix minutes sans
+            servir ou à la fermeture du document. Rien n'est écrit sur le disque,
+            rien n'entre dans une fenêtre de mesure, rien n'est envoyé&nbsp;: seul
+            le compteur qui en sort traverse le réseau, et une empreinte sur
+            32&nbsp;bits ne rend pas ses mots.
+          </p>
+          <p>
+            <strong>Sans rien installer non plus.</strong> L'application embarque un
+            <strong>éditeur</strong>, accessible depuis votre espace&nbsp;: le
+            document s'y écrit dans votre navigateur, au format Word, et c'est
+            l'éditeur lui-même qui mesure. Les compteurs sont les mêmes que
+            ci-dessus, calculés selon les mêmes règles — un devoir écrit là et un
+            devoir écrit dans Word sont comparés sur le même pied. La fiche du
+            document est créée à la première mesure et non à l'ouverture de la
+            page&nbsp;: tant que vous n'avez pas cliqué pour l'enregistrer, elle
+            existe avec ses mesures et <strong>sans aucun texte</strong>. Rien
+            n'est conservé dans votre navigateur d'une session à l'autre.
+          </p>
+          <p>
+            <strong>Ce que nous ne collectons pas&nbsp;:</strong> aucune séquence de
+            touches n'est enregistrée, aucun texte saisi n'est capté par l'agent,
+            aucune capture d'écran, aucun accès à la webcam ou au microphone,
+            aucun blocage ni surveillance du navigateur. Les mesures sont des
+            nombres — par exemple «&nbsp;42 pauses cognitives entre 14 h 03 et
+            14 h 18&nbsp;» — et ne permettent pas de reconstituer ce qui a été écrit.
+          </p>
+          <p>
+            <strong>Vous n'avez pas à nous croire sur parole</strong> — pour les
+            agents. Leur code est public&nbsp;: vous pouvez y lire ce qui est
+            mesuré, ce qui est envoyé et ce qui ne l'est pas, sur
+            <a href="https://github.com/Certimens/plugins" rel="noopener noreferrer" target="_blank">github.com/Certimens/plugins</a>.
+            L'éditeur intégré, lui, s'exécute dans une page que nos serveurs vous
+            envoient et son code n'est pas publié&nbsp;: ce qu'il mesure et ce
+            qu'il envoie sont les mêmes, mais sur ce point précis vous nous croyez
+            sur parole. Nous préférons le dire plutôt qu'étendre à l'éditeur une
+            garantie qui ne vaut que pour les agents.
+          </p>
+
+          <h3>3.5 Contrôles d'intégrité</h3>
+          <p>
+            La mesure s'exécute sur le poste de l'étudiant&nbsp;: elle est donc
+            recoupée côté serveur, faute de quoi elle ne vaudrait rien. Trois
+            éléments en découlent, tous dérivés de données déjà citées&nbsp;:
+          </p>
+          <ul>
+            <li>
+              la <strong>part du document qu'aucune mesure n'explique</strong>,
+              obtenue en comparant le comptage serveur au volume déclaré. Au-delà
+              de 20&nbsp;%, l'interface affiche un avertissement, au propriétaire
+              du document comme à l'enseignant. C'est aussi le seul élément de ce
+              point qui <strong>pèse sur le score</strong>&nbsp;: les points obtenus
+              sont multipliés par la part réellement tapée, faute de quoi un texte
+              collé aux quatre cinquièmes pourrait afficher une note maximale à
+              côté de l'avertissement qui le contredit&nbsp;;
+            </li>
+            <li>
+              la <strong>forme de la session</strong>&nbsp;: le nombre de fenêtres
+              de mesure et la période qu'elles couvrent, portés sur le certificat.
+              «&nbsp;Mesuré en 3 fenêtres, de 14 h 02 à 14 h 09&nbsp;» se lit
+              autrement qu'«&nbsp;en 40 fenêtres sur deux jours&nbsp;»&nbsp;;
+            </li>
+            <li>
+              des <strong>signaux techniques sur les envois de mesures</strong>.
+              Chaque envoi est examiné après coup et ce qui ne ressemble pas à
+              l'agent est noté sur le document&nbsp;: en-têtes que le navigateur ou
+              la bibliothèque HTTP ajoutent d'eux-mêmes, type de contenu déclaré,
+              forme du corps de la requête, envoi arrivé longtemps après la période
+              qu'il décrit, horloge en avance. Ces signaux sont enregistrés par
+              document sous forme de compteurs — la nature du signal, son nombre
+              d'occurrences, sa première et sa dernière date — et ne portent
+              <strong>aucun contenu</strong> du document.
+            </li>
+          </ul>
+          <p>
+            Ces signaux <strong>n'entrent pas dans le score</strong>&nbsp;: ils
+            disent comment les mesures sont arrivées, pas comment le texte a été
+            écrit. Ils sont montrés au correcteur et non affichés à l'auteur, pour
+            ne pas indiquer à qui voudrait les contourner lesquels sont tendus
+            — ce qui ne les soustrait pas à votre droit d'accès (voir le point 13).
+          </p>
+
+          <h3>3.6 Journal des consultations</h3>
+          <p>
+            Chaque lecture d'un document ou d'un certificat, ainsi que chaque
+            usage par un administrateur de la plateforme de la fonction
+            «&nbsp;voir en tant que&nbsp;», est inscrite dans un journal en
+            <strong>ajout seul</strong>&nbsp;: date, compte sous l'autorité duquel
+            l'action a été faite, administrateur lorsqu'il agissait à la place
+            d'un autre, nature de l'action et identifiant de l'objet concerné.
+            Aucun contenu n'y figure — un acteur, un sujet, une action&nbsp;: le
+            journal ne devient pas une seconde copie de ce qu'il surveille.
+          </p>
+          <p>
+            Ce journal est <strong>conservé trois ans</strong>, et il survit à ce
+            qu'il décrit — au document comme à la suppression du compte concerné.
+            C'est délibéré&nbsp;: la question «&nbsp;qui a consulté ce
+            document&nbsp;?&nbsp;» se pose précisément quand un étudiant conteste
+            un résultat, souvent une fois le reste effacé. Trois ans, c'est l'année
+            de conservation du document plus deux années pleines de contestation.
+            Il ne contient ni document, ni mesure, ni adresse e-mail&nbsp;:
+            seulement des identifiants internes et des dates.
+          </p>
+          <p>
+            La purge <strong>ne sait supprimer que sur l'âge</strong>&nbsp;: jamais
+            sur un acteur, un sujet ni une action. Personne ne peut donc faire
+            disparaître un événement gênant&nbsp;; on ne peut que faire vieillir
+            tout le monde ensemble.
+          </p>
+          <p>
+            Deux autres actions y entrent, outre l'usurpation d'identité déjà
+            citée&nbsp;: le <strong>déplacement de la date limite d'un devoir</strong> —
+            le seul geste qui rouvre un devoir à de nouvelles copies — et chaque
+            <strong>échec de connexion</strong>. Un échec n'a pas d'auteur connu,
+            par définition&nbsp;: il est inscrit contre le compte visé lorsque
+            l'adresse est l'une des nôtres, et contre rien du tout lorsqu'elle ne
+            l'est pas, pour que le journal ne devienne pas la liste des adresses
+            que quelqu'un a essayées. Le compteur qui ralentit les tentatives
+            (voir le point 9) est d'ailleurs indexé par une empreinte de
+            l'adresse, jamais par l'adresse elle-même.
+          </p>
+
+          <h3>3.7 Données techniques</h3>
+          <p>
+            Adresse IP et journaux de connexion, utilisés pour la sécurité du
+            service et pour limiter le nombre de requêtes par adresse&nbsp;: 300
+            requêtes par minute sur l'ensemble de l'API, 15 sur les routes
+            d'authentification et 5 sur le formulaire d'aide de la page de
+            connexion. Cette limitation protège des attaques par force brute et de
+            l'extraction automatisée.
+          </p>
+          <p>
+            Une ligne de journal porte&nbsp;: la date, la méthode et la route
+            appelées, le code de réponse, la latence, l'adresse IP, un identifiant
+            de requête et, pour un appelant authentifié, l'identifiant interne de
+            son compte — jamais son adresse e-mail, jamais le contenu d'un
+            document ni le détail d'une mesure. Ces journaux ne sont lisibles que
+            par un administrateur de la plateforme, depuis un écran interne, et
+            ne sont transmis à aucun service tiers de collecte.
+          </p>
+
+          <h3>3.8 Notifications</h3>
+          <p>
+            L'application tient pour chaque compte la liste de ce qu'il doit
+            savoir&nbsp;: copie rendue, devoir publié, classe ou établissement
+            rejoint, compte invité, mot de passe modifié, jeton d'accès créé.
+            Chaque notification porte sa nature, sa date, l'objet à ouvrir et une
+            copie des quelques informations nécessaires à son libellé, prise à ce
+            moment-là&nbsp;; la lire l'horodate sans l'effacer. Ces notifications
+            sont <strong>adressées</strong>&nbsp;: personne d'autre que leur
+            destinataire ne les lit, pas même un administrateur de la plateforme,
+            et la suppression du compte les emporte.
+          </p>
+          <p>
+            Elles partent aussi par e-mail, sauf si vous coupez cette copie depuis
+            «&nbsp;Mon compte&nbsp;»&nbsp;: la cloche continue alors de
+            fonctionner, seul l'envoi cesse. <strong>Deux avis échappent à ce
+            réglage</strong>&nbsp;: le changement de mot de passe et la création
+            d'un jeton d'accès. Quelqu'un dont le mot de passe vient d'être changé
+            à son insu doit pouvoir l'apprendre ailleurs que dans une application
+            où il ne peut plus entrer.
+          </p>
+
+          <h2>4. Finalités du traitement</h2>
+          <ul>
+            <li>Fournir le service de certification de l'effort cognitif et produire les rapports et certificats associés.</li>
+            <li>Gérer les comptes, les invitations, les établissements, les classes et les devoirs.</li>
+            <li>Permettre aux enseignants d'évaluer les travaux rendus par leurs classes.</li>
+            <li>Recouper les mesures reçues et signaler au correcteur ce qui n'a pas la forme d'un envoi de l'agent.</li>
+            <li>Garder trace de qui a consulté un document ou un certificat, et de qui a agi à la place d'un autre.</li>
+            <li>Prévenir chaque compte de ce qui le concerne, dans l'application et, sauf refus de sa part, par e-mail.</li>
+            <li>Répondre aux demandes adressées via le formulaire de contact ou par e-mail.</li>
+            <li>Assurer la sécurité du service et prévenir les abus.</li>
+          </ul>
+
+          <h2>5. Base légale</h2>
+          <ul>
+            <li>
+              <strong>L'exécution d'un contrat ou de mesures précontractuelles&nbsp;:</strong>
+              fourniture du service de certification aux établissements et à leurs
+              utilisateurs.
+            </li>
+            <li>
+              <strong>L'intérêt légitime&nbsp;:</strong> sécurité du service,
+              prévention des abus, intégrité des mesures, traçabilité des
+              consultations, amélioration du produit.
+            </li>
+            <li>
+              <strong>Le consentement&nbsp;:</strong> pour les demandes que vous nous
+              adressez spontanément.
+            </li>
+          </ul>
+
+          <h2>6. Score automatisé, et ce qu'il n'est pas</h2>
+          <p>
+            L'Indice de Friction Cognitive est calculé <strong>automatiquement</strong>,
+            par addition de quatre sous-scores — rythme des pauses cognitives (30
+            points), taux de remaniement (30), régularité du rythme de frappe (25)
+            et fluidité de navigation (15) — dont le total est ensuite multiplié par
+            la part du document réellement tapée. Un niveau en est dérivé par
+            simple seuil. C'est un traitement automatisé, et vous devez savoir ce
+            qu'il produit.
+          </p>
+          <p>
+            Chaque sous-score est <strong>continu</strong>&nbsp;: il est interpolé
+            entre des valeurs de référence plutôt que de sauter par paliers, pour
+            qu'un écart minime de comportement ne coûte pas brutalement plusieurs
+            points. Et en dessous de 200 frappes sur l'ensemble du document, la
+            plateforme <strong>ne rend aucun verdict</strong>&nbsp;: un exercice de
+            trois lignes ne comporte rien à remanier, et il ne doit pas être
+            confondu avec un texte fabriqué.
+          </p>
+          <p>
+            Il ne produit <strong>aucune décision</strong>. Aucune note, aucune
+            sanction, aucun signalement ne part de la plateforme&nbsp;: l'indice est
+            un élément d'appréciation remis à l'enseignant, qui juge seul et avec
+            le reste de ce qu'il sait de son étudiant. Certimens n'a connaissance
+            d'aucune suite donnée et n'en donne aucune.
+          </p>
+          <p>
+            L'indice décrit <strong>la façon dont un texte a été écrit</strong>.
+            Il ne constitue pas à lui seul la preuve d'une fraude, et il ne doit
+            pas être présenté comme telle&nbsp;: c'est un indicateur qui ouvre une
+            conversation. Le certificat expose d'ailleurs le détail — chacun des
+            quatre sous-scores, les nombres bruts dont ils sortent, le nombre de
+            fenêtres, la période couverte et la part du document qu'aucune mesure
+            n'explique — précisément pour qu'un résultat puisse être discuté plutôt
+            que subi. Une dimension que le capteur n'a pas su observer ne compte
+            pas et sort du maximum, ce que le certificat indique.
+          </p>
+          <p>
+            Vous pouvez demander une intervention humaine, faire valoir votre point
+            de vue et contester le résultat&nbsp;: auprès de votre établissement en
+            premier lieu, et auprès de nous à
+            <a href="mailto:contact@certimens.fr">contact@certimens.fr</a>.
+          </p>
+
+          <h2>7. Durées de conservation</h2>
+          <ul>
+            <li>
+              <strong>Compte et données scolaires&nbsp;:</strong> conservés pendant la
+              durée de la relation avec l'établissement, puis supprimés.
+            </li>
+            <li>
+              <strong>Documents et métriques&nbsp;:</strong> détruits
+              <strong>un an après le dépôt du document</strong>. Une tâche
+              automatique passe toutes les heures&nbsp;: elle supprime le document
+              stocké, puis <em>toutes</em> les mesures par fenêtre qui s'y
+              rapportent, et marque la fiche comme archivée. L'opération est
+              irréversible.
+            </li>
+            <li>
+              <strong>Ce qui survit à cette destruction&nbsp;:</strong> la fiche du
+              document et son certificat — le score, les totaux par type et la
+              forme de la session. Le certificat reste donc consultable des années
+              après, mais le document lui-même n'est plus téléchargeable et le
+              détail par fenêtre n'existe plus.
+            </li>
+            <li>
+              <strong>Jetons d'authentification&nbsp;:</strong> supprimés à la
+              déconnexion, à leur révocation ou à leur expiration. Un jeton créé
+              sans expiration vit jusqu'à sa révocation ou la suppression du
+              compte.
+            </li>
+            <li>
+              <strong>Journal des consultations&nbsp;:</strong> conservé
+              <strong>trois ans</strong>, au-delà du document comme du compte
+              auxquels il se rapporte, pour les raisons exposées au point 3.6.
+            </li>
+            <li>
+              <strong>Notifications&nbsp;:</strong> conservées <strong>un
+              an</strong>, parce que chacune porte une copie figée de ce qu'elle
+              annonce — le nom d'un document, l'adresse d'un élève — prise à
+              l'instant de l'événement. La suppression du compte les emporte.
+            </li>
+            <li>
+              <strong>Échecs de connexion et quotas d'envoi&nbsp;:</strong>
+              quelques heures. Un échec est indexé par une empreinte de l'adresse,
+              jamais par l'adresse elle-même.
+            </li>
+            <li>
+              <strong>Journaux techniques&nbsp;:</strong> ils ne sont pas archivés. Le
+              serveur garde ses dernières lignes dans un tampon en mémoire, perdu
+              à chaque redémarrage, et en écrit une copie sur disque qui bascule
+              par taille et n'est gardée qu'en deux générations par
+              instance&nbsp;; les fichiers d'une instance éteinte sont supprimés
+              douze heures après sa dernière ligne. La rétention est donc un
+              volume plutôt qu'une durée — les lignes les plus anciennes
+              disparaissent à mesure que de nouvelles sont écrites — et n'excède
+              en aucun cas douze mois.
+            </li>
+          </ul>
+          <p>
+            La suppression d'un compte entraîne celle de ses jetons, de ses
+            documents — y compris les fichiers eux-mêmes sur le stockage, effacés
+            avant le compte —, des métriques associées et de ses notifications.
+          </p>
+
+          <h2>8. Destinataires et sous-traitants</h2>
+          <p>
+            Vos données ne sont ni vendues, ni louées, ni cédées à des tiers à des
+            fins commerciales. Au sein de l'application, l'accès est strictement
+            encadré par le rôle&nbsp;: un enseignant ne voit que les travaux rendus par
+            ses classes, un administrateur que son établissement.
+          </p>
+          <p>Les seuls sous-traitants techniques sont&nbsp;:</p>
+          <ul>
+            <li>
+              <strong>OVH SAS</strong> — hébergement du serveur applicatif, de la
+              base de données et du stockage des documents, ainsi que l'envoi des
+              e-mails transactionnels (invitations, réinitialisations).
+            </li>
+            <li>
+              <strong>GitHub, Inc.</strong> — hébergement du site vitrine
+              statique, qui ne reçoit aucune donnée applicative.
+            </li>
+          </ul>
+          <p>
+            Les documents déposés et les métriques de frappe restent sur notre
+            propre infrastructure&nbsp;: le stockage des fichiers est un service que
+            nous exécutons nous-mêmes sur le même serveur que l'application, et non
+            un service de stockage tiers. Aucune donnée n'est transmise à un
+            service d'analyse.
+          </p>
+
+          <h2>9. Sécurité</h2>
+          <ul>
+            <li>Communications chiffrées de bout en bout par TLS (HTTPS).</li>
+            <li>Mots de passe stockés sous forme d'empreinte bcrypt, jetons d'accès sous forme d'empreinte SHA-256.</li>
+            <li>Contrôle d'accès par rôle appliqué à chaque requête&nbsp;; la fonction « voir en tant que » est ignorée pour tout compte qui n'est pas administrateur de la plateforme, et journalisée quand elle est utilisée.</li>
+            <li>Limitation du débit par adresse IP, renforcée sur les routes d'authentification.</li>
+            <li>Ralentissement progressif des tentatives de connexion&nbsp;: cinq échecs consécutifs sont sans effet, puis chaque échec impose une attente qui double, de 15 secondes à 15 minutes au plus — un plafond, parce qu'un verrouillage illimité serait lui-même une façon de bloquer un compte. Le compteur est indexé par une empreinte de l'adresse, jamais par l'adresse.</li>
+            <li>Photos de profil décodées, redimensionnées et ré-encodées par le serveur&nbsp;: les octets reçus ne sont ni stockés ni servis, et le type annoncé par l'envoi n'est jamais cru sur parole.</li>
+            <li>Formats de fichiers restreints et reconnus sur le contenu, jamais sur le nom.</li>
+            <li>Exécution des services sans privilèges d'administration et sauvegardes régulières.</li>
+          </ul>
+
+          <h2>10. Cookies et stockage local</h2>
+          <p>
+            <strong>Aucun cookie n'est déposé</strong>, ni sur le site vitrine ni
+            dans l'application. Aucun bandeau de consentement n'est donc
+            nécessaire.
+          </p>
+          <p>
+            L'application conserve votre jeton de session dans le stockage local
+            de votre navigateur, pour vous éviter de vous réauthentifier à chaque
+            page. Ce stockage est strictement nécessaire au fonctionnement du
+            service et est effacé à la déconnexion.
+          </p>
+
+          <h2>11. Transferts hors Union européenne</h2>
+          <p>
+            Les données de l'application sont hébergées en France. La consultation
+            du site vitrine implique un acteur états-unien (GitHub,&nbsp;Inc., pour
+            l'hébergement des pages), sur la base du <em>Data Privacy Framework</em>
+            UE–États-Unis. Aucune donnée de certification n'est concernée, et le
+            site vitrine ne charge aucune ressource tierce.
+          </p>
+          <p>
+            Un second cas dépend de votre établissement&nbsp;: s'il ouvre la
+            connexion à <strong>Google, Microsoft ou Facebook</strong> (voir 3.2),
+            vous connecter par l'un d'eux passe par lui, et ces trois sociétés sont
+            états-uniennes — également sur la base du <em>Data Privacy
+            Framework</em>. C'est un transfert que vous déclenchez en choisissant ce
+            bouton&nbsp;: les autres portes d'entrée, dont le fournisseur d'identité
+            de votre établissement et son Moodle, n'y passent pas, et aucune donnée
+            de certification n'est jamais envoyée à un fournisseur d'identité.
+          </p>
+
+          <h2>12. Vos droits</h2>
+          <p>
+            Conformément au RGPD et à la loi Informatique et Libertés, vous
+            disposez des droits suivants&nbsp;:
+          </p>
+          <ul>
+            <li><strong>Droit d'accès&nbsp;:</strong> obtenir la confirmation que vos données sont traitées et en obtenir une copie.</li>
+            <li><strong>Droit de rectification&nbsp;:</strong> faire corriger des données inexactes ou incomplètes.</li>
+            <li><strong>Droit à l'effacement&nbsp;:</strong> demander la suppression de vos données.</li>
+            <li><strong>Droit à la limitation&nbsp;:</strong> demander le gel temporaire de leur utilisation.</li>
+            <li><strong>Droit d'opposition&nbsp;:</strong> vous opposer à un traitement pour des raisons tenant à votre situation particulière.</li>
+            <li><strong>Droit à la portabilité&nbsp;:</strong> récupérer les données que vous nous avez fournies dans un format structuré.</li>
+            <li><strong>Intervention humaine&nbsp;:</strong> obtenir qu'une personne réexamine un résultat et contester celui-ci (voir le point 6).</li>
+          </ul>
+          <p>
+            Si vous êtes étudiant ou enseignant d'un établissement client, votre
+            établissement est votre interlocuteur de premier niveau&nbsp;; nous
+            intervenons en qualité de sous-traitant pour son compte.
+          </p>
+
+          <h2>13. Exercer vos droits</h2>
+          <p>
+            Deux d'entre eux s'exercent <strong>directement depuis votre
+            espace</strong>, sans nous écrire ni attendre&nbsp;:
+          </p>
+          <ul>
+            <li>
+              <strong>Exporter vos données</strong> vous remet, en un fichier
+              JSON, tout ce que la plateforme détient sur vous&nbsp;: votre compte
+              et chacun de vos documents avec ses chiffres. C'est le droit d'accès
+              et le droit à la portabilité.
+            </li>
+            <li>
+              <strong>Supprimer votre compte</strong> efface le compte, ses
+              documents — fichiers stockés compris — et leurs mesures. L'opération
+              est immédiate et irréversible. Seuls les administrateurs de la
+              plateforme en sont écartés&nbsp;: leur compte doit être supprimé par
+              un autre administrateur, pour qu'une plateforme ne puisse pas se
+              retrouver sans administrateur.
+            </li>
+          </ul>
+          <p>
+            Vous pouvez aussi <strong>supprimer un document isolé</strong> à tout
+            moment depuis votre espace Documents, sans attendre l'échéance d'un
+            an&nbsp;: la fiche, le fichier stocké et les mesures associées
+            disparaissent ensemble.
+          </p>
+          <p>
+            Pour tout le reste, écrivez-nous à
+            <a href="mailto:contact@certimens.fr">contact@certimens.fr</a> en
+            précisant l'objet de votre demande. Si vous estimez, après nous avoir
+            contactés, que vos droits ne sont pas respectés, vous pouvez adresser
+            une réclamation à la Commission Nationale de l'Informatique et des
+            Libertés (CNIL) sur le site
+            <a href="https://www.cnil.fr/fr" rel="noopener noreferrer" target="_blank">cnil.fr</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div>
+            <img src="/assets/img/logo-footer.png" alt="Certimens" width="500" height="143" />
+            <p>
+              Le premier label certifiant le véritable effort cognitif humain.
+            </p>
+          </div>
+
+          <div>
+            <h2>Navigation</h2>
+            <ul>
+              <li><a href="/#certification">La Certification</a></li>
+              <li><a href="/#expertise">Notre Expertise</a></li>
+              <li><a href="/#faq">Questions Fréquentes</a></li>
+              <li><a href="/plugins/">Plugins</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2>Légal</h2>
+            <ul>
+              <li><a href="/mentions-legales/">Mentions Légales</a></li>
+              <li>
+                <a href="/politique-de-confidentialite/">
+                  Politique de confidentialité
+                </a>
+              </li>
+              <li><a href="/en/privacy-policy/" lang="en" hreflang="en">English version</a></li>
+              <li><a href="https://monespace.certimens.fr/">Connexion</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          © 2026 Certimens – Tous droits réservés.
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/js/site.js" defer></script>
+  </body>
+</html>

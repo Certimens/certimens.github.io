@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact — Certimens</title>
+    <meta
+      name="description"
+      content="A question about the Certimens label, or need a demonstration? Write to us at contact@certimens.fr."
+    />
+    <link rel="canonical" href="https://certimens.fr/en/contact/" />
+    <link rel="alternate" hreflang="fr" href="https://certimens.fr/contact/" />
+    <link rel="alternate" hreflang="en" href="https://certimens.fr/en/contact/" />
+    <link rel="alternate" hreflang="x-default" href="https://certimens.fr/contact/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Certimens" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:url" content="https://certimens.fr/en/contact/" />
+    <meta property="og:title" content="Contact — Certimens" />
+    <meta
+      property="og:description"
+      content="A question about the label, or need a demonstration? Write to us."
+    />
+    <meta property="og:image" content="https://certimens.fr/assets/img/logo.png" />
+
+    <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+
+    <link
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-500-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-800-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-logo" href="/en/" aria-label="Certimens — home">
+          <img src="/assets/img/logo.png" alt="Certimens" width="300" height="300" />
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Open the menu"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="/en/#certification">The Certification</a></li>
+            <li><a href="/en/#expertise">Our Expertise</a></li>
+            <li><a href="/en/#faq">FAQ</a></li>
+            <li><a href="/plugins/en/">Plugins</a></li>
+            <li><a href="/en/contact/">Contact</a></li>
+            <li class="nav-lang">
+              <a href="/contact/" lang="fr" hreflang="fr" aria-label="Basculer en français">FR</a>
+            </li>
+            <li class="nav-login">
+              <a href="https://monespace.certimens.fr/">Sign in</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Get in touch</h1>
+          <p>
+            A question about the label, or need a demonstration? Write to us.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container contact-grid">
+          <div>
+            <h2>How to reach us</h2>
+            <ul class="contact-info">
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 7-10 6L2 7" />
+                </svg>
+                <div>
+                  <span>Email</span>
+                  <a href="mailto:contact@certimens.fr">contact@certimens.fr</a>
+                </div>
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                <div>
+                  <span>Your workspace</span>
+                  <a href="https://monespace.certimens.fr/">monespace.certimens.fr</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- The site is static: submitting opens the visitor's own mail
+               client (see assets/js/site.js). -->
+          <form class="form" data-mailto-form="contact@certimens.fr">
+            <div class="field">
+              <label for="name">Full name <span class="req">*</span></label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                autocomplete="name"
+                placeholder="Your full name"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                placeholder="you@institution.edu"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="message">Your message <span class="req">*</span></label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Describe what you need, or ask for a demonstration…"
+                required
+              ></textarea>
+            </div>
+
+            <button class="btn btn--primary" type="submit">Send</button>
+
+            <p class="form__note">
+              Sending opens your own mail application with the message already
+              written. You can also write to us directly at
+              <a href="mailto:contact@certimens.fr">contact@certimens.fr</a>.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div>
+            <img src="/assets/img/logo-footer.png" alt="Certimens" width="500" height="143" />
+            <p>
+              The first label certifying genuine human cognitive effort.
+            </p>
+          </div>
+
+          <div>
+            <h2>Navigation</h2>
+            <ul>
+              <li><a href="/en/#certification">The Certification</a></li>
+              <li><a href="/en/#expertise">Our Expertise</a></li>
+              <li><a href="/en/#faq">FAQ</a></li>
+              <li><a href="/plugins/en/">Plugins</a></li>
+              <li><a href="/en/contact/">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2>Legal</h2>
+            <ul>
+              <li><a href="/en/legal-notice/">Legal notice</a></li>
+              <li><a href="/en/privacy-policy/">Privacy policy</a></li>
+              <li><a href="/contact/" lang="fr" hreflang="fr">Version française</a></li>
+              <li><a href="https://monespace.certimens.fr/">Sign in</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          © 2026 Certimens – All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/js/site.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+version: 2
+
+updates:
+  # Les actions sont épinglées à une version exacte : Dependabot ouvre une PR
+  # quand une nouvelle sort, plutôt que de laisser les versions vieillir.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "ci"

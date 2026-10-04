@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page introuvable — Page not found — Certimens</title>
+    <meta name="robots" content="noindex, follow" />
+
+    <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+
+    <!-- Chemins absolus : GitHub Pages sert cette page pour n'importe quelle
+         URL manquante, y compris sous /en/ — des chemins relatifs y viseraient
+         un dossier qui n'existe pas. -->
+    <link
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-500-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/plus-jakarta-sans-latin-800-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-logo" href="/" aria-label="Certimens — accueil">
+          <img src="/assets/img/logo.png" alt="Certimens" width="300" height="300" />
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+          <ul>
+            <li><a href="/#certification">La Certification</a></li>
+            <li><a href="/#expertise">Notre Expertise</a></li>
+            <li><a href="/#faq">Questions Fréquentes</a></li>
+            <li><a href="/plugins/">Plugins</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li class="nav-lang">
+              <a href="/en/" lang="en" hreflang="en" aria-label="Switch to English">EN</a>
+            </li>
+            <li class="nav-login">
+              <a href="https://monespace.certimens.fr/">Connexion</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Cette page est servie pour toute URL manquante, française comme
+         anglaise : on ne peut pas deviner la langue du visiteur côté serveur,
+         d'où les deux versions l'une sous l'autre. -->
+    <main id="main">
+      <section class="section" style="text-align: center">
+        <div class="container container--narrow">
+          <span class="eyebrow">Erreur 404</span>
+          <h1>Cette page est introuvable</h1>
+          <p class="lead">
+            Le lien que vous avez suivi est peut-être obsolète, ou la page a été
+            déplacée lors de la refonte du site.
+          </p>
+          <p>
+            <a class="btn btn--primary" href="/">Retour à l'accueil</a>
+            <a class="btn btn--ghost" href="/contact/">Nous contacter</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--soft" style="text-align: center" lang="en">
+        <div class="container container--narrow">
+          <span class="eyebrow">Error 404</span>
+          <h2 class="section-title">This page could not be found</h2>
+          <p class="lead">
+            The link you followed may be out of date, or the page may have moved
+            when the site was rebuilt.
+          </p>
+          <p>
+            <a class="btn btn--primary" href="/en/">Back to the home page</a>
+            <a class="btn btn--ghost" href="/en/contact/">Contact us</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__bottom" style="border-top: 0">
+          © 2026 Certimens – Tous droits réservés.
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/js/site.js" defer></script>
+  </body>
+</html>

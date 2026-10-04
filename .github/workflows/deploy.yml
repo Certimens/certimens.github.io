@@ -1,0 +1,112 @@
+name: CI / Déploiement GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Permet de relancer un déploiement à la main depuis l'onglet Actions.
+  workflow_dispatch:
+
+# Un seul déploiement à la fois ; on ne coupe pas celui en cours.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Vérifications
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      # Nu Html Checker (le validateur du W3C) : conformité HTML réelle,
+      # hiérarchie des titres, attributs ARIA, etc.
+      - name: Validation HTML
+        uses: Cyb3r-Jak3/html5validator-action@v8.0.0
+        with:
+          root: .
+          css: true
+          log_level: INFO
+
+      # lychee vérifie les liens internes *et* externes, ainsi que les ancres.
+      #
+      # --root-dir résout les liens commençant par « / » (le site en est truffé :
+      # /assets/…, /contact/…). Il exige un chemin absolu, d'où github.workspace.
+      # C'est bien --root-dir et non --base-url, qui attend un domaine.
+      #
+      # --index-files fait pointer un lien vers un dossier sur son index.html,
+      # comme le ferait le serveur. Sans lui, « /#faq » vise le dossier racine et
+      # l'ancre est déclarée introuvable ; c'est aussi ce qui rend « /contact/ »
+      # réellement vérifié plutôt qu'accepté parce que le dossier existe.
+      #
+      # --accept garde toute la plage 2xx (la valeur par défaut) et y ajoute 403
+      # et 429, renvoyés par certains sites tiers qui filtrent les robots : sans
+      # eux, une protection anti-bot ferait échouer le déploiement.
+      #
+      # --exclude écarte deux choses. D'abord /plugins : les pages d'installation
+      # des agents sont publiées par un *autre* dépôt (Certimens/plugins), servies
+      # par GitHub Pages sous le même hôte, à /plugins/ et /plugins/en/. Elles
+      # n'existent donc pas dans cette arborescence, et --root-dir les chercherait
+      # ici.
+      #
+      # Le motif est ancré sur `file:` et tolère l'absence de barre finale, et les
+      # deux moitiés comptent. Ancré, parce que les liens vers
+      # https://github.com/Certimens/plugins doivent, eux, rester vérifiés : ils
+      # portent le même chemin et seul le schéma les distingue. Sans barre
+      # obligatoire, parce que --root-dir résout « /plugins/ » en « …/plugins »,
+      # barre finale comprise — un motif « /plugins/ » laissait donc passer la
+      # version française tout en écartant « …/plugins/en », qui la contient. Les
+      # douze erreurs que ça produisait ne tombaient que sur cinq pages, ce qui
+      # ressemblait à un problème de contenu plutôt qu'au motif.
+      #
+      # Ensuite notre propre domaine de production, vers lequel pointent
+      # les URL canoniques et Open Graph. La CI s'exécute *avant* le déploiement :
+      # une page nouvelle ou renommée n'existe donc pas encore à cette adresse et
+      # serait signalée à tort. (Tant que le DNS de certimens.fr n'aura pas été
+      # basculé sur GitHub Pages, /mentions-legales/ y répond d'ailleurs 404.)
+      - name: Liens et ancres
+        uses: lycheeverse/lychee-action@v2.9.0
+        with:
+          args: >-
+            --root-dir ${{ github.workspace }}
+            --index-files index.html
+            --include-fragments
+            --no-progress
+            --max-retries 3
+            --accept 200..=299,403,429
+            --exclude '^file:.*/plugins(/|$)'
+            --exclude '^https://certimens\.fr'
+            './**/*.html'
+          fail: true
+
+  deploy:
+    name: Déploiement
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - uses: actions/configure-pages@v6.0.0
+
+      - name: Préparer l'artefact
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: .
+
+      - name: Publier sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1

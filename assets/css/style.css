@@ -1,0 +1,995 @@
+/* ==========================================================================
+   Certimens — feuille de style unique
+
+   Les jetons de :root ci-dessous sont la SOURCE de la charte graphique du
+   produit — elle est écrite dans docs/charte-graphique.md, dans ce dépôt, et
+   l'espace client, les e-mails, le certificat PDF et les agents en descendent,
+   pas l'inverse. Ardoise #1E293B dominante, or laiton #C5A059 en accent unique,
+   Plus Jakarta Sans en 800 / 700 / 500, surfaces plates au rayon de 12 px.
+
+   Règle importante : l'or n'est JAMAIS du texte sur blanc (2,46:1, sous le
+   seuil WCAG AA). Sur fond clair, c'est l'or sombre --gold-dark (6,27:1) ; sur
+   l'ardoise, c'est l'or franc --gold (5,96:1), l'or sombre y tombant à 2,33:1 ;
+   comme surface, l'or porte du texte encre --text (6,64:1).
+   ========================================================================== */
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-ext-500-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-ext-700-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-ext-800-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+:root {
+  --navy: #1e293b;
+  --navy-light: #334155;
+  --navy-dark: #0f172a;
+  --gold: #c5a059;
+  --gold-light: #d4ac5f;
+  --gold-dark: #705e3a;
+  --gold-soft: #f3ead9;
+  --text: #1a202c;
+  --muted: #54595f;
+  --line: #e5e5e5;
+  /* Rouge de verdict du moteur (palette.error de ui/src/theme.ts). Il porte du
+     sens et non de la marque : c'est la même valeur des deux côtés. */
+  --danger: #c5221f;
+  --bg: #ffffff;
+  --bg-soft: #f8fafc;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  /* Seule ombre conservée : le menu mobile, qui flotte au-dessus du contenu.
+     Les cartes sont plates, séparées par un filet — comme dans l'application. */
+  --shadow-overlay: 0 12px 40px rgba(30, 41, 59, 0.12);
+
+  --container: 1200px;
+  --gutter: 20px;
+  --section-y: 96px;
+
+  --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- Reset ---------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* compense le header collant lors d'un saut vers une ancre */
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--navy);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--gold-dark);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.5em;
+  color: var(--navy);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2rem, 4.2vw, 2.9rem);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 2.4vw, 1.7rem);
+  font-weight: 700;
+}
+
+/* Titre de section : un <h2> pour respecter la hiérarchie des niveaux (un seul
+   <h1> par page), mais rendu à la taille d'un titre principal. */
+.section-title {
+  font-size: clamp(2rem, 4.2vw, 2.9rem);
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 1.1em;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* --- Utilitaires ---------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.container--narrow {
+  max-width: 860px;
+}
+
+.section {
+  padding: var(--section-y) 0;
+}
+
+.section--soft {
+  background: var(--bg-soft);
+}
+
+.section--navy {
+  background: var(--navy);
+  color: #fff;
+}
+
+.section--navy h1,
+.section--navy h2,
+.section--navy h3 {
+  color: #fff;
+}
+
+.section-head {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 56px;
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 0;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 12px;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--navy);
+  color: #fff;
+  padding: 12px 20px;
+  z-index: 200;
+}
+
+.skip-link:focus {
+  left: 0;
+  color: #fff;
+}
+
+/* Le focus clavier doit rester visible partout : l'or sombre se lit sur blanc
+   comme sur ardoise. */
+:focus-visible {
+  outline: 2px solid var(--gold-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.section--navy :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--gold);
+}
+
+/* --- Boutons -------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  padding: 17px 35px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Un bouton plein est l'appel à l'action, et l'appel à l'action de la marque
+   est une surface or portant du texte encre — la règle du thème de
+   (docs/charte-graphique.md), que le thème de l'espace client applique de son
+   côté via MuiButton `variant="contained"`.
+   Le site avait deux orthographes du même bouton : ardoise dans le hero et sur
+   le formulaire, or dans le bandeau de fin. C'est celle-ci qui les réunit.
+   L'or n'est sûr que comme surface : un bouton de contour ou de texte reste
+   ardoise (.btn--ghost). */
+.btn--primary {
+  background: var(--gold);
+  color: var(--text);
+}
+
+.btn--primary:hover,
+.btn--primary:focus {
+  background: var(--gold-light);
+  color: var(--text);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--line);
+  padding: 15px 33px;
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+
+/* --- En-tête -------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 78px;
+}
+
+.site-logo img {
+  height: 46px;
+  width: auto;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--navy);
+}
+
+.nav-toggle svg {
+  display: block;
+}
+
+.site-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.site-nav a {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  position: relative;
+  padding: 6px 0;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.2s ease;
+}
+
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+/* La connexion n'est pas l'action principale du site : « Demander une démo »
+   l'est. Le lien reste donc secondaire — une bordure fine plutôt qu'un bouton
+   plein, qui serait, en haut de page, plus visible que l'appel à l'action. */
+.site-nav .nav-login a {
+  color: var(--navy);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 22px;
+}
+
+.site-nav .nav-login a:hover {
+  color: var(--gold-dark);
+  border-color: var(--gold);
+}
+
+.site-nav .nav-login a::after {
+  display: none;
+}
+
+/* Bascule de langue : un simple lien vers la page jumelle (FR ↔ EN). Il porte
+   lang/hreflang pour que les lecteurs d'écran et les robots sachent vers quelle
+   langue il mène. */
+.site-nav .nav-lang a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+}
+
+.site-nav .nav-lang a:hover {
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.site-nav .nav-lang a::after {
+  display: none;
+}
+
+/* --- Hero ----------------------------------------------------------------- */
+
+.hero {
+  padding: 88px 0 80px;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 4.6vw, 3.3rem);
+  margin-bottom: 0.45em;
+}
+
+.hero p {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 34em;
+  margin-bottom: 2em;
+}
+
+/* Deux actions côte à côte : la démo en plein, la visite du site en second.
+   Le bouton fantôme reste lisible sans concurrencer le premier. */
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero__media img {
+  margin: 0 auto;
+  max-width: 340px;
+}
+
+/* --- Cartes --------------------------------------------------------------- */
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 36px 30px;
+  transition: border-color 0.18s ease;
+}
+
+.card:hover {
+  border-color: var(--gold);
+}
+
+.card p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.card__icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  margin-bottom: 22px;
+}
+
+.card:hover .card__icon {
+  background: var(--gold);
+  color: var(--text);
+}
+
+/* --- Comparatif ----------------------------------------------------------- */
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.compare__col {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+}
+
+.compare__col--highlight {
+  border: 2px solid var(--gold);
+}
+
+.compare__col h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.compare__col--highlight h3 {
+  color: var(--gold-dark);
+}
+
+.compare li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 11px 0;
+  color: var(--muted);
+}
+
+.compare li svg {
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+
+.compare .ico-no {
+  color: var(--danger);
+}
+
+.compare .ico-yes {
+  color: var(--gold-dark);
+}
+
+/* --- Bloc image + texte --------------------------------------------------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.split img {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.checklist li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 0;
+  font-weight: 600;
+}
+
+.checklist svg {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  color: var(--gold-dark);
+}
+
+/* --- Bandeau d'appel à l'action ------------------------------------------- */
+
+.cta {
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin-bottom: 0.6em;
+}
+
+.cta p {
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 44em;
+  margin: 0 auto 2em;
+}
+
+/* --- FAQ ------------------------------------------------------------------ */
+
+.faq {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.faq details {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.faq details[open] {
+  border-color: var(--gold);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 26px;
+  font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--gold-dark);
+  border-bottom: 2px solid var(--gold-dark);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.faq details[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+.faq__body {
+  padding: 0 26px 24px;
+  color: var(--muted);
+}
+
+.faq__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Manifeste ------------------------------------------------------------ */
+
+.manifesto strong {
+  color: var(--navy);
+}
+
+/* --- Contact -------------------------------------------------------------- */
+
+/* En-tête des pages internes (contact, pages légales). Volontairement clair :
+   le bloc ardoise pleine largeur écrasait le contenu qui le suivait et faisait
+   doublon avec le bandeau d'appel à l'action, lui aussi ardoise. Le filet du
+   bas suffit à le détacher de la section blanche suivante. */
+.page-hero {
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+  padding: 64px 0;
+  text-align: center;
+}
+
+.page-hero h1 {
+  margin-bottom: 0.3em;
+}
+
+.page-hero p {
+  color: var(--muted);
+  font-size: 1.08rem;
+  margin: 0 auto;
+  max-width: 46em;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.contact-info li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
+}
+
+.contact-info svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--gold-dark);
+}
+
+.contact-info span {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.form {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 36px;
+}
+
+.form label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.form .req {
+  color: var(--danger);
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  padding: 13px 15px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.18);
+}
+
+.form textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.form .field {
+  margin-bottom: 22px;
+}
+
+.form__note {
+  margin: 18px 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* --- Pages légales -------------------------------------------------------- */
+
+.legal h2 {
+  margin-top: 2.2em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--line);
+}
+
+.legal h2:first-of-type {
+  margin-top: 0;
+}
+
+.legal h3 {
+  margin-top: 1.6em;
+  font-size: 1rem;
+  color: var(--gold-dark);
+}
+
+.legal ul {
+  list-style: disc;
+  padding-left: 1.3em;
+  margin-bottom: 1.2em;
+  color: var(--muted);
+}
+
+.legal li {
+  margin-bottom: 0.5em;
+}
+
+.legal p {
+  color: var(--muted);
+}
+
+/* Encart des pages légales anglaises : rappelle que le texte français fait foi
+   (les mentions légales et la politique RGPD sont des documents de droit
+   français, la traduction n'est fournie que par commodité). */
+.legal__prevails {
+  background: var(--bg-soft);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-bottom: 2em;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* Extensions de fichier et noms techniques cités dans les pages légales. La
+   police du site n'ayant pas de chasse fixe, on garde la pile monospace du
+   navigateur, juste ramenée à la taille du texte qui l'entoure. */
+.legal code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+/* Marque les champs restés à compléter dans les mentions légales. */
+.legal .todo {
+  background: var(--gold-soft);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--gold-dark);
+  font-style: italic;
+}
+
+/* --- Pied de page --------------------------------------------------------- */
+
+.site-footer {
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.72);
+  padding: 72px 0 0;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+}
+
+.site-footer h2 {
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 22px;
+}
+
+.site-footer img {
+  width: 210px;
+  margin-bottom: 20px;
+}
+
+.site-footer a {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+}
+/* Sur l'ardoise du pied de page, c'est l'or clair qui se lit (5,96:1) ; l'or
+   sombre y tombe à 2,33:1. La règle « or sombre » ne vaut que sur fond clair —
+   c'est déjà ce que fait l'anneau de focus juste au-dessus. */
+.site-footer a:hover {
+  color: var(--gold);
+}
+
+.site-footer li {
+  padding: 7px 0;
+}
+
+.site-footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 24px 0;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  :root {
+    --section-y: 68px;
+  }
+
+  .hero__inner,
+  .split,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .hero__media {
+    order: -1;
+  }
+
+  .grid-3,
+  .compare {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  /* Menu replié en burger */
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-overlay);
+    padding: 12px var(--gutter) 22px;
+  }
+
+  .site-nav.is-open {
+    display: block;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .site-nav li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-nav li:last-child {
+    border-bottom: 0;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 15px 0;
+  }
+
+  /* Dans le menu replié, la bascule de langue redevient une ligne comme les
+     autres : la pastille bordée n'a plus de sens sur toute la largeur. */
+  .site-nav .nav-lang a {
+    border: 0;
+    padding: 15px 0;
+  }
+
+  .site-nav .nav-login a {
+    margin-top: 14px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .form,
+  .card,
+  .compare__col {
+    padding: 26px 22px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
