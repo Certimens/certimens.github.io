@@ -1,0 +1,190 @@
+Copyright (c) 2026 Certimens. Tous droits réservés. / All rights reserved.
+
+À COMPLÉTER AVANT TOUTE OPPOSITION À UN TIERS : raison sociale exacte, forme
+juridique, numéro RCS/SIREN et siège social de l'entité titulaire des droits.
+Tant que ces mentions manquent, le titulaire n'est pas identifié de façon
+certaine, ce qui est la première chose qu'une partie adverse contestera — c'est
+le point le plus faible de ce texte, et il ne se corrige pas par la rédaction.
+Ce sont les mêmes informations que les mentions légales du site attendent.
+
+Le présent texte est un cadre type. Il n'a pas été rédigé ni relu par un conseil
+juridique et doit l'être avant d'être opposé à qui que ce soit.
+
+================================================================================
+LICENCE PROPRIÉTAIRE — VERSION FRANÇAISE (texte faisant foi)
+================================================================================
+
+1. OBJET
+
+Ce dépôt contient le code source et les ressources du site vitrine
+certimens.fr : pages HTML, feuille de style, scripts, textes, images et la
+charte graphique (ci-après « le Site »). Il est la propriété exclusive de
+Certimens et protégé par le code de la propriété intellectuelle et par les
+conventions internationales applicables.
+
+Le Site est publié pour être lu. Il n'est pas un logiciel libre et n'est pas
+« open source » : sa publication ne concède aucune licence libre, publique ou
+implicite sur son contenu. Un dépôt public n'est pas un dépôt réutilisable.
+
+2. CE QUI EST PERMIS, SANS DEMANDER
+
+  a) consulter le site publié, l'imprimer pour un usage personnel, et le
+     conserver dans le cache que tout navigateur tient de lui-même ;
+  b) l'indexer et en afficher un extrait dans une page de résultats, comme le
+     fait un moteur de recherche — sous réserve du d) de l'article 3 ;
+  c) citer un extrait court, en le présentant comme une citation et en
+     nommant Certimens, dans les conditions de l'article L.122-5 3° du code de
+     la propriété intellectuelle ;
+  d) créer un lien vers une page du site ;
+  e) pour un partenaire ou un établissement client, reprendre la charte
+     graphique (`docs/charte-graphique.md`) dans la stricte mesure où il
+     présente le service Certimens.
+
+3. INTERDICTIONS
+
+Sauf autorisation écrite préalable et expresse de Certimens, il est interdit de :
+
+  a) reproduire ou republier tout ou partie substantielle du Site, sur quelque
+     support et à quelque adresse que ce soit, y compris sous la forme d'un
+     miroir, d'une copie d'archive accessible au public ou d'un dépôt dérivé ;
+  b) modifier, adapter, traduire le Site ou en tirer une œuvre dérivée, et
+     notamment en reprendre la structure, les textes ou la mise en forme pour
+     un autre site ;
+  c) en retirer, masquer ou altérer une mention de propriété, de copyright ou
+     d'attribution ;
+  d) utiliser tout ou partie du Site pour entraîner, affiner ou évaluer un
+     modèle d'apprentissage automatique, ni pour constituer un jeu de données à
+     cette fin, y compris par exploration de textes et de données au sens de
+     l'article L.122-5-3 du code de la propriété intellectuelle — l'exception
+     d'exploration est expressément écartée par la présente réserve de droits,
+     qui vaut opt-out au sens de l'article 4 de la directive (UE) 2019/790 et
+     s'applique quel que soit ce qu'autorise `robots.txt`, lequel règle
+     l'indexation et non la réutilisation ;
+  e) présenter le Site, ou ce qui en dérive, comme émanant de Certimens, ou de
+     nature à le laisser croire.
+
+4. MARQUES ET SIGNES DISTINCTIFS
+
+Le nom « Certimens », le logo, les déclinaisons du logo présentes dans
+`assets/img/` et les couleurs de la charte identifient l'entreprise et son
+service. Rien dans la présente licence n'en concède l'usage : un emploi licite
+de la marque est un emploi qui désigne Certimens, pas un emploi qui l'évoque.
+
+5. PÉRIMÈTRE
+
+La présente licence porte sur ce dépôt. Elle ne couvre pas :
+
+  — la police Plus Jakarta Sans, auto-hébergée dans `assets/fonts/`, régie par
+    la SIL Open Font License 1.1 (`assets/fonts/LICENSE.txt`) ;
+  — les photographies provenant d'Unsplash, régies par la licence Unsplash et
+    créditées dans le README ;
+  — les Agents de mesure, publiés séparément dans le dépôt public
+    github.com/Certimens/plugins, qui portent leurs propres conditions ;
+  — le moteur Certimens, dépôt privé distinct, qui porte sa propre licence.
+
+6. VALEUR JURIDIQUE DU CONTENU
+
+Le contenu éditorial du Site est fourni à titre d'information et peut évoluer
+sans préavis. Seules les pages publiées sur certimens.fr font foi, dans leur
+version française : les traductions anglaises sont des traductions de
+courtoisie, ce que ces pages rappellent elles-mêmes.
+
+Le Site est fourni « en l'état », sans garantie d'aucune sorte, expresse ou
+implicite, y compris sans garantie de qualité marchande, d'adéquation à un
+usage particulier ou d'absence de contrefaçon. Dans la limite permise par la
+loi, la responsabilité de Certimens ne peut être engagée pour un dommage
+indirect ou immatériel résultant de la consultation du Site ou de
+l'impossibilité d'y accéder. La présente clause ne s'applique ni en cas de
+faute lourde ou dolosive, ni dans les cas où la loi interdit de limiter la
+responsabilité.
+
+7. DURÉE ET RÉSILIATION
+
+Les permissions de l'article 2 prennent fin de plein droit, sans formalité, au
+premier manquement à l'article 3 ou 4. À leur terme, toute copie doit être
+retirée de la publication et détruite.
+
+8. ABSENCE DE RENONCIATION
+
+Le fait pour Certimens de ne pas se prévaloir d'un manquement ne vaut pas
+renonciation à s'en prévaloir ultérieurement.
+
+9. NULLITÉ PARTIELLE
+
+Si une stipulation de la présente licence est jugée nulle ou inapplicable, elle
+est réputée non écrite et les autres stipulations conservent leur plein effet.
+
+10. DROIT APPLICABLE ET JURIDICTION
+
+La présente licence est régie par le droit français. Tout litige relatif à sa
+validité, son interprétation ou son exécution relève de la compétence exclusive
+des tribunaux du ressort du siège social de Certimens, sous réserve des règles
+de compétence impératives, notamment celles protégeant le consommateur.
+
+11. CONTACT
+
+Toute demande d'autorisation : contact@certimens.fr
+
+================================================================================
+PROPRIETARY LICENCE — ENGLISH TRANSLATION (for convenience only)
+================================================================================
+
+This repository holds the source and assets of the certimens.fr public website
+— HTML pages, stylesheet, scripts, texts, images and the brand guidelines (the
+"Site"). It is the exclusive property of Certimens and is protected by French
+intellectual property law and by applicable international conventions.
+
+The Site is published to be read. It is neither free nor open source: publishing
+it grants no free, public or implied licence over its content. A public
+repository is not a reusable one.
+
+Without asking, you may: read the published site, print it for personal use and
+let your browser cache it; index it and show a snippet in search results,
+subject to the text-and-data-mining reservation below; quote a short extract,
+presented as a quotation and crediting Certimens; link to any page; and, as a
+partner or client institution, follow the brand guidelines
+(`docs/charte-graphique.md`) strictly insofar as you are presenting the
+Certimens service.
+
+Except with Certimens' prior express written permission, you may not: reproduce
+or republish the Site or any substantial part of it, anywhere and in any form,
+including as a mirror, a publicly accessible archive copy or a derived
+repository; modify, adapt, translate it or create derivative works from it, in
+particular by reusing its structure, texts or layout for another site; remove or
+alter any proprietary notice; use it, in whole or in part, to train, fine-tune
+or evaluate a machine learning model, or to build a dataset for that purpose —
+the text-and-data-mining exception is expressly reserved against, which operates
+as an opt-out under article 4 of Directive (EU) 2019/790 and applies whatever
+`robots.txt` allows, that file governing indexing rather than reuse; or present
+the Site, or anything derived from it, as coming from Certimens.
+
+The name "Certimens", the logo, its variants in `assets/img/` and the brand
+colours identify the company and its service. Nothing here licenses their use.
+
+This licence covers this repository only. It does not cover the Plus Jakarta
+Sans typeface in `assets/fonts/`, governed by the SIL Open Font License 1.1; the
+Unsplash photographs, governed by the Unsplash licence and credited in the
+README; the measurement Agents, published separately at
+github.com/Certimens/plugins under their own terms; or the Certimens engine, a
+separate private repository with its own licence.
+
+The editorial content is provided for information and may change without notice.
+Only the pages published on certimens.fr are authoritative, in their French
+version: the English pages are courtesy translations, as they state themselves.
+THE SITE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. To the extent permitted by law,
+Certimens is not liable for indirect or consequential loss arising from
+consulting the Site or from being unable to reach it; this exclusion does not
+apply to gross negligence or wilful misconduct, nor where the law forbids
+limiting liability.
+
+The permissions above end automatically on any breach; every copy must then be
+unpublished and destroyed. Failure to act on a breach waives nothing. If any
+provision is held invalid, the rest stands.
+
+French law governs. The courts of Certimens' registered office have exclusive
+jurisdiction, subject to mandatory rules, including those protecting consumers.
+In case of divergence, the French text above prevails.
+
+Permission requests: contact@certimens.fr
