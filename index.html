@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1E293B" />
     <title>Certimens — Le label anti-IA qui certifie l'effort cognitif humain</title>
     <meta
       name="description"
@@ -18,6 +19,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Certimens" />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_GB" />
     <meta property="og:url" content="https://certimens.fr/" />
     <meta
       property="og:title"
@@ -25,10 +27,16 @@
     />
     <meta
       property="og:description"
-      content="La preuve irréfutable de l'effort intellectuel de vos étudiants, par l'analyse dynamique de la frappe."
+      content="La preuve de l'effort intellectuel de vos étudiants, établie par l'analyse de la dynamique de frappe."
     />
     <meta property="og:image" content="https://certimens.fr/assets/img/logo.png" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image:alt" content="Certimens" />
+    <!-- Le visuel partagé est l'écu, carré : « summary » l'affiche en
+         vignette entière, là où « summary_large_image » le rognerait en
+         bandeau. À rebasculer le jour où un visuel 1200×630 existera. -->
+    <meta name="twitter:card" content="summary" />
 
     <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -56,7 +64,8 @@
     <header class="site-header">
       <div class="container site-header__inner">
         <a class="site-logo" href="/" aria-label="Certimens — accueil">
-          <img src="/assets/img/logo.png" alt="Certimens" width="300" height="300" />
+          <img src="/assets/img/logo-128.png" alt="" width="128" height="128" />
+          <span class="site-logo__name">Certimens</span>
         </a>
 
         <button
@@ -75,9 +84,53 @@
 
         <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
           <ul>
-            <li><a href="/#certification">La Certification</a></li>
-            <li><a href="/#expertise">Notre Expertise</a></li>
-            <li><a href="/#faq">Questions Fréquentes</a></li>
+            <li class="nav-item">
+              <button
+                class="nav-menu__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="menu-solutions"
+              >
+                Solutions
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7" /></svg>
+              </button>
+              <ul class="nav-menu" id="menu-solutions">
+                <li>
+                  <a href="/#certification">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M4 21V10l8-5 8 5v11M9 21v-6h6v6" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Universités &amp; gouvernance</b>
+                      <span>Protéger la valeur de vos diplômes</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/enseignants/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4M7 12l3-3 2.5 2.5L17 7" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Enseignants &amp; correcteurs</b>
+                      <span>La preuve arrive avec la copie</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/etudiants/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Étudiants</b>
+                      <span>Vos écrits restent les vôtres</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="/#expertise">Notre approche</a></li>
             <li><a href="/plugins/">Plugins</a></li>
             <li><a href="/contact/">Contact</a></li>
             <li class="nav-lang">
@@ -88,6 +141,8 @@
             </li>
           </ul>
         </nav>
+
+        <a class="btn btn--primary btn--sm nav-cta" href="/contact/"><span class="nav-cta__long">Demander une démo</span><span class="nav-cta__short">Démo</span></a>
       </div>
     </header>
 
@@ -97,131 +152,532 @@
         <div class="container hero__inner">
           <div>
             <h1>Certifier l'Esprit,<br />pas seulement le texte</h1>
-            <p>
-              Le premier label anti-IA qui restaure la valeur intrinsèque de vos
-              diplômes. Nous apportons la preuve irréfutable de l'effort
-              intellectuel de vos étudiants grâce à une analyse dynamique de la
-              frappe.
+            <p class="hero__lead">
+              Préservez la valeur académique de vos diplômes face à l'IA
+              générative. Certimens est l'infrastructure d'évaluation qui
+              certifie le travail étudiant à la source, par l'analyse de la
+              dynamique de frappe. Un faisceau d'indices objectifs fondé sur le
+              déroulé de la rédaction&nbsp;: sans friction pour l'étudiant,
+              lisible par l'institution.
             </p>
             <div class="hero__cta">
               <a class="btn btn--primary" href="/contact/">Demander une démo</a>
-              <a class="btn btn--ghost" href="/#certification">Voir le fonctionnement</a>
+              <a class="btn btn--ghost" href="/#etapes">Voir le fonctionnement</a>
             </div>
+
+            <!-- Pas de logos clients à afficher : le produit n'est pas encore
+                 commercialisé. Ce sont donc les garanties qui rassurent, et
+                 chacune est documentée dans la politique de confidentialité. -->
+            <ul class="trust-row">
+              <li class="trust-chip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+                Privacy by Design (RGPD)
+              </li>
+              <li class="trust-chip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2" /><rect x="3" y="13" width="18" height="7" rx="2" /><path d="M7 7.5h.01M7 16.5h.01" /></svg>
+                Hébergement en France
+              </li>
+              <li class="trust-chip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v5M15 3v5M6 8h12v5a6 6 0 0 1-12 0z" /><path d="M12 19v2" /></svg>
+                Intégration Moodle (LTI&nbsp;1.3)
+              </li>
+            </ul>
           </div>
+
           <div class="hero__media">
-            <img
-              src="/assets/img/diplome.png"
-              alt="Diplôme certifié Certimens posé sur un bureau"
-              width="500"
-              height="500"
-            />
+            <!-- Ce que l'étudiant voit, et ce que l'enseignant reçoit. Tout est
+                 dessiné en CSS : aucune image à charger, et les chiffres
+                 restent du texte. Les éléments purement graphiques sont
+                 masqués aux lecteurs d'écran. -->
+            <div class="mock">
+              <div class="mock__win">
+                <div class="mock__bar" aria-hidden="true">
+                  <span class="mock__dot"></span>
+                  <span class="mock__dot"></span>
+                  <span class="mock__dot"></span>
+                </div>
+                <div class="mock__page" aria-hidden="true">
+                  <div class="mock__line mock__line--t"></div>
+                  <div class="mock__line mock__line--a"></div>
+                  <div class="mock__line mock__line--b"></div>
+                  <div class="mock__line mock__line--c"></div>
+                  <div class="mock__line mock__line--d"></div>
+                  <div class="mock__pulse">
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mock__cert">
+                <img src="/assets/img/logo-128.png" alt="" width="128" height="128" />
+                <p class="mock__title">Certificat Certimens</p>
+                <p class="mock__score">Score Certimens&nbsp;: <b>85 / 100</b></p>
+                <p class="verdict verdict--ok">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+                  Profil authentique
+                </p>
+                <ul class="mock__meta">
+                  <li>Part tapée <b>98&nbsp;%</b></li>
+                  <li>Rythme et hésitations <b>naturels</b></li>
+                  <li>Indice de confiance <b>élevé</b></li>
+                </ul>
+                <div class="meter" aria-hidden="true">
+                  <i class="is-on"></i><i class="is-on"></i><i class="is-on"></i>
+                  <i class="is-on"></i><i class="is-on"></i><i></i>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- La certification -->
-      <section class="section section--soft" id="certification">
+      <section class="section" id="certification">
         <div class="container">
           <div class="section-head">
-            <span class="eyebrow">Certimens</span>
+            <span class="eyebrow">Universités &amp; gouvernance</span>
             <h2 class="section-title">Le label de confiance</h2>
+            <p>
+              Trois promesses, et chacune se vérifie&nbsp;: ce qui est mesuré, ce
+              qui en sort, et ce qui ne quitte jamais le poste de l'étudiant.
+            </p>
           </div>
 
           <div class="grid-3">
             <article class="card">
-              <div class="card__icon" aria-hidden="true">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 15h8" />
-                </svg>
+              <div class="card__head">
+                <div class="card__icon" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 15h8" />
+                  </svg>
+                </div>
+                <h3>Analyse de la frappe</h3>
               </div>
-              <h3>Analyse de la frappe</h3>
               <p>
-                Notre outil mesure la dynamique de frappe et les pauses
-                cognitives en temps réel, sans jamais enregistrer le texte saisi.
+                Notre outil mesure la dynamique de frappe, les reprises et les
+                pauses de réflexion pendant la rédaction, sans jamais enregistrer
+                le texte saisi ni les touches&nbsp;: seulement des compteurs.
               </p>
             </article>
 
             <article class="card">
-              <div class="card__icon" aria-hidden="true">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <path d="M14 2v6h6" />
-                  <path d="m9 15 2 2 4-4" />
-                </svg>
+              <div class="card__head">
+                <div class="card__icon" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <path d="M14 2v6h6" />
+                    <path d="m9 15 2 2 4-4" />
+                  </svg>
+                </div>
+                <h3>Preuve d'effort</h3>
               </div>
-              <h3>Preuve d'effort</h3>
               <p>
-                Nous générons un rapport certifiant le temps de réflexion et de
-                conception humaine derrière chaque devoir.
+                Un certificat daté accompagne chaque copie&nbsp;: un score, le
+                détail par dimension, et un profil de rédaction — authentique,
+                copiste ou hybride — qu'un correcteur lit en quelques secondes.
               </p>
             </article>
 
             <article class="card">
-              <div class="card__icon" aria-hidden="true">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <path d="m9 12 2 2 4-4" />
-                </svg>
+              <div class="card__head">
+                <div class="card__icon" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                </div>
+                <h3>Label incorruptible</h3>
               </div>
-              <h3>Label incorruptible</h3>
               <p>
                 Redonnez toute leur valeur à vos diplômes grâce à une
-                certification impossible à générer par l'IA.
+                certification qui porte sur le geste de rédaction, et qu'aucun
+                texte, si bien écrit soit-il, ne peut produire après coup.
               </p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <!-- Le fonctionnement en trois étapes -->
+      <section class="section section--soft" id="etapes">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Comment ça marche&nbsp;?</span>
+            <h2 class="section-title">
+              Une intégration naturelle dans votre écosystème pédagogique
+            </h2>
+            <p>
+              Aucune nouvelle plateforme à adopter, aucune manipulation
+              supplémentaire pour l'enseignant, aucune friction pour l'étudiant.
+            </p>
+          </div>
+
+          <ol class="steps">
+            <li class="step">
+              <b class="step__num">01</b>
+              <div class="step__rule" aria-hidden="true"></div>
+              <h3>L'assignation native</h3>
+              <p>
+                Depuis le Moodle de votre établissement&nbsp;: Certimens s'y
+                déclare comme un outil externe LTI&nbsp;1.3, présent dans le cœur
+                de Moodle, et le cours amène directement vos étudiants. Rien à
+                installer côté plateforme.
+              </p>
+              <p class="step__note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+                Le cours nomme la classe&nbsp;: la liste des étudiants se remplit
+                d'elle-même.
+              </p>
+            </li>
+
+            <li class="step">
+              <b class="step__num">02</b>
+              <div class="step__rule" aria-hidden="true"></div>
+              <h3>La rédaction naturelle</h3>
+              <p>
+                L'étudiant écrit où il écrit déjà&nbsp;: Word, Google&nbsp;Docs,
+                Overleaf, LibreOffice&nbsp;Writer, Visual&nbsp;Studio&nbsp;Code —
+                ou l'éditeur de son espace Certimens. L'agent compte en
+                arrière-plan la dynamique de la frappe.
+              </p>
+              <p class="step__note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+                Ni le texte saisi ni les touches ne sont enregistrés — et si la
+                connexion tombe, les compteurs attendent le retour du réseau.
+              </p>
+            </li>
+
+            <li class="step">
+              <b class="step__num">03</b>
+              <div class="step__rule" aria-hidden="true"></div>
+              <h3>La certification objective</h3>
+              <p>
+                À l'échéance, le moteur calcule le score Certimens et délivre le
+                certificat au correcteur&nbsp;: le détail par dimension, le profil
+                de rédaction, et le rapport d'expert qui l'explique en toutes
+                lettres.
+              </p>
+              <p class="step__note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+                Le certificat s'exporte en PDF, et reste consultable des années
+                plus tard.
+              </p>
+            </li>
+          </ol>
         </div>
       </section>
 
       <!-- Comparatif -->
-      <section class="section">
+      <section class="section" id="comparatif">
         <div class="container">
           <div class="section-head">
-            <h2 class="section-title">De la suspicion à la preuve&nbsp;: le nouveau standard d'évaluation</h2>
+            <h2 class="section-title">
+              De la suspicion à la preuve&nbsp;: le nouveau standard d'évaluation
+            </h2>
+            <p>
+              Pourquoi l'analyse du geste de rédaction remplace les détecteurs
+              d'IA probabilistes, et ce que cela change pour l'étudiant honnête.
+            </p>
           </div>
 
-          <div class="compare">
-            <div class="compare__col">
-              <h3>Détecteurs d'IA classiques</h3>
-              <ul>
-                <li>
-                  <svg class="ico-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
-                  <span>Analyse probabiliste du texte final (contournable)</span>
-                </li>
-                <li>
-                  <svg class="ico-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
-                  <span>Faux positifs fréquents générant de la suspicion</span>
-                </li>
-                <li>
-                  <svg class="ico-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
-                  <span>Vérifications manuelles chronophages</span>
-                </li>
-              </ul>
+          <div class="versus">
+            <div class="versus__row versus__head-row">
+              <h3 class="versus__head versus__head--old">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+                Détecteurs d'IA classiques
+              </h3>
+              <p class="versus__head versus__head--crit">Critères</p>
+              <h3 class="versus__head versus__head--us">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+                Le standard Certimens
+              </h3>
             </div>
 
-            <div class="compare__col compare__col--highlight">
-              <h3>Le standard CERTIMENS</h3>
-              <ul>
-                <li>
-                  <svg class="ico-yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
-                  <span>Analyse comportementale continue en temps réel</span>
-                </li>
-                <li>
-                  <svg class="ico-yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
-                  <span>Preuve fondée sur le déroulé de la rédaction, pas sur une probabilité</span>
-                </li>
-                <li>
-                  <svg class="ico-yes" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
-                  <span>Certificat d'authenticité généré automatiquement</span>
-                </li>
-              </ul>
+            <div class="versus__row">
+              <div class="versus__cell versus__cell--old">
+                <p class="versus__tag versus__tag--old"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>Détecteurs d'IA classiques</p>
+                <h3>Analyse a posteriori du texte final</h3>
+                <p>
+                  Des statistiques de style sur le rendu, que la simple
+                  reformulation suffit à contourner.
+                </p>
+              </div>
+              <p class="versus__cell versus__cell--crit">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2h4M12 2v6M7 22h10a3 3 0 0 0 2.6-4.5L14 8h-4L4.4 17.5A3 3 0 0 0 7 22z" /></svg>
+                Méthode &amp; science
+              </p>
+              <div class="versus__cell versus__cell--us">
+                <p class="versus__tag versus__tag--us"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Le standard Certimens</p>
+                <h3>Analyse comportementale pendant l'écriture</h3>
+                <p>
+                  La cadence, la dispersion du rythme, les micro-hésitations
+                  lexicales et les reprises sont mesurées au moment où le
+                  document se construit, avec la part réellement tapée. On ne
+                  juge pas un texte&nbsp;: on observe un processus.
+                </p>
+              </div>
+            </div>
+
+            <div class="versus__row">
+              <div class="versus__cell versus__cell--old">
+                <p class="versus__tag versus__tag--old"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>Détecteurs d'IA classiques</p>
+                <h3>Un pourcentage, et un doute</h3>
+                <p>
+                  Des faux positifs qui pénalisent au hasard, et un climat de
+                  suspicion dont l'étudiant honnête fait les frais.
+                </p>
+              </div>
+              <p class="versus__cell versus__cell--crit">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 7h14M7 7l-3 7h6zM17 7l-3 7h6z" /></svg>
+                Intégrité du verdict
+              </p>
+              <div class="versus__cell versus__cell--us">
+                <p class="versus__tag versus__tag--us"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Le standard Certimens</p>
+                <h3>Un certificat qui s'explique</h3>
+                <p>
+                  Le score vient avec son détail par dimension, un indice de
+                  confiance qui dit ce que le capteur a pu voir, et un rapport
+                  en toutes lettres. L'étudiant qui a travaillé tient enfin de
+                  quoi défendre son propre travail.
+                </p>
+              </div>
+            </div>
+
+            <div class="versus__row">
+              <div class="versus__cell versus__cell--old">
+                <p class="versus__tag versus__tag--old"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>Détecteurs d'IA classiques</p>
+                <h3>Les copies partent chez un tiers</h3>
+                <p>
+                  La propriété intellectuelle de vos étudiants est envoyée, et
+                  parfois conservée, sur des serveurs que vous ne choisissez pas.
+                </p>
+              </div>
+              <p class="versus__cell versus__cell--crit">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+                Conformité &amp; sécurité
+              </p>
+              <div class="versus__cell versus__cell--us">
+                <p class="versus__tag versus__tag--us"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Le standard Certimens</p>
+                <h3>Des compteurs, pas des copies</h3>
+                <p>
+                  L'agent n'envoie que des compteurs par fenêtre de mesure, dont
+                  aucun contenu ne peut être reconstitué. Les données
+                  applicatives sont hébergées en France, chez OVHcloud.
+                </p>
+              </div>
+            </div>
+
+            <div class="versus__row">
+              <div class="versus__cell versus__cell--old">
+                <p class="versus__tag versus__tag--old"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>Détecteurs d'IA classiques</p>
+                <h3>Un contrôle manuel, après coup</h3>
+                <p>
+                  Exporter, copier, déposer la copie dans un outil tiers, puis
+                  interpréter un chiffre&nbsp;: autant de temps pris sur la
+                  correction.
+                </p>
+              </div>
+              <p class="versus__cell versus__cell--crit">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v5M15 3v5M6 8h12v5a6 6 0 0 1-12 0z" /><path d="M12 19v2" /></svg>
+                Intégration &amp; déploiement
+              </p>
+              <div class="versus__cell versus__cell--us">
+                <p class="versus__tag versus__tag--us"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Le standard Certimens</p>
+                <h3>Le certificat vient avec la copie</h3>
+                <p>
+                  Rien à déployer sur vos serveurs, rien à faire au moment de
+                  corriger&nbsp;: l'étudiant dépose, le certificat est là. Le
+                  code des agents est public et vérifiable.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Bénéfices -->
+      <!-- Sécurité, déploiement et conformité -->
+      <section class="section section--soft" id="securite">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Sécurité &amp; déploiement</span>
+            <h2 class="section-title">
+              Une infrastructure conçue pour les DSI et les DPO
+            </h2>
+            <p>
+              Ce que vous installez, où passent les données, et ce qui n'en sort
+              jamais. Les trois questions qu'on nous pose en premier.
+            </p>
+          </div>
+
+          <div class="infra">
+            <div>
+              <article class="guarantee">
+                <p class="tag">Privacy by Design</p>
+                <h3>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+                  Le texte n'existe pas pour nous
+                </h3>
+                <p>
+                  Certimens ne lit pas, n'aspire pas et ne stocke pas la
+                  propriété intellectuelle de vos étudiants.
+                  <strong>Ni le texte saisi ni les touches ne sont enregistrés</strong>
+                  — seulement des compteurs agrégés par fenêtre de mesure, à
+                  partir desquels aucun contenu ne peut être reconstitué. Un
+                  document ne quitte le poste que si l'étudiant le rend. Et
+                  aucune décision n'est automatisée&nbsp;: le certificat est un
+                  instrument de mesure, la note reste celle de l'enseignant.
+                </p>
+              </article>
+
+              <article class="guarantee">
+                <p class="tag">Compatibilité</p>
+                <h3>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v5M15 3v5M6 8h12v5a6 6 0 0 1-12 0z" /><path d="M12 19v2" /></svg>
+                  Rien à déployer sur vos serveurs
+                </h3>
+                <p>
+                  <strong>Moodle en LTI&nbsp;1.3</strong>, standard inclus par
+                  défaut&nbsp;: l'établissement déclare un outil externe, et c'est
+                  tout. L'authentification peut aussi passer par votre annuaire
+                  Google ou Microsoft, ou par Moodle en OAuth2. Côté étudiant, une
+                  extension de navigateur ou un complément suffit — ou aucune
+                  installation, en passant par l'éditeur de l'espace Certimens,
+                  qui mesure directement dans le navigateur.
+                </p>
+              </article>
+
+              <article class="guarantee">
+                <p class="tag">Souveraineté</p>
+                <h3>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2" /><rect x="3" y="13" width="18" height="7" rx="2" /><path d="M7 7.5h.01M7 16.5h.01" /></svg>
+                  Hébergement et conservation
+                </h3>
+                <p>
+                  Les données de l'application sont hébergées
+                  <strong>en France, chez OVHcloud</strong>, et les échanges sont
+                  chiffrés de bout en bout par TLS&nbsp;(HTTPS). Les mesures par
+                  fenêtre sont détruites un an après le dépôt&nbsp;; le certificat,
+                  lui, reste. Le détail de chaque donnée traitée est dans notre
+                  <a href="/politique-de-confidentialite/">politique de confidentialité</a>.
+                </p>
+              </article>
+            </div>
+
+            <div class="flow">
+              <h3>Où passent les données</h3>
+              <div class="flow__steps">
+                <div class="flow__step">
+                  <span class="flow__ico" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" /></svg>
+                  </span>
+                  <span class="flow__txt">
+                    <b>Poste de l'étudiant</b>
+                    <span>
+                      L'agent compte la dynamique de frappe par fenêtre de
+                      mesure. Le texte reste sur la machine.
+                    </span>
+                  </span>
+                </div>
+
+                <p class="flow__link">Compteurs seuls, chiffrés par TLS</p>
+
+                <div class="flow__step flow__step--us">
+                  <span class="flow__ico" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2" /><rect x="3" y="13" width="18" height="7" rx="2" /><path d="M7 7.5h.01M7 16.5h.01" /></svg>
+                  </span>
+                  <span class="flow__txt">
+                    <b>Moteur Certimens — France</b>
+                    <span>
+                      Calcul du score et du profil de rédaction, puis
+                      établissement du certificat.
+                    </span>
+                  </span>
+                </div>
+
+                <p class="flow__link">Lecture authentifiée</p>
+
+                <div class="flow__step">
+                  <span class="flow__ico" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5z" /><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" /></svg>
+                  </span>
+                  <span class="flow__txt">
+                    <b>Correcteur</b>
+                    <span>
+                      Le certificat et son rapport d'expert, dans l'espace
+                      Certimens — accessible depuis le cours Moodle.
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cas d'usage -->
+      <section class="section" id="cas-usage">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Cas d'usage</span>
+            <h2 class="section-title">
+              Des cas d'usage adaptés à toutes vos modalités d'évaluation
+            </h2>
+            <p>
+              De la dissertation écrite sur plusieurs semaines à l'épreuve de
+              code en temps limité, la même mesure s'applique.
+            </p>
+          </div>
+
+          <div class="usecases">
+            <article class="usecase">
+              <div class="usecase__ico" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v18H6a2 2 0 0 1-2-1.5z" /><path d="M8 7h7M8 11h7M8 15h4" /></svg>
+              </div>
+              <h3>Devoirs maison, mémoires et thèses</h3>
+              <p>
+                Sur un travail long, c'est la régularité qui parle&nbsp;: des
+                séances espacées, des reprises, des passages retravaillés. Le
+                score est calculé séance par séance, puis pondéré par le temps
+                de frappe de chacune — dix secondes mécaniques noyées dans
+                quatre heures de rédaction restent visibles.
+              </p>
+              <p class="usecase__foot">Word · Google&nbsp;Docs · Overleaf · LibreOffice</p>
+            </article>
+
+            <article class="usecase">
+              <div class="usecase__ico" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></svg>
+              </div>
+              <h3>Examens de programmation et travaux pratiques</h3>
+              <p>
+                L'extension Visual&nbsp;Studio&nbsp;Code mesure le projet fichier
+                par fichier. Elle distingue le code écrit du code injecté, et
+                c'est exactement la question d'une épreuve de développement&nbsp;:
+                l'étudiant a-t-il codé, ou collé&nbsp;?
+              </p>
+              <p class="usecase__foot">Visual&nbsp;Studio&nbsp;Code</p>
+            </article>
+
+            <article class="usecase">
+              <div class="usecase__ico" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8" /><path d="M12 9v4l2.5 2.5M9 2h6" /></svg>
+              </div>
+              <h3>Épreuves synchrones et à distance</h3>
+              <p>
+                En temps limité, la recopie linéaire se trahit&nbsp;: une cadence
+                qui ne varie pas, sans hésitation ni reprise, est la signature
+                d'un texte écrit ailleurs puis retapé. L'arrivée massive de texte
+                non tapé est signalée séparément.
+              </p>
+              <p class="usecase__foot">Sans webcam, sans blocage de navigateur</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Là où vos étudiants écrivent déjà -->
       <section class="section section--soft">
         <div class="container split">
           <img
@@ -232,12 +688,10 @@
             loading="lazy"
           />
           <div>
-            <h2 class="section-title">Ne laissez plus le doute planer sur vos évaluations</h2>
+            <h2 class="section-title">Là où vos étudiants écrivent déjà</h2>
             <p class="lead">
-              Avec l'essor des IA génératives, le texte final ne suffit plus à
-              prouver l'apprentissage. Le label CERTIMENS s'intègre à vos outils
-              pour attester que l'effort cognitif a bien été fourni par
-              l'étudiant, de la première réflexion à la rédaction finale.
+              La mesure ne demande pas de changer d'outil. Elle s'ajoute à celui
+              que l'étudiant utilise — ou se passe d'outil, s'il n'en a aucun.
             </p>
             <ul class="checklist">
               <li>
@@ -276,23 +730,72 @@
         </div>
       </section>
 
-      <!-- Appel à l'action -->
-      <section class="section section--navy">
-        <div class="container cta">
-          <h2>Prêt à restaurer la valeur de vos diplômes&nbsp;?</h2>
-          <p>
-            Rejoignez notre programme pilote et garantissez l'intégrité de vos
-            évaluations face aux IA génératives.
-          </p>
-          <a class="btn btn--primary" href="/contact/">Demander une démo</a>
+      <!-- Notre approche : le manifeste scientifique -->
+      <section class="section" id="expertise">
+        <div class="container">
+          <div class="split manifesto">
+            <img
+              src="/assets/img/manifeste.jpg"
+              alt="Étudiante concentrée en train de rédiger"
+              width="1024"
+              height="683"
+              loading="lazy"
+            />
+            <div>
+              <span class="eyebrow">Notre manifeste scientifique</span>
+              <h2 class="section-title">
+                Face à l'urgence de l'IA, nous avons choisi d'authentifier
+                l'humain
+              </h2>
+              <p>
+                Certimens n'est pas né d'une volonté de contrôler les étudiants,
+                mais d'une réflexion sur les sciences de l'éducation et la
+                <strong>psychologie cognitive</strong>. Face aux limites des
+                détecteurs fondés sur le texte, qui se trompent et brisent la
+                confiance, nous avons changé de question&nbsp;: non plus «&nbsp;ce
+                texte ressemble-t-il à de l'IA&nbsp;?&nbsp;», mais
+                <strong>«&nbsp;ce document a-t-il été rédigé par la personne qui le
+                dépose&nbsp;?&nbsp;»</strong>
+              </p>
+              <p>
+                L'évaluation n'est pas qu'un résultat&nbsp;: c'est un processus.
+                Nous mesurons l'hésitation, la restructuration et la réflexion —
+                les signatures du travail intellectuel. Remettre la cognition
+                humaine au centre de la diplomation&nbsp;: voilà notre engagement.
+              </p>
+
+              <ol class="pillars">
+                <li class="pillar">
+                  <b>01</b>
+                  <h3>La dynamique de création</h3>
+                  <p>Cadences, temps de frappe et pauses de réflexion.</p>
+                </li>
+                <li class="pillar">
+                  <b>02</b>
+                  <h3>La macro-édition</h3>
+                  <p>Restructurations, repentirs, révisions et coupes de texte.</p>
+                </li>
+                <li class="pillar">
+                  <b>03</b>
+                  <h3>La micro-friction</h3>
+                  <p>Micro-hésitations lexicales (1 à 3&nbsp;s) et corrections à chaud.</p>
+                </li>
+                <li class="pillar">
+                  <b>04</b>
+                  <h3>La navigation</h3>
+                  <p>Relectures, déplacements du curseur et retours en arrière.</p>
+                </li>
+              </ol>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- FAQ -->
+      <!-- Bandeau d'engagement -->
       <section class="section section--soft" id="faq">
         <div class="container">
           <div class="section-head">
-            <h2 class="section-title">Questions Fréquentes</h2>
+            <h2 class="section-title">Questions fréquentes</h2>
           </div>
 
           <div class="faq">
@@ -326,8 +829,8 @@
                   données sont au cœur de notre infrastructure. Certimens
                   n'enregistre aucune donnée personnelle sensible et n'utilise pas
                   de surveillance intrusive (pas de webcam, pas de blocage de
-                  navigateur). Aucun texte saisi ni aucune touche n'est
-                  enregistré&nbsp;: seulement des compteurs agrégés par fenêtre de
+                  navigateur). Ni le texte saisi ni les touches ne sont
+                  enregistrés&nbsp;: seulement des compteurs agrégés par fenêtre de
                   mesure, à partir desquels aucun contenu ne peut être reconstitué.
                   Les échanges sont chiffrés, et notre
                   <a href="/politique-de-confidentialite/">politique de confidentialité</a>
@@ -380,18 +883,46 @@
 
             <details>
               <summary>
+                Comment le score est-il calculé, et que dit le certificat&nbsp;?
+              </summary>
+              <div class="faq__body">
+                <p>
+                  Le score ne répond qu'à une question&nbsp;:
+                  <strong>ce document a-t-il été rédigé par la personne qui le
+                  dépose&nbsp;?</strong> Il n'est pas calculé une fois sur les
+                  totaux du devoir, mais <strong>séance par séance</strong>, puis
+                  pondéré par le temps de frappe que chaque séance porte — sans
+                  quoi quelques secondes de frappe mécanique noyées dans des
+                  heures de rédaction seraient arithmétiquement invisibles.
+                </p>
+                <p>
+                  Le certificat en donne le détail&nbsp;: le score, sa
+                  décomposition par dimension, la part réellement tapée du
+                  document, et un <strong>rapport d'expert</strong> qui conclut sur
+                  un profil de rédaction — authentique, copiste (un texte écrit
+                  ailleurs puis retapé), hybride, ou indéterminé lorsque les
+                  marqueurs ne dessinent rien de caractéristique. C'est un
+                  instrument de mesure&nbsp;: la note, elle, reste celle de
+                  l'enseignant.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
                 Quelle est la valeur ajoutée du «&nbsp;Label d'Excellence&nbsp;» pour nos
                 diplômes&nbsp;?
               </summary>
               <div class="faq__body">
                 <p>
-                  À l'heure où l'intelligence artificielle générative banalise la
-                  production de contenu, garantir l'authenticité du travail de vos
-                  étudiants devient un avantage concurrentiel majeur. Afficher le
-                  Label d'Excellence Certimens sur vos diplômes et mémoires
-                  rassure les recruteurs et les entreprises partenaires sur les
-                  véritables compétences cognitives et analytiques de vos
-                  diplômés, renforçant ainsi le prestige de votre institution.
+                  À l'heure où l'intelligence artificielle générative banalise
+                  la production de contenu, un diplôme ne vaut que par ce qu'il
+                  atteste du travail de celui qui le porte. Le label Certimens
+                  documente, épreuve par épreuve, que les travaux ont bien été
+                  rédigés par vos étudiants&nbsp;: vos jurys délibèrent sur des
+                  copies dont l'origine n'est pas en question, et votre
+                  établissement peut répondre à une contestation par des faits
+                  datés plutôt que par une appréciation.
                 </p>
               </div>
             </details>
@@ -418,39 +949,38 @@
         </div>
       </section>
 
-      <!-- Notre expertise -->
-      <section class="section" id="expertise">
+      <!-- FAQ -->
+      <section class="section">
         <div class="container">
-          <div class="section-head">
-            <h2 class="section-title">Face à l'urgence de l'IA, nous avons choisi l'humain</h2>
-          </div>
-
-          <div class="split manifesto">
-            <img
-              src="/assets/img/manifeste.jpg"
-              alt="Étudiante concentrée en train de rédiger"
-              width="1024"
-              height="683"
-              loading="lazy"
-            />
-            <div>
-              <h2>Notre Manifeste Scientifique</h2>
-              <p>
-                Certimens n'est pas né d'une volonté de contrôler les étudiants,
-                mais d'une profonde réflexion sur les sciences de l'éducation et la
-                <strong>psychologie cognitive</strong>. Face aux limites des
-                détecteurs d'IA traditionnels qui se trompent et brisent la
-                confiance, nous avons compris qu'il fallait changer de paradigme.
-              </p>
-              <p>
-                En nous appuyant sur l'étude des mécanismes de réflexion et de la
-                <strong>dynamique comportementale</strong> (temps de pause,
-                construction de la pensée), nous avons créé une certification qui
-                valorise le <strong>véritable effort intellectuel</strong>.
-                Remettre la cognition humaine au centre de l'évaluation&nbsp;: voilà
-                notre mission.
-              </p>
+          <div class="cta-band">
+            <h2>Prêt à protéger la valeur académique de vos diplômes&nbsp;?</h2>
+            <p>
+              Rejoignez notre programme pilote&nbsp;: nous déployons Certimens sur
+              vos premières épreuves, avec vos équipes pédagogiques, votre DSI et
+              votre délégué à la protection des données.
+            </p>
+            <div class="cta-band__actions">
+              <a class="btn btn--primary" href="/contact/">Demander une démo</a>
+              <a class="btn btn--ghost" href="/#securite">Lire les garanties DSI&nbsp;/&nbsp;DPO</a>
             </div>
+            <ul class="trust-row trust-row--dark">
+              <li class="trust-chip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+                Conforme RGPD (Privacy by Design)
+              </li>
+              <li class="trust-chip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2" /><rect x="3" y="13" width="18" height="7" rx="2" /><path d="M7 7.5h.01M7 16.5h.01" /></svg>
+                Hébergement en France (OVHcloud)
+              </li>
+              <li class="trust-chip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v5M15 3v5M6 8h12v5a6 6 0 0 1-12 0z" /><path d="M12 19v2" /></svg>
+                Intégration Moodle (LTI&nbsp;1.3)
+              </li>
+              <li class="trust-chip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6" /></svg>
+                Agents en code ouvert (AGPL-3.0)
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -459,44 +989,189 @@
     <footer class="site-footer">
       <div class="container">
         <div class="site-footer__grid">
-          <div>
-            <img src="/assets/img/logo-footer.png" alt="Certimens" width="500" height="143" />
+          <div class="site-footer__brand">
+            <p class="site-footer__mark">
+              <img src="/assets/img/logo-128.png" alt="" width="128" height="128" />
+              <b>Certimens</b>
+            </p>
             <p>
-              Le premier label certifiant le véritable effort cognitif humain.
+              La première infrastructure de certification de l'effort cognitif
+              humain pour l'enseignement supérieur.
             </p>
           </div>
 
           <div>
-            <h2>Navigation</h2>
+            <h2>Solutions par profil</h2>
             <ul>
-              <li><a href="/#certification">La Certification</a></li>
-              <li><a href="/#expertise">Notre Expertise</a></li>
-              <li><a href="/#faq">Questions Fréquentes</a></li>
+              <li><a href="/#certification">Universités &amp; gouvernance</a></li>
+              <li><a href="/enseignants/">Enseignants &amp; correcteurs</a></li>
+              <li><a href="/etudiants/">Espace étudiants</a></li>
+              <li><a href="/contact/">Programme pilote universitaire</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2>Produit &amp; approche</h2>
+            <ul>
+              <li><a href="/#etapes">Comment ça marche</a></li>
+              <li><a href="/#expertise">Notre approche &amp; le score Certimens</a></li>
+              <li><a href="/#securite">Sécurité, DSI &amp; architecture LTI</a></li>
+              <li><a href="/#faq">Questions fréquentes</a></li>
               <li><a href="/plugins/">Plugins</a></li>
+              <li><a href="https://monespace.certimens.fr/">Connexion au tableau de bord</a></li>
               <li><a href="/contact/">Contact</a></li>
             </ul>
           </div>
 
           <div>
-            <h2>Légal</h2>
+            <h2>Légal &amp; conformité</h2>
             <ul>
-              <li><a href="/mentions-legales/">Mentions Légales</a></li>
+              <li><a href="/mentions-legales/">Mentions légales</a></li>
               <li>
                 <a href="/politique-de-confidentialite/">
-                  Politique de confidentialité
+                  Politique de confidentialité &amp; RGPD
                 </a>
               </li>
-              <li><a href="/en/" lang="en" hreflang="en">English version</a></li>
-              <li><a href="https://monespace.certimens.fr/">Connexion</a></li>
             </ul>
           </div>
         </div>
 
         <div class="site-footer__bottom">
-          © 2026 Certimens – Tous droits réservés.
+          © 2026 Certimens – Tous droits réservés. Hébergé en France, chez
+          OVHcloud. · <a href="/en/" lang="en" hreflang="en">English version</a>
         </div>
       </div>
     </footer>
+
+    <!-- Données structurées (schema.org). Les questions et réponses
+         reprennent mot pour mot la FAQ affichée plus haut : Google exige
+         que le balisage corresponde au contenu visible, il faut donc les
+         modifier ensemble.
+         https://developers.google.com/search/docs/appearance/structured-data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://certimens.fr/#organization",
+            "name": "Certimens",
+            "url": "https://certimens.fr/",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://certimens.fr/#logo",
+              "url": "https://certimens.fr/assets/img/logo.png",
+              "contentUrl": "https://certimens.fr/assets/img/logo.png",
+              "width": 300,
+              "height": 300,
+              "caption": "Certimens"
+            },
+            "image": {
+              "@id": "https://certimens.fr/#logo"
+            },
+            "description": "La première infrastructure de certification de l'effort cognitif humain pour l'enseignement supérieur.",
+            "email": "contact@certimens.fr",
+            "sameAs": [
+              "https://github.com/Certimens"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "@id": "https://certimens.fr/#contact",
+              "contactType": "customer support",
+              "email": "contact@certimens.fr",
+              "availableLanguage": [
+                "fr",
+                "en"
+              ]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://certimens.fr/#website",
+            "url": "https://certimens.fr/",
+            "name": "Certimens",
+            "description": "La première infrastructure de certification de l'effort cognitif humain pour l'enseignement supérieur.",
+            "publisher": {
+              "@id": "https://certimens.fr/#organization"
+            },
+            "inLanguage": [
+              "fr-FR",
+              "en-GB"
+            ]
+          },
+          {
+            "@type": [
+              "WebPage",
+              "FAQPage"
+            ],
+            "@id": "https://certimens.fr/#webpage",
+            "url": "https://certimens.fr/",
+            "name": "Certimens — Le label anti-IA qui certifie l'effort cognitif humain",
+            "description": "Certimens est le premier label anti-IA qui restaure la valeur intrinsèque de vos diplômes, grâce à une analyse dynamique de la frappe prouvant l'effort intellectuel de vos étudiants.",
+            "isPartOf": {
+              "@id": "https://certimens.fr/#website"
+            },
+            "about": {
+              "@id": "https://certimens.fr/#organization"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://certimens.fr/#logo"
+            },
+            "inLanguage": "fr-FR",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Comment Certimens se différencie-t-il des détecteurs d'IA classiques ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Les détecteurs traditionnels se contentent d'une analyse statistique du texte final, ce qui génère de nombreux faux positifs et crée un climat de suspicion. Le label Certimens s'appuie sur la psychologie cognitive et l'analyse comportementale. Nous certifions l'effort intellectuel en analysant le processus de création lui-même (temps de pause, dynamique de frappe, phases de réflexion), garantissant ainsi une évaluation juste et scientifiquement fondée.<\/p>"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Le processus d'analyse respecte-t-il le RGPD et la vie privée des étudiants ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Absolument. La conformité réglementaire et la protection des données sont au cœur de notre infrastructure. Certimens n'enregistre aucune donnée personnelle sensible et n'utilise pas de surveillance intrusive (pas de webcam, pas de blocage de navigateur). Ni le texte saisi ni les touches ne sont enregistrés : seulement des compteurs agrégés par fenêtre de mesure, à partir desquels aucun contenu ne peut être reconstitué. Les échanges sont chiffrés, et notre politique de confidentialité détaille chaque donnée traitée, sa finalité et sa durée de conservation.<\/p>"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "L'outil est-il complexe à intégrer à nos systèmes actuels ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Non. Il n'y a rien à installer sur vos serveurs : l'étudiant ajoute une extension à son navigateur pour Google Docs, Word Online et Overleaf, un complément Office pour Word, l'extension LibreOffice Writer, ou l'extension Visual Studio Code pour un devoir rendu en code — elle mesure alors le projet fichier par fichier. Chacun s'installe depuis le magasin de son éditeur, et la page Plugins réunit les quatre, avec la marche à suivre pour chacun et l'installation manuelle pour un parc.<\/p><p>L'étudiant n'a pas d'adresse de serveur à saisir, et aucun agent ne lui demande son mot de passe : l'agent affiche un code court, l'étudiant le confirme dans son espace Certimens, et c'est tout. Vous pouvez aussi désigner les espaces de rédaction en ligne de votre établissement, son Moodle ou son wiki : l'extension les propose alors à vos étudiants, qui restent seuls à pouvoir accorder l'autorisation, site par site. Les mesures partent en arrière-plan et sont mises en file d'attente si la connexion tombe, sans rien demander à l'étudiant.<\/p><p>Et pour un premier devoir, ou une classe où l'on ne peut rien installer, il y a plus simple encore : l'espace Certimens embarque un éditeur. L'étudiant y écrit, le document se construit au format Word dans son navigateur, et la mesure se fait là — selon exactement les mêmes règles, de sorte qu'une copie écrite ainsi se compare à une copie écrite dans Word sur le même pied. Rien à installer, rien à autoriser, et le document ne part qu'au moment où l'étudiant l'enregistre.<\/p>"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Comment le score est-il calculé, et que dit le certificat ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Le score ne répond qu'à une question : ce document a-t-il été rédigé par la personne qui le dépose ? Il n'est pas calculé une fois sur les totaux du devoir, mais séance par séance, puis pondéré par le temps de frappe que chaque séance porte — sans quoi quelques secondes de frappe mécanique noyées dans des heures de rédaction seraient arithmétiquement invisibles.<\/p><p>Le certificat en donne le détail : le score, sa décomposition par dimension, la part réellement tapée du document, et un rapport d'expert qui conclut sur un profil de rédaction — authentique, copiste (un texte écrit ailleurs puis retapé), hybride, ou indéterminé lorsque les marqueurs ne dessinent rien de caractéristique. C'est un instrument de mesure : la note, elle, reste celle de l'enseignant.<\/p>"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quelle est la valeur ajoutée du « Label d'Excellence » pour nos diplômes ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>À l'heure où l'intelligence artificielle générative banalise la production de contenu, un diplôme ne vaut que par ce qu'il atteste du travail de celui qui le porte. Le label Certimens documente, épreuve par épreuve, que les travaux ont bien été rédigés par vos étudiants : vos jurys délibèrent sur des copies dont l'origine n'est pas en question, et votre établissement peut répondre à une contestation par des faits datés plutôt que par une appréciation.<\/p>"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Peut-on vérifier ce que l'agent mesure réellement ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "<p>Oui, et c'est délibéré. Les agents sont la seule partie de Certimens qui s'exécute sur le poste de l'étudiant, et c'est la seule dont le code est public et libre, sous licence AGPL-3.0 : n'importe qui — un étudiant, un délégué à la protection des données, votre direction des systèmes d'information — peut y lire ce qui est compté, ce qui est envoyé et ce qui ne l'est pas, sur github.com/Certimens/plugins. Une promesse qui ne se vérifie pas n'est pas une garantie.<\/p>"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
 
     <script src="/assets/js/site.js" defer></script>
   </body>
