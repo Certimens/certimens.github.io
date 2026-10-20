@@ -6,7 +6,8 @@ GitHub Pages, depuis le dépôt public
 [`Certimens/certimens.github.io`](https://github.com/Certimens/certimens.github.io).
 
 Le site existe en deux langues : le **français à la racine**, l'**anglais sous
-`/en/`**. `certimens.com` redirige vers la version anglaise (voir
+`/en/`**. `certimens.com` doit rediriger vers la version anglaise — la
+redirection n'est pas encore en place (voir
 « [Deux langues, deux domaines](#deux-langues-deux-domaines) »).
 
 La connexion se fait sur l'espace client, pas ici : le bouton **Connexion**
@@ -15,21 +16,25 @@ pointe vers <https://monespace.certimens.fr/>.
 Une partie du site n'est **pas** dans ce dépôt : les pages **`/plugins/`**, qui
 expliquent comment installer les quatre agents de mesure, sont publiées par
 [`Certimens/plugins`](https://github.com/Certimens/plugins) et servies par
-GitHub Pages sous le même domaine (aujourd'hui
-<https://certimens.github.io/plugins/>, et `certimens.fr/plugins/` une fois le
-DNS basculé). Voir
+GitHub Pages sous le même domaine, <https://certimens.fr/plugins/>. Voir
 « [Les pages des agents](#les-pages-des-agents-plugins) ».
 
 ## Structure
 
 ```
 .
-├── index.html                          Accueil FR (ancres #certification, #expertise, #faq)
+├── index.html                          Accueil FR (ancres #certification, #etapes,
+│                                       #comparatif, #securite, #cas-usage, #expertise, #faq)
+├── enseignants/index.html              Page de destination « Enseignants & correcteurs »
+├── etudiants/index.html                Page de destination « Étudiants »
 ├── contact/index.html                  Formulaire de contact FR
 ├── mentions-legales/index.html
 ├── politique-de-confidentialite/index.html
 ├── en/                                 Version anglaise, même arborescence
-│   ├── index.html                      Accueil EN (mêmes ancres)
+│   ├── index.html                      Accueil EN (ancres traduites : #steps,
+│   │                                   #comparison, #security, #use-cases…)
+│   ├── teachers/index.html             Jumelle anglaise de /enseignants/
+│   ├── students/index.html             Jumelle anglaise de /etudiants/
 │   ├── contact/index.html
 │   ├── legal-notice/index.html
 │   └── privacy-policy/index.html
@@ -40,7 +45,10 @@ DNS basculé). Voir
 │   ├── css/style.css                   Feuille de style unique
 │   ├── js/site.js                      Menu mobile + formulaire mailto
 │   ├── fonts/                          Plus Jakarta Sans (500/700/800), auto-hébergée
-│   └── img/                            Photographies et marque
+│   └── img/                            Photographies et marque. `logo.png`
+│                                       (300×300) ne sert plus qu'à Open Graph et
+│                                       aux données structurées ; les pages chargent
+│                                       `logo-128.png`, jamais affiché au-delà de 46 px.
 ├── .github/
 │   ├── workflows/deploy.yml            CI + publication sur GitHub Pages
 │   └── dependabot.yml                  Maintient les actions à jour
@@ -59,11 +67,16 @@ langue demandée, et renvoie vers l'accueil et le contact.
 ## Deux langues, deux domaines
 
 Le français est la langue par défaut et vit à la racine ; l'anglais occupe
-`/en/`, avec la même arborescence et les mêmes ancres :
+`/en/`, avec la même arborescence. Les ancres de l'accueil sont, elles,
+**traduites** — `#etapes` / `#steps`, `#securite` / `#security` — à l'exception
+des trois historiques (`#certification`, `#expertise`, `#faq`), gardées
+identiques des deux côtés parce qu'elles circulent déjà :
 
 | Français | Anglais |
 | --- | --- |
 | `/` | `/en/` |
+| `/enseignants/` | `/en/teachers/` |
+| `/etudiants/` | `/en/students/` |
 | `/contact/` | `/en/contact/` |
 | `/mentions-legales/` | `/en/legal-notice/` |
 | `/politique-de-confidentialite/` | `/en/privacy-policy/` |
@@ -73,8 +86,8 @@ Il n'y a **pas de détection automatique de la langue** : ni redirection sur
 `Accept-Language`, ni bascule en JavaScript. Un robot d'indexation n'envoie pas
 d'en-tête de langue et se verrait toujours servir la même version ; une
 redirection le priverait purement et simplement de l'autre. Le choix est donc
-explicite, par le lien `FR`/`EN` de la barre de navigation, présent sur les huit
-pages.
+explicite, par le lien `FR`/`EN` de la barre de navigation, présent sur les
+douze pages.
 
 ### Ce qui tient le référencement
 
@@ -86,8 +99,21 @@ pages.
   spécification. `x-default` désigne le français, langue par défaut du site.
   Les liens sont **réciproques** : une déclaration non rendue par la page cible
   est ignorée par Google.
-- **`sitemap.xml`** répète ces alternances en `xhtml:link` pour les huit URLs,
+- **`sitemap.xml`** répète ces alternances en `xhtml:link` pour les douze URLs,
   ce qui est le second canal accepté par Google pour hreflang.
+- **Les données structurées** (`<script type="application/ld+json">`, en fin de
+  `<body>`) décrivent le site en schema.org : un `Organization` et un `WebSite`
+  identiques sur les douze pages, rattachés par `@id`, puis un nœud propre à la
+  page. Les dix pages internes portent en plus un `BreadcrumbList`, qui remplace
+  l'URL nue par un fil d'Ariane dans les résultats de recherche. Les deux
+  accueils sont typés `FAQPage` : **les questions et réponses y sont reprises
+  mot pour mot de la FAQ visible**, parce que Google rejette un balisage qui ne
+  correspond pas au contenu affiché — modifier l'un sans l'autre est une erreur
+  signalée dans la Search Console.
+- **Open Graph et `twitter:card`** sont présents sur les douze pages, y compris
+  les quatre pages légales. Le visuel partagé est l'écu, carré : d'où
+  `twitter:card` à `summary` et non `summary_large_image`, qui le rognerait en
+  bandeau. Un visuel dédié 1200×630 permettrait de rebasculer.
 - **`404.html`** est servie par GitHub Pages pour toute URL manquante, `/en/…`
   comprise, sans qu'on puisse en connaître la langue : elle affiche donc les
   deux versions l'une sous l'autre.
@@ -96,7 +122,11 @@ pages.
 
 Le `.com` ne sert aucun contenu propre : le faire servirait le même site à deux
 adresses, ce qui dilue le référencement et forcerait à choisir un canonique.
-Il **redirige en 301 vers `https://certimens.fr/en/`**.
+Il doit **rediriger en 301 vers `https://certimens.fr/en/`**.
+
+> **À faire.** `certimens.com` sert aujourd'hui la page de parking OVH et
+> répond 200, sans redirection. Tant que ce point n'est pas réglé, l'adresse
+> annoncée aux anglophones ne mène nulle part.
 
 GitHub Pages n'accepte qu'un seul domaine personnalisé par dépôt — c'est tout
 l'objet du fichier `CNAME`, qui porte `certimens.fr`. La redirection se
@@ -122,6 +152,15 @@ donc être **reportée dans les deux langues**, sous peine de voir les deux
 versions diverger. Les chaînes du formulaire de contact, elles, sont dans
 `assets/js/site.js` et suivent le `lang` de la page.
 
+La barre de navigation porte un **menu déroulant « Solutions »**, qui mène aux
+trois publics : l'accueil pour un établissement, `/enseignants/` et
+`/etudiants/`. Son déclencheur est un `<button aria-expanded>` et non un lien,
+parce qu'il n'ouvre pas une page mais un panneau ; le survol l'ouvre aussi, avec
+un délai de 150 ms, mais rien ne dépend du survol seul — Entrée ouvre, Échap
+referme, et un focus qui sort du bloc referme. Sous 980 px, la feuille de style
+masque le déclencheur et le panneau redevient une sous-liste toujours dépliée.
+Le comportement est dans `assets/js/site.js`.
+
 Les deux pages légales anglaises sont des **traductions de courtoisie** : elles
 portent en tête un encart rappelant que seule la version française fait foi.
 Toute correction juridique se fait d'abord en français.
@@ -138,11 +177,11 @@ feuille unique, aucun doublon — et portent la même barre de navigation.
 
 Trois conséquences ici :
 
-- la navigation et le pied de page des **neuf pages** portent une entrée
+- la navigation et le pied de page des **treize pages** portent une entrée
   « Plugins » vers `/plugins/` ou `/plugins/en/` — le même libellé, à la même
   place, que la barre des pages d'en face, qui est copiée de celle-ci. Les liens
-  sont **relatifs à la racine**, comme tout le reste du site : ils marchent sur
-  `certimens.github.io` aujourd'hui et sur `certimens.fr` après la bascule DNS ;
+  sont **relatifs à la racine**, comme tout le reste du site, et pointent donc
+  vers `certimens.fr/plugins/` ;
 - `sitemap.xml` déclare les deux URLs avec leurs alternances `hreflang`, parce
   qu'elles font partie du site même si elles ne sont pas dans cette
   arborescence ;
@@ -234,40 +273,23 @@ Le workflow `.github/workflows/deploy.yml` s'exécute à chaque push :
 Les actions sont épinglées à une version exacte ; `dependabot.yml` ouvre une PR
 mensuelle quand une mise à jour sort.
 
-### Mise en route (une seule fois)
+### Mise en route
 
-1. Pousser le dépôt sur GitHub.
-2. **Settings → Pages → Build and deployment → Source : GitHub Actions.**
-3. **Settings → Pages → Custom domain : `certimens.fr`**, puis cocher
-   *Enforce HTTPS* une fois le certificat émis (compter quelques minutes).
+Il reste **une** chose : cocher ***Enforce HTTPS*** dans Settings → Pages.
+`http://certimens.fr/` répond aujourd'hui 200 au lieu de rediriger vers
+`https`, alors que les URL canoniques, l'Open Graph et le `sitemap.xml`
+désignent tous `https`. Le certificat Let's Encrypt du domaine est émis depuis
+le 7 novembre 2026 : c'est une case à cocher, rien de plus.
 
-### DNS à créer chez OVH
+Tout le reste est en place — source *GitHub Actions*, domaine personnalisé
+`certimens.fr`, et chez OVH les enregistrements `A`/`AAAA` de l'apex et le
+`CNAME www`. `www` redirige vers l'apex, et `certimens.github.io` renvoie un
+301 vers `certimens.fr`.
 
-Pour le domaine racine `certimens.fr`, quatre enregistrements `A` et quatre
-`AAAA` (qui remplacent les enregistrements actuels du domaine) :
-
-| Type   | Cible                 |
-| ------ | --------------------- |
-| `A`    | `185.199.108.153`     |
-| `A`    | `185.199.109.153`     |
-| `A`    | `185.199.110.153`     |
-| `A`    | `185.199.111.153`     |
-| `AAAA` | `2606:50c0:8000::153` |
-| `AAAA` | `2606:50c0:8001::153` |
-| `AAAA` | `2606:50c0:8002::153` |
-| `AAAA` | `2606:50c0:8003::153` |
-
-Et, pour le `www` :
-
-| Type    | Sous-domaine | Cible                       |
-| ------- | ------------ | --------------------------- |
-| `CNAME` | `www`        | `<compte-github>.github.io.` |
-
-> L'enregistrement de `monespace.certimens.fr` n'est **pas** touché : c'est un
-> sous-domaine distinct, il continue de pointer vers l'application.
-
-> `certimens.com` ne fait pas partie de ces enregistrements : il se règle par
-> une redirection 301, décrite dans
+> `monespace.certimens.fr` est un sous-domaine distinct : il n'a pas été touché
+> par la bascule et continue de pointer vers l'application. `certimens.com`,
+> lui, ne se règle pas par un enregistrement mais par une redirection 301,
+> décrite dans
 > « [Deux langues, deux domaines](#deux-langues-deux-domaines) ».
 
 ## Points restés à compléter
@@ -283,6 +305,14 @@ figurent nulle part dans le code — elles sont surlignées en doré sur les pag
 
 Les mêmes champs sont à compléter sur les traductions anglaises
 (`en/legal-notice/`, `en/privacy-policy/`), où ils portent la même surbrillance.
+
+Deux points d'infrastructure restent ouverts depuis la bascule sur
+`certimens.fr`, hors dépôt l'un comme l'autre :
+
+- **l'option *Enforce HTTPS***, pas encore cochée — voir
+  « [Mise en route](#mise-en-route) » ;
+- **la redirection 301 de `certimens.com`**, pas encore configurée — voir
+  « [certimens.com](#certimenscom) ».
 
 ### Ce que la politique de confidentialité tient du moteur
 
@@ -368,10 +398,11 @@ soumission ouvre le client mail du visiteur avec un message pré-rempli vers
 Pour un envoi sans client mail, la route existe désormais côté moteur :
 `POST /api/contact` (`internal/contact/adapters/inbound/http/handler.go`)
 transfère le message à la boîte support par e-mail, sans rien stocker, et est
-limitée à 5 requêtes par minute et par IP. Il reste **une seule chose à faire**
-pour que le site puisse l'appeler : ajouter `https://certimens.fr` à
-`wordAddinOrigins` dans `engine/internal/api/server.go`, aujourd'hui restreinte
-à `https://certimens.github.io` et `https://localhost:3000`.
+limitée à 5 requêtes par minute et par IP. **Côté moteur, rien ne bloque plus :**
+`crossOriginSites` (`engine/internal/api/server.go`, l'ancienne
+`wordAddinOrigins`) autorise déjà `https://certimens.fr`, `https://certimens.com`
+et `https://certimens.github.io`. Il ne reste qu'à appeler la route depuis
+`assets/js/site.js`.
 
 Ce basculement modifie deux textes qui affirment aujourd'hui le contraire : le
 point 2 de la politique de confidentialité (« Son formulaire de contact ouvre

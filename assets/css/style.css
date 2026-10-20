@@ -78,21 +78,54 @@
   --text: #1a202c;
   --muted: #54595f;
   --line: #e5e5e5;
-  /* Rouge de verdict du moteur (palette.error de ui/src/theme.ts). Il porte du
-     sens et non de la marque : c'est la même valeur des deux côtés. */
-  --danger: #c5221f;
+  /* Les couleurs de VERDICT (bleu / rouge vineux), reprises telles quelles de
+     `palette.success` et `palette.error` du moteur (ui/src/theme.ts). Elles
+     portent du sens et non de la marque : elles disent « authentique » ou
+     « en défaut », jamais « Certimens ».
+
+     Elles ne sont plus vert et rouge, et c'est délibéré. Simulés (Machado
+     2009) et mesurés en CIEDE2000, l'ancien couple s'effondrait pour les
+     déficiences les plus répandues : #137333 et #c5221f ne sont qu'à ΔE00 9,2
+     l'un de l'autre sous protanopie et 11,2 sous deutéranopie, là où le
+     nouveau couple est à 31,5 et 45,5. Un verdict que personne ne peut lire
+     n'est pas un verdict, et ce produit se vend à
+     l'enseignement supérieur public français, où c'est une obligation légale
+     et non une préférence.
+
+     Recolorer à l'intérieur du vert et du rouge n'y change rien : un
+     dichromate n'a pas d'axe rouge-vert du tout, il ne lui reste que la
+     clarté — déjà dépensée pour tenir les 4,5:1 dus au fond. D'où le BLEU
+     pour le verdict authentique. Le coût est réel et assumé : « vert = bon »
+     est immédiat, « bleu = bon » s'apprend une fois. C'est le mot à côté de
+     la pastille qui porte le sens, pas la couleur seule.
+
+     6,70:1 et 9,57:1 sur blanc : les deux passent largement AA. Le rouge y
+     gagne au passage — l'ancien #c5221f n'était qu'à 5,8:1. */
+  --danger: #881337;
+  --ok: #1d4ed8;
   --bg: #ffffff;
   --bg-soft: #f8fafc;
 
-  --radius: 12px;
-  --radius-sm: 8px;
-  /* Seule ombre conservée : le menu mobile, qui flotte au-dessus du contenu.
-     Les cartes sont plates, séparées par un filet — comme dans l'application. */
+  /* Les surfaces se sont arrondies (12 → 16 px) et les pastilles sont passées
+     au rayon plein : c'est ce qui sépare un site institutionnel d'un site
+     institutionnel qui a l'air récent. Les cartes restent plates — un filet,
+     pas d'ombre —, c'est le trait que la charte ne lâche pas. */
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  /* Seule ombre conservée : ce qui flotte réellement au-dessus du contenu —
+     le menu mobile et le menu déroulant « Solutions ». */
   --shadow-overlay: 0 12px 40px rgba(30, 41, 59, 0.12);
+
+  /* Trames de fond : un quadrillage très pâle et une lueur or. Elles ne
+     portent aucune information, seulement de la profondeur. */
+  --grid-line: rgba(30, 41, 59, 0.045);
+  --grid-step: 76px;
 
   --container: 1200px;
   --gutter: 20px;
-  --section-y: 96px;
+  --section-y: 112px;
 
   --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
@@ -115,9 +148,9 @@ html {
 body {
   margin: 0;
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 500;
-  line-height: 1.7;
+  line-height: 1.65;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -145,28 +178,35 @@ h4 {
   margin: 0 0 0.5em;
   color: var(--navy);
   line-height: 1.2;
+  /* Équilibre les lignes plutôt que de remplir la première : sur un écran
+     étroit, c'est ce qui évite le dernier mot seul sur sa ligne. */
+  text-wrap: balance;
   letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: clamp(2rem, 4.2vw, 2.9rem);
+  /* Le plancher vaut pour les écrans étroits : sous 400 px le terme vw ne
+     l'emporte jamais, et c'est lui seul qui dicte la taille rendue. */
+  font-size: clamp(1.95rem, 5.2vw, 3.6rem);
   font-weight: 800;
+  letter-spacing: -0.035em;
 }
 
 h2 {
-  font-size: clamp(1.4rem, 2.4vw, 1.7rem);
+  font-size: clamp(1.22rem, 2.6vw, 1.85rem);
   font-weight: 700;
 }
 
 /* Titre de section : un <h2> pour respecter la hiérarchie des niveaux (un seul
    <h1> par page), mais rendu à la taille d'un titre principal. */
 .section-title {
-  font-size: clamp(2rem, 4.2vw, 2.9rem);
+  font-size: clamp(1.55rem, 4.6vw, 3.1rem);
   font-weight: 800;
+  letter-spacing: -0.035em;
 }
 
 h3 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
@@ -174,7 +214,8 @@ p {
   margin: 0 0 1.1em;
 }
 
-ul {
+ul,
+ol {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -201,42 +242,53 @@ ul {
   background: var(--bg-soft);
 }
 
-.section--navy {
-  background: var(--navy);
-  color: #fff;
-}
-
-.section--navy h1,
-.section--navy h2,
-.section--navy h3 {
-  color: #fff;
-}
-
 .section-head {
   text-align: center;
-  max-width: 760px;
-  margin: 0 auto 56px;
+  max-width: 820px;
+  margin: 0 auto 64px;
 }
 
 .section-head p {
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   margin-bottom: 0;
 }
 
 .eyebrow {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold-dark);
-  margin-bottom: 12px;
+  background: var(--gold-soft);
+  border-radius: var(--radius-pill);
+  padding: 7px 16px;
+  margin-bottom: 20px;
 }
+
+
 
 .lead {
   font-size: 1.1rem;
   color: var(--muted);
+}
+
+/* Réservé aux annonces destinées aux lecteurs d'écran : visible pour eux,
+   hors de l'écran pour les autres. `clip-path` plutôt que `display: none`,
+   qui retirerait l'élément de l'arbre d'accessibilité. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .skip-link {
@@ -262,7 +314,6 @@ ul {
   border-radius: 2px;
 }
 
-.section--navy :focus-visible,
 .site-footer :focus-visible {
   outline-color: var(--gold);
 }
@@ -270,8 +321,11 @@ ul {
 /* --- Boutons -------------------------------------------------------------- */
 
 .btn {
-  display: inline-block;
-  padding: 17px 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 17px 32px;
   border: 0;
   border-radius: var(--radius-sm);
   font-family: inherit;
@@ -291,6 +345,11 @@ ul {
    le formulaire, or dans le bandeau de fin. C'est celle-ci qui les réunit.
    L'or n'est sûr que comme surface : un bouton de contour ou de texte reste
    ardoise (.btn--ghost). */
+.btn--sm {
+  padding: 11px 20px;
+  font-size: 0.92rem;
+}
+
 .btn--primary {
   background: var(--gold);
   color: var(--text);
@@ -302,15 +361,23 @@ ul {
   color: var(--text);
 }
 
+/* Le bouton secondaire porte une surface blanche, et non plus du vide. Sur le
+   hero — fond doux, quadrillage, lueur or — un bouton transparent flottait
+   sans contour net ; le blanc interrompt la trame et lui rend une forme.
+   Ce n'est pas un second bouton plein pour autant : « plein » au sens de la
+   charte veut dire « surface or », et l'or reste l'exclusivité de l'appel à
+   l'action. Celui-ci reste un bouton de contour ardoise, simplement opaque.
+   Au survol, il se teinte d'or clair — l'or sombre y lit 5,3:1. */
 .btn--ghost {
-  background: transparent;
+  background: #fff;
   color: var(--navy);
   border: 1.5px solid var(--line);
-  padding: 15px 33px;
+  padding: 15px 30px;
 }
 
 .btn--ghost:hover,
 .btn--ghost:focus {
+  background: var(--gold-soft);
   border-color: var(--gold);
   color: var(--gold-dark);
 }
@@ -326,17 +393,38 @@ ul {
   border-bottom: 1px solid var(--line);
 }
 
+/* La barre répartissait l'espace entre trois blocs (blason · nav · démo) : sur
+   un écran large, « Demander une démo » se retrouvait renvoyé à l'autre bout de
+   la barre, séparé de « Connexion » par un grand vide. La navigation est
+   maintenant poussée à droite d'un seul tenant, et les actions la suivent à
+   12 px — le groupe « Connexion · Démo · EN » se lit comme un bloc. */
 .site-header__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  min-height: 78px;
+  gap: 12px;
+  min-height: 74px;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .site-logo img {
   height: 46px;
   width: auto;
+}
+
+/* Le blason seul ne dit pas le nom de la marque : un visiteur qui arrive sur
+   une page intérieure n'avait nulle part où le lire en haut de l'écran. */
+.site-logo__name {
+  font-weight: 800;
+  font-size: 1.22rem;
+  letter-spacing: -0.03em;
+  color: var(--navy);
 }
 
 .nav-toggle {
@@ -352,21 +440,73 @@ ul {
   display: block;
 }
 
-.site-nav ul {
-  display: flex;
-  align-items: center;
-  gap: 34px;
+/* Le burger devient une croix quand le tiroir est ouvert. Rien n'est ajouté au
+   balisage : les trois traits du même SVG pivotent, celui du milieu s'efface.
+   L'origine est donnée en unités du viewBox, d'où transform-box. */
+.nav-toggle svg line {
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+  transition: transform 0.2s ease, opacity 0.15s ease;
 }
 
-.site-nav a {
+.nav-toggle[aria-expanded="true"] svg line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] svg line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] svg line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-left: auto;
+  min-width: 0;
+}
+
+.site-nav > ul {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+/* Connexion et « Demander une démo » voyagent ensemble : groupés sur
+   ordinateur, ils forment en bas du tiroir une ligne de deux boutons à parts
+   égales plutôt que deux bandes empilées. */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+/* Sans cela, la barre trop étroite comprimait les deux boutons : en
+   box-sizing: border-box, un élément flexible qui rétrécit mange son propre
+   rembourrage, et le libellé en nowrap débordait sur ses bords. */
+.nav-actions > * {
+  flex: 0 0 auto;
+}
+
+/* Restreint aux liens de premier niveau. Le sélecteur portait sur
+   `.site-nav a` : depuis que « Connexion » et « Demander une démo » vivent
+   DANS le <nav>, il l'emportait sur `.btn--sm` et sur `.nav-actions__login`
+   — plus spécifique qu'eux — et remettait leur rembourrage à `6px 0`. Les
+   deux boutons apparaissaient alors sans marge, le libellé collé aux bords. */
+.site-nav > ul > li > a {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--navy);
   position: relative;
   padding: 6px 0;
+  white-space: nowrap;
 }
 
-.site-nav a::after {
+.site-nav > ul > li > a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -377,74 +517,161 @@ ul {
   transition: width 0.2s ease;
 }
 
-.site-nav a:hover::after {
+.site-nav > ul > li > a:hover::after {
   width: 100%;
 }
 
 /* La connexion n'est pas l'action principale du site : « Demander une démo »
    l'est. Le lien reste donc secondaire — une bordure fine plutôt qu'un bouton
    plein, qui serait, en haut de page, plus visible que l'appel à l'action. */
-.site-nav .nav-login a {
-  color: var(--navy);
+/* « Connexion » et « Demander une démo » ont la même boîte : mêmes
+   rembourrage, taille et interligne que `.btn--sm`, et le bouton doré reçoit
+   une bordure transparente de la même épaisseur. Sans elle, les 3 px de filet
+   de « Connexion » suffisaient à le faire dépasser de son voisin — à côté
+   l'un de l'autre, un pixel d'écart se voit. */
+.nav-actions__login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
   border: 1.5px solid var(--line);
   border-radius: var(--radius-sm);
-  padding: 10px 22px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--navy);
+  white-space: nowrap;
 }
 
-.site-nav .nav-login a:hover {
+.nav-actions__login:hover {
   color: var(--gold-dark);
   border-color: var(--gold);
 }
 
-.site-nav .nav-login a::after {
-  display: none;
+.nav-actions__cta {
+  border: 1.5px solid transparent;
+  white-space: nowrap;
 }
 
 /* Bascule de langue : un simple lien vers la page jumelle (FR ↔ EN). Il porte
    lang/hreflang pour que les lecteurs d'écran et les robots sachent vers quelle
-   langue il mène. */
-.site-nav .nav-lang a {
+   langue il mène. Elle vit hors de <nav> : repliée, la navigation devient un
+   tiroir, et changer de langue ne doit pas demander de l'ouvrir — c'est
+   précisément ce qu'un visiteur anglophone cherche en premier. */
+.site-lang {
+  flex: 0 0 auto;
   font-size: 0.8rem;
   font-weight: 700;
+  line-height: 1;
   letter-spacing: 0.08em;
   color: var(--muted);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  padding: 8px 12px;
+  padding: 9px 12px;
 }
 
-.site-nav .nav-lang a:hover {
+.site-lang:hover {
   color: var(--navy);
   border-color: var(--navy);
 }
 
-.site-nav .nav-lang a::after {
-  display: none;
+/* Repère de page courante. Sur ordinateur, le filet or du survol reste
+   allumé ; dans le tiroir, c'est un fond beige et un filet à gauche. */
+.site-nav > ul > li > a[aria-current="page"]::after {
+  width: 100%;
+}
+
+.site-nav [aria-current="page"] {
+  color: var(--gold-dark);
+}
+
+.site-nav .nav-menu a[aria-current="page"] b {
+  color: var(--gold-dark);
+}
+
+/* Palier étroit du bureau. Entre 981 px — juste au-dessus du burger — et
+   1140 px, les quatre liens, les deux boutons et la bascule de langue ne
+   tiennent plus à leur taille nominale : « Notre approche » passait sur deux
+   lignes et la barre doublait de hauteur. Tout se resserre plutôt que de
+   casser. */
+@media (min-width: 981px) and (max-width: 1140px) {
+  .site-logo img {
+    height: 40px;
+  }
+
+  .site-logo__name {
+    font-size: 1.08rem;
+  }
+
+  .site-nav {
+    gap: 16px;
+  }
+
+  .site-nav > ul {
+    gap: 18px;
+  }
+
+  .site-nav > ul > li > a,
+  .nav-menu__trigger {
+    font-size: 0.89rem;
+  }
+
+  .nav-actions {
+    gap: 9px;
+  }
+
+  .nav-actions__login,
+  .nav-actions__cta {
+    font-size: 0.88rem;
+    padding: 10px 14px;
+  }
+
+  .site-lang {
+    padding: 8px 10px;
+  }
 }
 
 /* --- Hero ----------------------------------------------------------------- */
 
+/* Le quadrillage et la lueur or ne sont pas un décor gratuit : ils donnent au
+   hero la profondeur qu'un aplat n'a pas, et c'est ce qui sépare une page
+   récente d'une page des années 2015. Ils sont purement décoratifs, donc en
+   fond et non en balise. */
 .hero {
-  padding: 88px 0 80px;
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  position: relative;
+  padding: 104px 0 92px;
+  background-color: var(--bg-soft);
+  background-image:
+    radial-gradient(
+      1100px 540px at 80% -12%,
+      rgba(197, 160, 89, 0.17),
+      rgba(197, 160, 89, 0) 62%
+    ),
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: auto, var(--grid-step) var(--grid-step),
+    var(--grid-step) var(--grid-step);
 }
 
 .hero__inner {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 60px;
+  grid-template-columns: 1.06fr 0.94fr;
+  gap: 64px;
   align-items: center;
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 4.6vw, 3.3rem);
-  margin-bottom: 0.45em;
+  font-size: clamp(2.05rem, 5.6vw, 3.9rem);
+  margin-bottom: 0.4em;
 }
 
-.hero p {
-  font-size: 1.12rem;
+/* Le chapô du hero, et lui seul : « .hero p » emporterait aussi les
+   paragraphes de la maquette et de l'étiquette posée sur l'image, qu'aucune
+   classe ne pourrait alors ramener à leur taille. */
+.hero__lead {
+  font-size: 1.14rem;
   color: var(--muted);
-  max-width: 34em;
+  max-width: 36em;
   margin-bottom: 2em;
 }
 
@@ -474,12 +701,15 @@ ul {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 36px 30px;
-  transition: border-color 0.18s ease;
+  padding: 36px 32px;
+  transition: border-color 0.18s ease, transform 0.18s ease;
 }
 
+/* Le survol soulève la carte de deux pixels. C'est un déplacement, pas une
+   ombre : la règle « les cartes sont plates » tient toujours. */
 .card:hover {
   border-color: var(--gold);
+  transform: translateY(-2px);
 }
 
 .card p {
@@ -488,73 +718,21 @@ ul {
 }
 
 .card__icon {
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 15px;
   background: var(--navy);
   color: #fff;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
+  transition: background-color 0.18s ease, color 0.18s ease;
 }
 
 .card:hover .card__icon {
   background: var(--gold);
   color: var(--text);
-}
-
-/* --- Comparatif ----------------------------------------------------------- */
-
-.compare {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-
-.compare__col {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 36px 32px;
-}
-
-.compare__col--highlight {
-  border: 2px solid var(--gold);
-}
-
-.compare__col h3 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-bottom: 18px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--line);
-}
-
-.compare__col--highlight h3 {
-  color: var(--gold-dark);
-}
-
-.compare li {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 11px 0;
-  color: var(--muted);
-}
-
-.compare li svg {
-  flex: 0 0 auto;
-  margin-top: 4px;
-}
-
-.compare .ico-no {
-  color: var(--danger);
-}
-
-.compare .ico-yes {
-  color: var(--gold-dark);
 }
 
 /* --- Bloc image + texte --------------------------------------------------- */
@@ -569,6 +747,28 @@ ul {
 .split img {
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  /* loading="lazy" laisse le cadre vide un instant : sans fond, la bordure
+     seule se lit comme une image cassée. */
+  background: var(--bg-soft);
+}
+
+/* Deux sections « photo à gauche / texte à droite » se suivaient à l'identique
+   sur l'accueil, et la colonne de texte y faisait deux fois la hauteur de la
+   photo. La seconde inverse donc les colonnes. */
+.split--reverse > img {
+  order: 2;
+}
+
+/* La photographie prend toute la hauteur de la colonne d'en face plutôt que
+   de flotter au milieu d'un vide : le cadrage se recentre, rien n'est
+   déformé. Réservé au bureau — repliée, la grille n'a plus de hauteur de
+   référence à donner. */
+@media (min-width: 981px) {
+  .split--fill > img {
+    align-self: stretch;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .checklist li {
@@ -585,28 +785,85 @@ ul {
   color: var(--gold-dark);
 }
 
-/* --- Bandeau d'appel à l'action ------------------------------------------- */
-
-.cta {
-  text-align: center;
+/* Sept lignes empilées sur une colonne rendaient le bloc de texte deux fois
+   plus haut que la photo d'à côté. Sur deux colonnes, les hauteurs se
+   rejoignent. */
+.checklist--compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 26px;
 }
 
-.cta h2 {
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  margin-bottom: 0.6em;
+.checklist--compact li {
+  font-size: 0.95rem;
+  padding: 8px 0;
 }
 
-.cta p {
-  color: rgba(255, 255, 255, 0.78);
-  max-width: 44em;
-  margin: 0 auto 2em;
+.split .checklist + p,
+.split .checklist + .note-box {
+  margin-top: 24px;
+}
+
+/* Le paragraphe de conclusion d'une liste à coches avait la même taille et le
+   même alignement que les puces : on le lisait comme une huitième coche. Il
+   devient un encadré, visiblement détaché de la liste. */
+.note-box {
+  background: #faf8f3;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 22px 0 0;
+  font-size: 0.96rem;
+  color: var(--muted);
+}
+
+.note-box strong {
+  color: var(--navy);
 }
 
 /* --- FAQ ------------------------------------------------------------------ */
 
+/* La FAQ était une colonne étroite centrée au milieu d'un grand fond vide.
+   Le titre et l'invitation à écrire passent dans une colonne de gauche qui
+   reste en vue pendant qu'on déroule les questions à droite. */
+.faq-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.faq-layout__aside {
+  position: sticky;
+  top: 106px;
+}
+
+.faq-layout__aside h2 {
+  margin-bottom: 0.4em;
+}
+
+.faq-layout__aside p {
+  color: var(--muted);
+}
+
+.faq-layout__aside a {
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+.faq-layout__aside a:hover {
+  text-decoration: underline;
+}
+
 .faq {
   max-width: 860px;
   margin: 0 auto;
+}
+
+.faq-layout .faq {
+  max-width: none;
+  margin: 0;
 }
 
 .faq details {
@@ -740,6 +997,7 @@ ul {
 }
 
 .form input,
+.form select,
 .form textarea {
   width: 100%;
   font-family: inherit;
@@ -752,7 +1010,16 @@ ul {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+.form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2354595f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 9 7 7 7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px;
+}
+
 .form input:focus,
+.form select:focus,
 .form textarea:focus {
   outline: none;
   border-color: var(--gold);
@@ -768,10 +1035,101 @@ ul {
   margin-bottom: 22px;
 }
 
+/* Établissement et profil tiennent sur une ligne : deux champs de plus ne
+   doivent pas allonger le formulaire de deux écrans. */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
 .form__note {
   margin: 18px 0 0;
   font-size: 0.85rem;
   color: var(--muted);
+}
+
+/* Le filet de sécurité du formulaire. L'envoi passe par le logiciel de
+   messagerie du visiteur ; sur un poste d'université qui n'en a aucun de
+   configuré — webmail Zimbra, Roundcube ou Gmail dans le navigateur — il ne
+   se passe rien du tout, et le prospect est perdu sans le savoir. Ce bloc
+   apparaît juste après l'envoi et donne de quoi s'en sortir à la main. */
+.form__fallback {
+  display: none;
+  margin-top: 18px;
+  padding: 16px 18px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.form__fallback.is-on {
+  display: block;
+}
+
+.form__fallback p {
+  margin: 0 0 12px;
+}
+
+.form__fallback b {
+  color: var(--navy);
+}
+
+/* Ce qu'il se passe pendant une démonstration. La colonne de gauche de la
+   page Contact était presque vide sous les deux coordonnées. */
+.demo-steps {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  margin-top: 30px;
+}
+
+.demo-steps h3 {
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.demo-steps li {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding: 7px 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.demo-steps svg {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  color: var(--gold-dark);
+}
+
+.demo-steps__sla {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin: 16px 0 0;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.demo-steps__sla svg {
+  flex: 0 0 auto;
+  color: var(--gold-dark);
 }
 
 /* --- Pages légales -------------------------------------------------------- */
@@ -832,7 +1190,9 @@ ul {
   padding: 1px 5px;
 }
 
-/* Marque les champs restés à compléter dans les mentions légales. */
+/* Marque les champs restés à compléter dans les mentions légales. À n'utiliser
+   que sur une branche de travail : un DSI ou un DPO ouvre ces pages-là en
+   premier, et une étiquette jaune y dit « site en chantier ». */
 .legal .todo {
   background: var(--gold-soft);
   border-radius: 4px;
@@ -841,32 +1201,140 @@ ul {
   font-style: italic;
 }
 
+/* « L'essentiel en 30 secondes » : la politique de confidentialité est un mur
+   de texte de douze écrans. Trois cartes en tête de page disent l'engagement
+   avant que le premier article commence. */
+/* `.legal ul` (liste à disques, retrait de 1,3 em) est plus spécifique qu'une
+   classe seule : sans `.legal` en tête, les trois cartes gardaient une puce
+   noire flottant à leur gauche. */
+.legal .legal-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 2.6em;
+}
+
+.legal-summary li {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.legal-summary b {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--navy);
+  font-size: 0.95rem;
+  margin-bottom: 7px;
+}
+
+.legal-summary svg {
+  flex: 0 0 auto;
+  color: var(--gold-dark);
+}
+
+/* Sommaire cliquable : douze sections numérotées ne se parcourent pas au
+   pouce sans point d'entrée. */
+.legal-toc {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  margin: 0 0 2.6em;
+}
+
+.legal-toc h2 {
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+.legal-toc ol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 24px;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.legal-toc li {
+  margin: 0;
+}
+
+.legal-toc a {
+  display: block;
+  padding: 6px 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.legal-toc a:hover {
+  color: var(--gold-dark);
+}
+
 /* --- Pied de page --------------------------------------------------------- */
 
 .site-footer {
-  background: var(--navy);
+  background: var(--navy-dark);
   color: rgba(255, 255, 255, 0.72);
-  padding: 72px 0 0;
+  padding: 88px 0 0;
 }
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr;
   gap: 48px;
-  padding-bottom: 56px;
+  padding-bottom: 64px;
 }
 
+/* Les en-têtes du pied passent en or laiton : sur l'ardoise, l'or franc se lit
+   (5,96:1) et hiérarchise la colonne sans ajouter le moindre élément. */
 .site-footer h2 {
-  font-size: 0.85rem;
-  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
-  color: #fff;
-  margin-bottom: 22px;
+  color: var(--gold);
+  margin-bottom: 24px;
 }
 
-.site-footer img {
-  width: 210px;
-  margin-bottom: 20px;
+/* Le blason seul ne dit rien à qui découvre la marque : le nom l'accompagne,
+   en texte et non en image — il reste net à tout zoom et se lit à la synthèse
+   vocale, ce qui permet de laisser le blason purement décoratif. */
+.site-footer__brand .site-footer__mark {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 18px;
+}
+
+.site-footer__mark img {
+  width: 44px;
+}
+
+.site-footer__mark b {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.site-footer__brand p {
+  max-width: 26em;
+  margin-bottom: 0;
 }
 
 .site-footer a {
@@ -881,14 +1349,1179 @@ ul {
 }
 
 .site-footer li {
-  padding: 7px 0;
+  padding: 8px 0;
 }
 
 .site-footer__bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 24px 0;
-  font-size: 0.88rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 28px 0;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.55);
   text-align: center;
+}
+
+/* --- Menu déroulant « Solutions » ----------------------------------------
+   Trois publics, trois pages : un établissement qui achète, un enseignant qui
+   corrige, un étudiant qui écrit. Le déclencheur est un <button> et non un
+   lien, parce qu'il n'ouvre pas une page mais un panneau — c'est ce que les
+   lecteurs d'écran annoncent correctement via aria-expanded. Le survol ouvre
+   aussi, avec un délai, mais rien ne dépend du survol seul. */
+
+.nav-item {
+  position: relative;
+}
+
+.nav-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+}
+
+.nav-menu__trigger svg {
+  transition: transform 0.2s ease;
+}
+
+.nav-item--open > .nav-menu__trigger {
+  color: var(--gold-dark);
+}
+
+.nav-item--open > .nav-menu__trigger svg {
+  transform: rotate(180deg);
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -14px;
+  z-index: 110;
+  min-width: 340px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-overlay);
+  padding: 10px;
+}
+
+.nav-item--open > .nav-menu {
+  display: block;
+}
+
+.nav-menu a {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 13px 14px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.nav-menu a:hover {
+  background: var(--bg-soft);
+  color: var(--navy);
+}
+
+.nav-menu__ico {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+}
+
+.nav-menu b {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.nav-menu__txt span {
+  display: block;
+  font-size: 0.83rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* --- Pastilles de réassurance --------------------------------------------
+   Faute de logos clients — le produit n'est pas encore commercialisé —, ce
+   sont les garanties qui rassurent : ce qui est écrit ici est ce que la
+   politique de confidentialité documente, et rien de plus. */
+
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.trust-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 9px 17px 9px 13px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.trust-chip svg {
+  flex: 0 0 auto;
+  color: var(--gold-dark);
+}
+
+/* --- Maquette d'écran ----------------------------------------------------
+   Le hero montrait une photographie de diplôme ; il montre maintenant ce que
+   le produit fait réellement — un document ordinaire, et le certificat qui en
+   sort. Tout est dessiné en CSS : aucune image à charger, et le texte reste du
+   texte. Les barres et les lignes sont décoratives (aria-hidden côté HTML). */
+
+.mock {
+  position: relative;
+  padding-bottom: 46px;
+}
+
+.mock__win {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.mock__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 16px;
+  background: var(--navy);
+}
+
+.mock__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.mock__page {
+  padding: 26px 28px 34px;
+}
+
+.mock__line {
+  height: 9px;
+  border-radius: 5px;
+  background: #eef1f5;
+  margin-bottom: 13px;
+}
+
+.mock__line--t {
+  height: 13px;
+  width: 54%;
+  background: #dfe4eb;
+  margin-bottom: 22px;
+}
+
+.mock__line--a { width: 100%; }
+.mock__line--b { width: 92%; }
+.mock__line--c { width: 97%; }
+.mock__line--d { width: 64%; }
+
+.mock__pulse {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 46px;
+  margin-top: 26px;
+}
+
+.mock__pulse i {
+  flex: 1 1 auto;
+  background: var(--gold);
+  border-radius: 3px 3px 0 0;
+  opacity: 0.55;
+}
+
+/* Les hauteurs sont écrites ici plutôt qu'en attribut style : c'est du décor,
+   et le décor appartient à la feuille de style. La silhouette est irrégulière
+   à dessein — une cadence régulière est précisément ce que le produit
+   signale comme suspect. */
+.mock__pulse i:nth-child(1) { height: 38%; }
+.mock__pulse i:nth-child(2) { height: 62%; }
+.mock__pulse i:nth-child(3) { height: 47%; }
+.mock__pulse i:nth-child(4) { height: 88%; }
+.mock__pulse i:nth-child(5) { height: 54%; }
+.mock__pulse i:nth-child(6) { height: 26%; }
+.mock__pulse i:nth-child(7) { height: 71%; }
+.mock__pulse i:nth-child(8) { height: 44%; }
+.mock__pulse i:nth-child(9) { height: 96%; }
+.mock__pulse i:nth-child(10) { height: 33%; }
+.mock__pulse i:nth-child(11) { height: 58%; }
+.mock__pulse i:nth-child(12) { height: 42%; }
+
+.mock__cert {
+  position: absolute;
+  right: -8px;
+  bottom: 0;
+  width: 68%;
+  max-width: 330px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-overlay);
+  padding: 22px 24px;
+}
+
+.mock__cert img {
+  width: 42px;
+  margin-bottom: 10px;
+}
+
+.mock__title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+
+.mock__score {
+  font-size: 0.84rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.mock__score b {
+  color: var(--navy);
+  font-weight: 800;
+}
+
+/* Les trois sous-indicateurs sous le verdict : ce sont des chiffres, donc du
+   texte — ils restent nets au zoom et se lisent à la synthèse vocale.
+   Une seule phrase continue les noyait ; une ligne par mesure, valeur en
+   gras, les rend lisibles d'un coup d'œil. */
+.mock__meta {
+  list-style: none;
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.mock__meta b {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.verdict {
+  display: inline-flex;
+  margin: 0;
+  align-items: center;
+  gap: 7px;
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.verdict--ok {
+  /* Teinte du bleu de verdict : 5,76:1 sous --ok, au-dessus du seuil AA. */
+  background: #e8eefc;
+  color: var(--ok);
+}
+
+.meter {
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.meter i {
+  flex: 1 1 auto;
+  height: 6px;
+  border-radius: 3px;
+  background: #eef1f5;
+}
+
+.meter i.is-on {
+  background: var(--gold);
+}
+
+/* --- Les trois étapes ----------------------------------------------------- */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.step {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 34px 32px;
+}
+
+.step__num {
+  display: block;
+  font-size: 2.7rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--gold);
+}
+
+/* La ligne de progression de la maquette : elle part de l'or et s'éteint,
+   ce qui suggère la suite sans dessiner de flèche. */
+.step__rule {
+  height: 2px;
+  margin: 16px 0 24px;
+  border-radius: 1px;
+  background: linear-gradient(
+    to right,
+    var(--gold),
+    rgba(197, 160, 89, 0) 85%
+  );
+}
+
+.step p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.step p.step__note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.step__note svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--gold-dark);
+}
+
+/* --- Comparatif en trois colonnes ----------------------------------------
+   La colonne de gauche s'efface, celle de droite s'impose : c'est le contraste
+   asymétrique demandé. Le critère vit au centre, et passe au-dessus de la
+   paire une fois la grille repliée (order: -1). */
+
+.versus {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+}
+
+.versus__row {
+  display: grid;
+  grid-template-columns: 1fr 200px 1fr;
+}
+
+.versus__row + .versus__row {
+  border-top: 1px solid var(--line);
+}
+
+.versus__cell {
+  padding: 24px 28px;
+}
+
+.versus__cell p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.versus__cell h3 {
+  font-size: 1rem;
+  margin-bottom: 7px;
+}
+
+.versus__cell--old {
+  background: var(--bg-soft);
+  color: var(--muted);
+}
+
+.versus__cell--old h3 {
+  color: var(--navy-light);
+}
+
+.versus__cell--crit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  background: #fff;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin: 0;
+}
+
+.versus__cell--crit svg {
+  color: var(--gold-dark);
+}
+
+.versus__cell--us {
+  background: linear-gradient(180deg, #fffdf9 0%, #fcf7ec 100%);
+  border-left: 2px solid var(--gold);
+}
+
+.versus__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0;
+  padding: 22px 28px;
+}
+
+.versus__head--old {
+  background: var(--bg-soft);
+  color: var(--navy-light);
+}
+
+.versus__head--old svg {
+  color: var(--danger);
+}
+
+.versus__head--us {
+  background: var(--navy);
+  color: #fff;
+  border-left: 2px solid var(--gold);
+}
+
+.versus__head--us svg {
+  color: var(--gold);
+}
+
+.versus__head--crit {
+  justify-content: center;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+
+/* Repère de colonne porté par la cellule elle-même. Masqué tant que la grille
+   tient sur trois colonnes : l'en-tête de colonne suffit alors, et deux
+   libellés pour la même information en feraient un de trop. */
+.versus__tag {
+  display: none;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 10px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.versus__tag--old {
+  color: var(--danger);
+}
+
+.versus__tag--us {
+  color: var(--gold-dark);
+}
+
+/* --- Sécurité, déploiement et conformité ---------------------------------- */
+
+.infra {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.guarantee {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+}
+
+.guarantee + .guarantee {
+  margin-top: 20px;
+}
+
+.guarantee h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.guarantee h3 svg {
+  flex: 0 0 auto;
+  color: var(--gold-dark);
+}
+
+.guarantee p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.guarantee strong {
+  color: var(--navy);
+}
+
+.guarantee p.tag {
+  display: inline-block;
+  border-radius: var(--radius-pill);
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* Le schéma de flux : quatre étapes, du poste de l'étudiant au correcteur.
+   C'est ce qu'un DSI demande en premier — où passent les données, et quoi. */
+.flow {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 30px;
+}
+
+.flow > h3 {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.flow__steps {
+  display: grid;
+  gap: 0;
+}
+
+.flow__step {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.flow__ico {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: var(--navy);
+  color: #fff;
+}
+
+.flow__step--us .flow__ico {
+  background: var(--gold);
+  color: var(--text);
+}
+
+.flow__txt b {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--navy);
+}
+
+.flow__txt span {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* Le trait qui relie deux étapes, et la mention qu'il porte (« chiffré », « LTI
+   1.3 »). Il est tracé par la bordure gauche d'un bloc vide aligné sous les
+   icônes, ce qui le garde parfaitement centré quelle que soit la hauteur. */
+.flow__link {
+  margin: 8px 0 8px 22px;
+  padding: 8px 0 8px 40px;
+  border-left: 2px dashed var(--line);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* --- Cas d'usage ---------------------------------------------------------- */
+
+.usecases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.usecase {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.usecase:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.usecase__ico {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+  margin-bottom: 24px;
+}
+
+.usecase p {
+  color: var(--muted);
+}
+
+.usecase p.usecase__foot {
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+/* --- Les quatre piliers du manifeste -------------------------------------- */
+
+/* Les quatre cartes vivaient en grille 2×2 sous les deux paragraphes, dans la
+   colonne de droite : c'est ce qui faisait de cette colonne le double de la
+   hauteur de la photo d'en face. Elles en sortent et s'alignent sur une ligne,
+   pleine largeur, sous le bloc photo + texte. */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.pillar {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+}
+
+.pillar b {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.pillar h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.pillar p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* --- Bandeau d'engagement ------------------------------------------------- */
+
+.cta-band {
+  border-radius: var(--radius-lg);
+  padding: 56px 56px 48px;
+  color: var(--muted);
+}
+
+.cta-band h2 {
+  font-size: clamp(1.7rem, 3.2vw, 2.2rem);
+  letter-spacing: -0.03em;
+}
+
+.cta-band p {
+  max-width: 48em;
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 30px 0 32px;
+}
+
+/* Les quatre pastilles revenaient à la ligne de travers : trois en haut, la
+   quatrième seule en bas. Réduites, elles tiennent sur une ligne. */
+.cta-band .trust-chip {
+  font-size: 0.8rem;
+  padding: 8px 14px 8px 11px;
+}
+
+/* Le bas de page faisait un accordéon de couleurs : FAQ sur fond doux, coupure
+   nette vers du blanc, carte ardoise posée au milieu du blanc, nouvelle bande
+   blanche vide, puis pied de page ardoise pleine largeur. Deux blocs sombres
+   séparés par du vide, c'est l'inverse d'une fin de page.
+
+   La correction ne passe PAS par un chevauchement de la carte sur le pied :
+   une carte à cheval sur deux fonds se lit comme un défaut de mise en page
+   plus que comme une intention. C'est la couleur de la carte qui change. Le
+   fond doux de la FAQ court jusqu'au pied, la carte y pose un ivoire chaud
+   cerné d'or, et le pied ardoise arrive dessus en un seul contraste net —
+   clair, puis sombre, une fois. Il n'y a plus deux blocs ardoise à se
+   regarder par-dessus une bande vide. */
+.section--bridge {
+  background: var(--bg-soft);
+}
+
+/* Quand la section du dessus porte déjà le fond doux, les deux rembourrages
+   s'additionnent sans qu'aucun changement de couleur ne vienne les séparer :
+   112 px sous la FAQ, 112 px au-dessus de la carte, soit 265 px de vide avant
+   « Prêt à protéger… ». Le premier suffit. La règle ne vaut que dans ce cas —
+   sur /etudiants la section précédente est blanche, et le rembourrage y
+   marque un vrai changement de fond. */
+.section--soft + .section--bridge {
+  padding-top: 0;
+}
+
+.section--bridge .cta-band {
+  background: linear-gradient(180deg, #fffdf8 0%, #faf6ee 100%);
+  border: 1px solid var(--gold);
+  color: var(--muted);
+}
+
+.section--bridge .cta-band h2 {
+  color: var(--navy);
+}
+
+.section--bridge .cta-band strong {
+  color: var(--navy);
+}
+
+/* Sur l'ardoise, les deux boutons se détachaient tout seuls. Sur l'ivoire,
+   l'or de l'un (2,4:1) et le filet gris de l'autre (1,2:1) tombent sous les
+   3:1 que le WCAG demande pour la limite visible d'un élément d'interface
+   (1.4.11). Un filet or sombre les relève à 5,9:1 sans alourdir le bloc. */
+.section--bridge .cta-band .btn--primary {
+  border: 1.5px solid var(--gold-dark);
+}
+
+.section--bridge .cta-band .btn--ghost {
+  border-color: var(--gold-dark);
+}
+
+/* --- Maquette du rapport de copie -----------------------------------------
+   La page /enseignants décrivait en sept lignes ce que contient un certificat,
+   en face d'une photographie — la même que sur /etudiants et sur l'accueil.
+   Une photo de plus ne montre rien ; le rapport, lui, se dessine en CSS, et
+   l'enseignant voit immédiatement ce qu'il lira sur une copie. */
+
+.report {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.report__head {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 18px 24px;
+  background: var(--navy);
+  color: #fff;
+}
+
+.report__head img {
+  width: 34px;
+  flex: 0 0 auto;
+}
+
+.report__head b {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.report__head span {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.report__score {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.report__score b {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--navy);
+}
+
+.report__score i {
+  font-style: normal;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-left: -10px;
+}
+
+.report__dims {
+  padding: 20px 24px 6px;
+}
+
+/* La piste doit être assez longue pour qu'on compare deux dimensions d'un
+   coup d'œil : sur 62 px, 79 % et 93 % se ressemblaient. */
+.report__dims li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 130px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 13px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.report__bar {
+  display: block;
+  height: 7px;
+  border-radius: 4px;
+  background: #eef1f5;
+  overflow: hidden;
+}
+
+.report__bar i {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--gold);
+}
+
+.report__conf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0;
+  padding: 14px 24px;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.report__conf b {
+  color: var(--navy);
+}
+
+.report__expert {
+  padding: 18px 24px 22px;
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+}
+
+.report__expert b {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 8px;
+}
+
+.report__expert p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* --- Pages de destination (enseignants, étudiants) ------------------------ */
+
+.audience {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.audience h1 {
+  margin-bottom: 0.4em;
+}
+
+.audience .lead {
+  font-size: 1.14rem;
+  margin-bottom: 2em;
+}
+
+.audience__media {
+  position: relative;
+}
+
+.audience__media img {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* L'étiquette posée sur la photographie : elle dit ce que l'étudiant ou
+   l'enseignant verra réellement, et rien de plus. */
+/* 78 % de large sur une photographie au format 16/9 — plus courte que le 3/2
+   d'avant — recouvrait le sujet au lieu de l'accompagner. */
+.floating-badge {
+  position: absolute;
+  margin: 0;
+  left: -16px;
+  bottom: 24px;
+  max-width: 62%;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-overlay);
+  padding: 16px 20px;
+}
+
+.floating-badge b {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--navy);
+}
+
+.floating-badge b svg {
+  flex: 0 0 auto;
+  color: var(--ok);
+}
+
+.floating-badge span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+/* Le hero de /enseignants empilait titre + chapô + deux blocs d'argument +
+   bouton dans la colonne de gauche, face à une maquette deux fois moins
+   haute. Les deux arguments descendent sur une ligne pleine largeur, sous le
+   duo [titre | maquette], qui retrouve son équilibre. */
+.audience__args {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  margin-top: 48px;
+}
+
+.audience__args .argument + .argument {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.audience__cta {
+  margin: 28px 0 0;
+}
+
+.argument + .argument {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.argument h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.argument p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* --- Replis --------------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .versus__row {
+    grid-template-columns: 1fr 160px 1fr;
+  }
+
+  .versus__cell,
+  .versus__head {
+    padding: 20px 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .versus__row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Repliée, la grille remet le critère au-dessus de la paire qu'il compare. */
+  .versus__cell--crit {
+    order: -1;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 16px 22px;
+    background: var(--navy);
+    color: #fff;
+    border: 0;
+  }
+
+  .versus__cell--crit svg {
+    color: var(--gold);
+  }
+
+  .versus__cell--us {
+    border-left: 0;
+    border-top: 2px solid var(--gold);
+  }
+
+  /* Repliés, les deux en-têtes de colonnes se retrouvaient empilés tout en
+     haut, loin des cellules qu'ils qualifiaient — et « Le standard Certimens »
+     collait la barre ardoise du premier critère. Ce sont les badges de
+     cellule qui prennent le relais. */
+  .versus__head-row {
+    display: none;
+  }
+
+  .versus__tag {
+    display: flex;
+  }
+}
+
+@media (max-width: 980px) {
+  .steps,
+  .usecases {
+    grid-template-columns: 1fr;
+  }
+
+  .infra,
+  .audience {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .cta-band {
+    padding: 40px 28px 34px;
+  }
+
+  .mock__cert {
+    position: static;
+    width: 100%;
+    max-width: none;
+    margin-top: 18px;
+  }
+
+  .mock {
+    padding-bottom: 0;
+  }
+
+  .floating-badge {
+    position: static;
+    max-width: none;
+    margin-top: -28px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  /* Le menu déroulant devient une sous-liste toujours dépliée : un panneau
+     flottant n'a aucun sens dans un menu qui occupe déjà toute la largeur. */
+  .nav-menu__trigger {
+    display: none;
+  }
+
+  .nav-menu {
+    display: block;
+    position: static;
+    min-width: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  /* Resserré : dans le tiroir, chaque entrée doit coûter le moins de hauteur
+     possible pour que le menu tienne sur un écran de téléphone sans défiler. */
+  .nav-menu a {
+    padding: 11px 0;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .nav-menu__ico {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-menu a:hover {
+    background: none;
+  }
+
+  .nav-menu li + li {
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* Les quatre cartes du manifeste tiennent huit mots chacune : elles restent en
+   grille 2×2 jusqu'en bas, y compris sur téléphone, où quatre cartes pleine
+   largeur gaspillaient un demi-écran. */
+@media (max-width: 980px) {
+  .pillars {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
 }
 
 /* --- Responsive ----------------------------------------------------------- */
@@ -905,12 +2538,7 @@ ul {
     gap: 44px;
   }
 
-  .hero__media {
-    order: -1;
-  }
-
-  .grid-3,
-  .compare {
+  .grid-3 {
     grid-template-columns: 1fr;
   }
 
@@ -919,68 +2547,505 @@ ul {
     gap: 36px;
   }
 
-  /* Menu replié en burger */
+  /* Menu replié en burger. Le burger ferme la barre : blason · EN · menu.
+     L'appel à l'action a quitté la barre pour le bas du tiroir — il faisait
+     doublon avec le gros bouton doré du premier écran, deux pastilles or sur
+     le même écran se volant l'attention. */
   .nav-toggle {
     display: block;
   }
 
+  /* Le tiroir. Trois choses le rendaient praticable ou non :
+
+     — il est ancré au header, qui est collant : il suit donc le défilement et
+       s'ouvre toujours sous la barre, jamais en haut du document ;
+     — il est BORNÉ à la hauteur visible et défile pour son propre compte.
+       Sans cela, un menu plus haut que l'écran voyait son bas coupé, et comme
+       le script verrouille le défilement de la page tant qu'il est ouvert, il
+       n'y avait plus aucun moyen d'atteindre « Connexion » : ni dans le menu,
+       ni en faisant défiler la page. C'était un cul-de-sac complet ;
+     — overscroll-behavior retient le défilement à l'intérieur du tiroir une
+       fois sa fin atteinte. */
   .site-nav {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
+    z-index: 2;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: calc(100vh - 74px);
+    max-height: calc(100dvh - 74px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     background: #fff;
     border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow-overlay);
-    padding: 12px var(--gutter) 22px;
+    padding: 8px var(--gutter) 20px;
   }
 
   .site-nav.is-open {
-    display: block;
+    display: flex;
   }
 
-  .site-nav ul {
+  /* Posée par le script tant que le tiroir est ouvert : elle empêche la page
+     de défiler derrière lui. */
+  .has-nav-open,
+  .has-nav-open body {
+    overflow: hidden;
+  }
+
+  /* Voile sombre sous le tiroir. Il est porté par <body> et non par le header :
+     celui-ci a un backdrop-filter, qui ferait d'un enfant `position: fixed` un
+     positionné par rapport au header au lieu de l'écran. Le header (z-index
+     100) et son tiroir restent au-dessus du voile, la page passe dessous. */
+  .has-nav-open body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgba(15, 23, 42, 0.45);
+  }
+
+  .site-nav > ul {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
   }
 
-  .site-nav li {
+  .site-nav > ul > li {
     border-bottom: 1px solid var(--line);
   }
 
-  .site-nav li:last-child {
+  .site-nav > ul > li:last-child {
     border-bottom: 0;
   }
 
-  .site-nav a {
+  /* Seuls les liens de premier niveau passent en bloc. Le sélecteur portait
+     auparavant sur `.site-nav a`, donc aussi sur les entrées du panneau
+     « Solutions » : leur `display: flex` sautait et l'icône remontait
+     AU-DESSUS du titre, ce qui coûtait une quarantaine de pixels par entrée
+     dans un tiroir déjà trop haut. */
+  .site-nav > ul > li > a {
     display: block;
-    padding: 15px 0;
+    padding: 14px 0;
   }
 
-  /* Dans le menu replié, la bascule de langue redevient une ligne comme les
-     autres : la pastille bordée n'a plus de sens sur toute la largeur. */
-  .site-nav .nav-lang a {
-    border: 0;
-    padding: 15px 0;
+  /* Page courante : un filet or à gauche et un fond beige. Sans repère, on ne
+     sait pas d'où l'on ouvre le menu. */
+  .site-nav > ul a[aria-current="page"] {
+    background: var(--gold-soft);
+    box-shadow: inset 3px 0 0 var(--gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
 
-  .site-nav .nav-login a {
-    margin-top: 14px;
+  .site-nav > ul > li > a[aria-current="page"] {
+    padding-left: 13px;
+  }
+
+  .site-nav .nav-menu a[aria-current="page"] {
+    padding-left: 13px;
+  }
+
+  /* Les deux actions terminent le tiroir, côte à côte à parts égales. */
+  .nav-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .nav-actions__login,
+  .nav-actions__cta {
+    justify-content: center;
     text-align: center;
+    padding: 14px 10px;
   }
 }
 
 @media (max-width: 560px) {
   .form,
   .card,
-  .compare__col {
+  .step,
+  .usecase,
+  .pillar,
+  .guarantee {
     padding: 26px 22px;
   }
+}
 
+/* Sur un écran étroit, tous les boutons du corps de page prennent la pleine
+   largeur. C'était déjà le cas sous 560 px, mais les boutons d'un hero à
+   l'autre n'avaient pas la même largeur : plein écran sur l'accueil, 60 % sur
+   /etudiants, flottant au milieu sur /enseignants. La règle monte à 640 px et
+   le libellé se resserre, pour qu'aucun n'ait à passer sur deux lignes. */
+@media (max-width: 640px) {
   .btn {
     width: 100%;
+    font-size: 0.94rem;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  /* Les boutons de la barre gardent leur largeur : ils vivent dans une grille
+     à deux colonnes en bas du tiroir, pas dans le flux de la page. */
+  .nav-actions .btn {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Palier tablette ------------------------------------------------------
+   Entre 640 et 980 px, les replis ci-dessus faisaient tomber les grilles de
+   trois colonnes directement à une seule : des cartes de 700 px de large pour
+   trois lignes de texte, et une page deux fois plus longue qu'il ne fallait.
+   Deux colonnes tiennent très bien dans cette plage. Ce bloc vient après les
+   replis qu'il corrige : à spécificité égale, c'est l'ordre qui tranche. */
+
+@media (min-width: 641px) and (max-width: 980px) {
+  .grid-3,
+  .steps,
+  .usecases {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Un nombre impair de cartes laisse la dernière seule : elle prend alors
+     les deux colonnes plutôt que la moitié gauche, et reste centrée. */
+  .grid-3 > :last-child:nth-child(odd),
+  .steps > :last-child:nth-child(odd),
+  .usecases > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* --- Compacité sur petit écran -------------------------------------------- */
+
+@media (max-width: 560px) {
+  /* L'icône passait au-dessus du titre, ce qui coûtait 78 px par carte pour
+     un titre de trois mots. Côte à côte, la carte perd un quart de sa
+     hauteur sans rien perdre de sa lisibilité. */
+  .card__icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    margin-bottom: 0;
+  }
+
+  .card__head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .card__head h3 {
+    margin-bottom: 0;
+  }
+}
+
+/* --- Zones tactiles du pied de page ---------------------------------------
+   Les liens du pied sont des éléments en ligne de 19 px de haut : à la souris
+   c'est confortable, au doigt non. Dans le pied replié en une colonne, on
+   étend la cible à toute la largeur de la ligne. */
+
+@media (max-width: 980px) {
+  .site-footer__grid li {
+    padding: 0;
+  }
+
+  .site-footer__grid li a {
+    display: block;
+    padding: 13px 0;
+  }
+}
+
+/* --- Replis des composants de page ---------------------------------------- */
+
+@media (max-width: 980px) {
+  .faq-layout {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .faq-layout__aside {
+    position: static;
+  }
+
+  .audience__args {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 34px;
+  }
+
+  .audience__args .argument + .argument {
+    margin-top: 26px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+  }
+
+  .checklist--compact {
+    grid-template-columns: 1fr;
+  }
+
+  .legal .legal-summary,
+  .legal-toc ol {
+    grid-template-columns: 1fr;
+  }
+
+  /* Pied de page sur deux colonnes. Pour tenir les 44 px de hauteur tactile
+     par lien, les treize entrées étaient empilées sur une seule colonne : le
+     pied occupait à lui seul près de la moitié de la page. */
+  .site-footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 24px;
+  }
+
+  .site-footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer__grid li a {
+    padding: 11px 0;
+  }
+}
+
+/* --- Ordre et alignement sur téléphone -------------------------------------
+   Deux défauts d'ensemble se retrouvaient sur toutes les pages : les titres
+   alternaient sans règle entre centré et aligné à gauche d'une section à
+   l'autre, et les photos des blocs « image | texte » apparaissaient AVANT le
+   titre de leur propre section — on voyait surgir une photo sans savoir à quoi
+   elle se rattachait. */
+
+@media (max-width: 640px) {
+  /* Sur 390 px de large, l'alignement constant à gauche donne un fil
+     directeur à l'œil et évite les titres centrés en pyramide inversée. */
+  .section-head {
+    text-align: left;
+    margin-bottom: 38px;
+  }
+
+  .page-hero {
+    text-align: left;
+    padding: 44px 0;
+  }
+
+  .page-hero p {
+    margin-left: 0;
+  }
+
+  .flow > h3 {
+    text-align: left;
+  }
+
+  /* Le hero perdait 85 px de grille vide au-dessus du titre, et la troisième
+     pastille de réassurance se retrouvait coupée en bas d'un écran d'iPhone. */
+  .hero {
+    padding: 30px 0 52px;
+  }
+
+  /* La fausse fenêtre de document — quatre barres grises muettes et un
+     graphique — occupait un demi-écran avant même qu'on arrive au certificat,
+     qui est le seul élément porteur de sens des deux. */
+  .mock__win {
+    display: none;
+  }
+
+  .mock__cert {
+    margin-top: 0;
+  }
+
+  /* Badges de largeur uniforme : alignés à gauche avec trois largeurs
+     différentes, ils dessinaient un escalier sous des boutons pleine largeur. */
+  .trust-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .trust-row > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .trust-chip {
+    font-size: 0.78rem;
+    padding: 9px 12px;
+  }
+
+  .floating-badge {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -20px;
+  }
+}
+
+/* Ordre vertical imposé dans les blocs « image | texte » : badge et titre,
+   puis le visuel, puis le texte. Le `display: contents` fait des enfants de la
+   colonne de texte des éléments de la grille, ce qui permet de glisser l'image
+   entre le titre et la suite sans toucher au balisage. */
+@media (max-width: 980px) {
+  .split {
+    gap: 0;
+  }
+
+  .split > div {
+    display: contents;
+  }
+
+  .split > div > * {
+    order: 3;
+  }
+
+  .split .eyebrow {
+    order: 0;
+  }
+
+  .split h2,
+  .split .section-title {
+    order: 1;
+  }
+
+  .split > img,
+  .split > .report {
+    order: 2;
+    margin: 2px 0 26px;
+  }
+}
+
+/* --- Comparatif sur téléphone ---------------------------------------------
+   Replié, le tableau empilait huit cellules coiffées chacune d'un bandeau
+   ardoise : l'œil voyait huit bandeaux sombres à la suite — un code-barres —
+   sans voir où commençait un critère, ni lequel des deux côtés était le bon.
+   Chaque critère devient une carte distincte, le bandeau sombre est réservé
+   au côté Certimens, et le côté « détecteurs » passe sur un rosé très pâle. */
+
+@media (max-width: 900px) {
+  .versus {
+    border: 0;
+    border-radius: 0;
+    background: none;
+    overflow: visible;
+    display: grid;
+    gap: 18px;
+  }
+
+  .versus__row {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .versus__row + .versus__row {
+    border-top: 1px solid var(--line);
+  }
+
+  .versus__cell--crit {
+    background: var(--bg-soft);
+    color: var(--navy);
+    border-bottom: 1px solid var(--line);
+    padding: 15px 22px;
+  }
+
+  .versus__cell--crit svg {
+    color: var(--gold-dark);
+  }
+
+  .versus__cell--old {
+    background: #fdf4f5;
+  }
+
+  .versus__cell--old h3 {
+    color: var(--navy-light);
+  }
+
+  .versus__cell--us {
+    border-top: 1px solid var(--line);
+  }
+
+  .versus__tag--us {
+    display: inline-flex;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: var(--radius-pill);
+    padding: 5px 12px;
+  }
+}
+
+/* --- Page Contact sur téléphone -------------------------------------------
+   Le titre et le bloc de coordonnées occupaient tout le haut de l'écran avant
+   qu'on voie le premier champ. Le formulaire passe en premier ; les
+   coordonnées et le déroulé d'une démonstration le suivent. */
+
+@media (max-width: 980px) {
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .contact-grid > form {
+    order: 1;
+  }
+
+  .contact-grid > div {
+    order: 2;
+  }
+
+  .contact-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .contact-info li {
+    align-items: center;
+    gap: 10px;
+    padding: 11px 13px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+  }
+
+  .contact-info svg {
+    margin-top: 0;
+  }
+
+  .contact-info span {
+    font-size: 0.68rem;
+  }
+
+  .contact-info a {
+    font-size: 0.84rem;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 640px) {
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Trois champs et le bouton d'envoi doivent tenir ensemble sur un écran. */
+  .form textarea {
+    min-height: 110px;
+  }
+
+  .form__actions .btn {
+    width: 100%;
+  }
+
+  .report__score b {
+    font-size: 2.2rem;
+  }
+
+  .report__dims li {
+    grid-template-columns: minmax(0, 1fr) 84px;
+    gap: 12px;
+    font-size: 0.82rem;
   }
 }
 

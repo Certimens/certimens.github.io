@@ -66,8 +66,7 @@ jobs:
       # Ensuite notre propre domaine de production, vers lequel pointent
       # les URL canoniques et Open Graph. La CI s'exécute *avant* le déploiement :
       # une page nouvelle ou renommée n'existe donc pas encore à cette adresse et
-      # serait signalée à tort. (Tant que le DNS de certimens.fr n'aura pas été
-      # basculé sur GitHub Pages, /mentions-legales/ y répond d'ailleurs 404.)
+      # serait signalée à tort.
       - name: Liens et ancres
         uses: lycheeverse/lychee-action@v2.9.0
         with:
