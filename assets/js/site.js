@@ -12,14 +12,109 @@
       toggle.setAttribute("aria-expanded", String(open));
     });
 
-    // Referme le menu après un clic sur une ancre de la même page.
+    // Referme le menu après un clic sur une ancre de la même page. On remonte
+    // jusqu'au lien : les entrées du panneau « Solutions » portent un titre et
+    // un sous-titre, donc la cible du clic est souvent un élément imbriqué.
     nav.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") {
+      if (e.target.closest && e.target.closest("a")) {
         nav.classList.remove("is-open");
         toggle.setAttribute("aria-expanded", "false");
       }
     });
   }
+
+  /* Menu déroulant « Solutions » -------------------------------------------
+     Le déclencheur est un bouton : le survol ouvre aussi le panneau, mais rien
+     ne dépend du survol seul — au clavier, Entrée ouvre, Échap referme et
+     rend le focus au bouton, et un focus qui sort du bloc le referme.
+
+     Le délai de 150 ms à l'ouverture évite que le panneau s'ouvre quand la
+     souris ne fait que traverser l'en-tête ; les 200 ms à la fermeture laissent
+     la diagonale souris → premier lien sans refermer sous le curseur.
+
+     Sous 980 px, le panneau est une sous-liste toujours dépliée (la feuille de
+     style masque le déclencheur) : on ne fait alors rien du tout. */
+  var DESKTOP = "(min-width: 981px)";
+
+  function setupDropdown(item) {
+    var trigger = item.querySelector(".nav-menu__trigger");
+    var menu = item.querySelector(".nav-menu");
+    if (!trigger || !menu) return;
+
+    var timer = null;
+
+    function clearTimer() {
+      if (timer) {
+        window.clearTimeout(timer);
+        timer = null;
+      }
+    }
+
+    function open() {
+      clearTimer();
+      item.classList.add("nav-item--open");
+      trigger.setAttribute("aria-expanded", "true");
+    }
+
+    function close() {
+      clearTimer();
+      item.classList.remove("nav-item--open");
+      trigger.setAttribute("aria-expanded", "false");
+    }
+
+    function isDesktop() {
+      return window.matchMedia(DESKTOP).matches;
+    }
+
+    trigger.addEventListener("click", function () {
+      if (item.classList.contains("nav-item--open")) close();
+      else open();
+    });
+
+    item.addEventListener("mouseenter", function () {
+      if (!isDesktop()) return;
+      clearTimer();
+      timer = window.setTimeout(open, 150);
+    });
+
+    item.addEventListener("mouseleave", function () {
+      if (!isDesktop()) return;
+      clearTimer();
+      timer = window.setTimeout(close, 200);
+    });
+
+    menu.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("a")) close();
+    });
+
+    item.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && item.classList.contains("nav-item--open")) {
+        close();
+        trigger.focus();
+      }
+    });
+
+    // Un focus qui quitte le bloc referme : c'est la tabulation qui sort du
+    // dernier lien, et le pendant clavier du mouseleave.
+    item.addEventListener("focusout", function (e) {
+      if (!item.contains(e.relatedTarget)) close();
+    });
+
+    // Un clic ailleurs dans la page referme aussi, menu ouvert au clic.
+    document.addEventListener("click", function (e) {
+      if (!item.contains(e.target)) close();
+    });
+
+    // Refermer le panneau quand on passe en dessous de 980 px : il y devient
+    // une sous-liste, et la classe laissée derrière n'y signifierait plus rien.
+    var mq = window.matchMedia(DESKTOP);
+    if (mq.addEventListener) {
+      mq.addEventListener("change", close);
+    }
+  }
+
+  var items = document.querySelectorAll(".nav-item");
+  for (var i = 0; i < items.length; i++) setupDropdown(items[i]);
 
   /* Formulaire de contact -------------------------------------------------
      Le site est statique : il n'y a pas de backend pour recevoir le message.

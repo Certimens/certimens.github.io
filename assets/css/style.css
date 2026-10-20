@@ -78,21 +78,54 @@
   --text: #1a202c;
   --muted: #54595f;
   --line: #e5e5e5;
-  /* Rouge de verdict du moteur (palette.error de ui/src/theme.ts). Il porte du
-     sens et non de la marque : c'est la même valeur des deux côtés. */
-  --danger: #c5221f;
+  /* Les couleurs de VERDICT (bleu / rouge vineux), reprises telles quelles de
+     `palette.success` et `palette.error` du moteur (ui/src/theme.ts). Elles
+     portent du sens et non de la marque : elles disent « authentique » ou
+     « en défaut », jamais « Certimens ».
+
+     Elles ne sont plus vert et rouge, et c'est délibéré. Simulés (Machado
+     2009) et mesurés en CIEDE2000, l'ancien couple s'effondrait pour les
+     déficiences les plus répandues : #137333 et #c5221f ne sont qu'à ΔE00 9,2
+     l'un de l'autre sous protanopie et 11,2 sous deutéranopie, là où le
+     nouveau couple est à 31,5 et 45,5. Un verdict que personne ne peut lire
+     n'est pas un verdict, et ce produit se vend à
+     l'enseignement supérieur public français, où c'est une obligation légale
+     et non une préférence.
+
+     Recolorer à l'intérieur du vert et du rouge n'y change rien : un
+     dichromate n'a pas d'axe rouge-vert du tout, il ne lui reste que la
+     clarté — déjà dépensée pour tenir les 4,5:1 dus au fond. D'où le BLEU
+     pour le verdict authentique. Le coût est réel et assumé : « vert = bon »
+     est immédiat, « bleu = bon » s'apprend une fois. C'est le mot à côté de
+     la pastille qui porte le sens, pas la couleur seule.
+
+     6,70:1 et 9,57:1 sur blanc : les deux passent largement AA. Le rouge y
+     gagne au passage — l'ancien #c5221f n'était qu'à 5,8:1. */
+  --danger: #881337;
+  --ok: #1d4ed8;
   --bg: #ffffff;
   --bg-soft: #f8fafc;
 
-  --radius: 12px;
-  --radius-sm: 8px;
-  /* Seule ombre conservée : le menu mobile, qui flotte au-dessus du contenu.
-     Les cartes sont plates, séparées par un filet — comme dans l'application. */
+  /* Les surfaces se sont arrondies (12 → 16 px) et les pastilles sont passées
+     au rayon plein : c'est ce qui sépare un site institutionnel d'un site
+     institutionnel qui a l'air récent. Les cartes restent plates — un filet,
+     pas d'ombre —, c'est le trait que la charte ne lâche pas. */
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  /* Seule ombre conservée : ce qui flotte réellement au-dessus du contenu —
+     le menu mobile et le menu déroulant « Solutions ». */
   --shadow-overlay: 0 12px 40px rgba(30, 41, 59, 0.12);
+
+  /* Trames de fond : un quadrillage très pâle et une lueur or. Elles ne
+     portent aucune information, seulement de la profondeur. */
+  --grid-line: rgba(30, 41, 59, 0.045);
+  --grid-step: 76px;
 
   --container: 1200px;
   --gutter: 20px;
-  --section-y: 96px;
+  --section-y: 112px;
 
   --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
@@ -115,9 +148,9 @@ html {
 body {
   margin: 0;
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 500;
-  line-height: 1.7;
+  line-height: 1.65;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -149,24 +182,26 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(2rem, 4.2vw, 2.9rem);
+  font-size: clamp(2.4rem, 5.2vw, 3.6rem);
   font-weight: 800;
+  letter-spacing: -0.035em;
 }
 
 h2 {
-  font-size: clamp(1.4rem, 2.4vw, 1.7rem);
+  font-size: clamp(1.5rem, 2.6vw, 1.85rem);
   font-weight: 700;
 }
 
 /* Titre de section : un <h2> pour respecter la hiérarchie des niveaux (un seul
    <h1> par page), mais rendu à la taille d'un titre principal. */
 .section-title {
-  font-size: clamp(2rem, 4.2vw, 2.9rem);
+  font-size: clamp(2.1rem, 4.6vw, 3.1rem);
   font-weight: 800;
+  letter-spacing: -0.035em;
 }
 
 h3 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
@@ -174,7 +209,8 @@ p {
   margin: 0 0 1.1em;
 }
 
-ul {
+ul,
+ol {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -214,24 +250,36 @@ ul {
 
 .section-head {
   text-align: center;
-  max-width: 760px;
-  margin: 0 auto 56px;
+  max-width: 820px;
+  margin: 0 auto 64px;
 }
 
 .section-head p {
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   margin-bottom: 0;
 }
 
 .eyebrow {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold-dark);
-  margin-bottom: 12px;
+  background: var(--gold-soft);
+  border-radius: var(--radius-pill);
+  padding: 7px 16px;
+  margin-bottom: 20px;
+}
+
+/* Sur l'ardoise, c'est l'or franc qui se lit (5,96:1) ; l'or sombre y tombe
+   à 2,33:1. La pastille devient alors un simple filet. */
+.section--navy .eyebrow {
+  color: var(--gold);
+  background: rgba(197, 160, 89, 0.14);
 }
 
 .lead {
@@ -270,8 +318,11 @@ ul {
 /* --- Boutons -------------------------------------------------------------- */
 
 .btn {
-  display: inline-block;
-  padding: 17px 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 17px 32px;
   border: 0;
   border-radius: var(--radius-sm);
   font-family: inherit;
@@ -302,17 +353,47 @@ ul {
   color: var(--text);
 }
 
+/* Le bouton secondaire porte une surface blanche, et non plus du vide. Sur le
+   hero — fond doux, quadrillage, lueur or — un bouton transparent flottait
+   sans contour net ; le blanc interrompt la trame et lui rend une forme.
+   Ce n'est pas un second bouton plein pour autant : « plein » au sens de la
+   charte veut dire « surface or », et l'or reste l'exclusivité de l'appel à
+   l'action. Celui-ci reste un bouton de contour ardoise, simplement opaque.
+   Au survol, il se teinte d'or clair — l'or sombre y lit 5,3:1. */
 .btn--ghost {
-  background: transparent;
+  background: #fff;
   color: var(--navy);
   border: 1.5px solid var(--line);
-  padding: 15px 33px;
+  padding: 15px 30px;
 }
 
 .btn--ghost:hover,
 .btn--ghost:focus {
+  background: var(--gold-soft);
   border-color: var(--gold);
   color: var(--gold-dark);
+}
+
+/* Bouton de contour posé sur l'ardoise : le filet blanc translucide y remplace
+   le filet gris, qui s'y perdrait. Le libellé reste blanc — l'or sombre ne se
+   lit pas sur ce fond (2,33:1). */
+/* Sur l'ardoise, le bouton secondaire redevient creux : une surface blanche y
+   serait plus visible que le bouton or qu'elle accompagne, et l'or sombre ne
+   s'y lit pas (2,33:1), d'où le libellé blanc. */
+.section--navy .btn--ghost,
+.cta-band .btn--ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.section--navy .btn--ghost:hover,
+.section--navy .btn--ghost:focus,
+.cta-band .btn--ghost:hover,
+.cta-band .btn--ghost:focus {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: var(--gold);
 }
 
 /* --- En-tête -------------------------------------------------------------- */
@@ -331,7 +412,7 @@ ul {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  min-height: 78px;
+  min-height: 74px;
 }
 
 .site-logo img {
@@ -352,10 +433,10 @@ ul {
   display: block;
 }
 
-.site-nav ul {
+.site-nav > ul {
   display: flex;
   align-items: center;
-  gap: 34px;
+  gap: 30px;
 }
 
 .site-nav a {
@@ -366,7 +447,7 @@ ul {
   padding: 6px 0;
 }
 
-.site-nav a::after {
+.site-nav > ul > li > a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -377,7 +458,7 @@ ul {
   transition: width 0.2s ease;
 }
 
-.site-nav a:hover::after {
+.site-nav > ul > li > a:hover::after {
   width: 100%;
 }
 
@@ -424,27 +505,45 @@ ul {
 
 /* --- Hero ----------------------------------------------------------------- */
 
+/* Le quadrillage et la lueur or ne sont pas un décor gratuit : ils donnent au
+   hero la profondeur qu'un aplat n'a pas, et c'est ce qui sépare une page
+   récente d'une page des années 2015. Ils sont purement décoratifs, donc en
+   fond et non en balise. */
 .hero {
-  padding: 88px 0 80px;
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  position: relative;
+  padding: 104px 0 92px;
+  background-color: var(--bg-soft);
+  background-image:
+    radial-gradient(
+      1100px 540px at 80% -12%,
+      rgba(197, 160, 89, 0.17),
+      rgba(197, 160, 89, 0) 62%
+    ),
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: auto, var(--grid-step) var(--grid-step),
+    var(--grid-step) var(--grid-step);
 }
 
 .hero__inner {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 60px;
+  grid-template-columns: 1.06fr 0.94fr;
+  gap: 64px;
   align-items: center;
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 4.6vw, 3.3rem);
-  margin-bottom: 0.45em;
+  font-size: clamp(2.6rem, 5.6vw, 3.9rem);
+  margin-bottom: 0.4em;
 }
 
-.hero p {
-  font-size: 1.12rem;
+/* Le chapô du hero, et lui seul : « .hero p » emporterait aussi les
+   paragraphes de la maquette et de l'étiquette posée sur l'image, qu'aucune
+   classe ne pourrait alors ramener à leur taille. */
+.hero__lead {
+  font-size: 1.14rem;
   color: var(--muted);
-  max-width: 34em;
+  max-width: 36em;
   margin-bottom: 2em;
 }
 
@@ -474,12 +573,15 @@ ul {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 36px 30px;
-  transition: border-color 0.18s ease;
+  padding: 36px 32px;
+  transition: border-color 0.18s ease, transform 0.18s ease;
 }
 
+/* Le survol soulève la carte de deux pixels. C'est un déplacement, pas une
+   ombre : la règle « les cartes sont plates » tient toujours. */
 .card:hover {
   border-color: var(--gold);
+  transform: translateY(-2px);
 }
 
 .card p {
@@ -488,73 +590,21 @@ ul {
 }
 
 .card__icon {
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 15px;
   background: var(--navy);
   color: #fff;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
+  transition: background-color 0.18s ease, color 0.18s ease;
 }
 
 .card:hover .card__icon {
   background: var(--gold);
   color: var(--text);
-}
-
-/* --- Comparatif ----------------------------------------------------------- */
-
-.compare {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-
-.compare__col {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 36px 32px;
-}
-
-.compare__col--highlight {
-  border: 2px solid var(--gold);
-}
-
-.compare__col h3 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-bottom: 18px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--line);
-}
-
-.compare__col--highlight h3 {
-  color: var(--gold-dark);
-}
-
-.compare li {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 11px 0;
-  color: var(--muted);
-}
-
-.compare li svg {
-  flex: 0 0 auto;
-  margin-top: 4px;
-}
-
-.compare .ico-no {
-  color: var(--danger);
-}
-
-.compare .ico-yes {
-  color: var(--gold-dark);
 }
 
 /* --- Bloc image + texte --------------------------------------------------- */
@@ -583,23 +633,6 @@ ul {
   flex: 0 0 auto;
   margin-top: 4px;
   color: var(--gold-dark);
-}
-
-/* --- Bandeau d'appel à l'action ------------------------------------------- */
-
-.cta {
-  text-align: center;
-}
-
-.cta h2 {
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  margin-bottom: 0.6em;
-}
-
-.cta p {
-  color: rgba(255, 255, 255, 0.78);
-  max-width: 44em;
-  margin: 0 auto 2em;
 }
 
 /* --- FAQ ------------------------------------------------------------------ */
@@ -844,29 +877,53 @@ ul {
 /* --- Pied de page --------------------------------------------------------- */
 
 .site-footer {
-  background: var(--navy);
+  background: var(--navy-dark);
   color: rgba(255, 255, 255, 0.72);
-  padding: 72px 0 0;
+  padding: 88px 0 0;
 }
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr;
   gap: 48px;
-  padding-bottom: 56px;
+  padding-bottom: 64px;
 }
 
+/* Les en-têtes du pied passent en or laiton : sur l'ardoise, l'or franc se lit
+   (5,96:1) et hiérarchise la colonne sans ajouter le moindre élément. */
 .site-footer h2 {
-  font-size: 0.85rem;
-  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
-  color: #fff;
-  margin-bottom: 22px;
+  color: var(--gold);
+  margin-bottom: 24px;
 }
 
-.site-footer img {
-  width: 210px;
-  margin-bottom: 20px;
+/* Le blason seul ne dit rien à qui découvre la marque : le nom l'accompagne,
+   en texte et non en image — il reste net à tout zoom et se lit à la synthèse
+   vocale, ce qui permet de laisser le blason purement décoratif. */
+.site-footer__brand .site-footer__mark {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 18px;
+}
+
+.site-footer__mark img {
+  width: 44px;
+}
+
+.site-footer__mark b {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.site-footer__brand p {
+  max-width: 26em;
+  margin-bottom: 0;
 }
 
 .site-footer a {
@@ -881,14 +938,922 @@ ul {
 }
 
 .site-footer li {
-  padding: 7px 0;
+  padding: 8px 0;
 }
 
 .site-footer__bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 24px 0;
-  font-size: 0.88rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 28px 0;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.55);
   text-align: center;
+}
+
+/* --- Menu déroulant « Solutions » ----------------------------------------
+   Trois publics, trois pages : un établissement qui achète, un enseignant qui
+   corrige, un étudiant qui écrit. Le déclencheur est un <button> et non un
+   lien, parce qu'il n'ouvre pas une page mais un panneau — c'est ce que les
+   lecteurs d'écran annoncent correctement via aria-expanded. Le survol ouvre
+   aussi, avec un délai, mais rien ne dépend du survol seul. */
+
+.nav-item {
+  position: relative;
+}
+
+.nav-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+}
+
+.nav-menu__trigger svg {
+  transition: transform 0.2s ease;
+}
+
+.nav-item--open > .nav-menu__trigger {
+  color: var(--gold-dark);
+}
+
+.nav-item--open > .nav-menu__trigger svg {
+  transform: rotate(180deg);
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -14px;
+  z-index: 110;
+  min-width: 340px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-overlay);
+  padding: 10px;
+}
+
+.nav-item--open > .nav-menu {
+  display: block;
+}
+
+.nav-menu a {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 13px 14px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.nav-menu a:hover {
+  background: var(--bg-soft);
+  color: var(--navy);
+}
+
+.nav-menu__ico {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+}
+
+.nav-menu b {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.nav-menu__txt span {
+  display: block;
+  font-size: 0.83rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* --- Pastilles de réassurance --------------------------------------------
+   Faute de logos clients — le produit n'est pas encore commercialisé —, ce
+   sont les garanties qui rassurent : ce qui est écrit ici est ce que la
+   politique de confidentialité documente, et rien de plus. */
+
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.trust-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 9px 17px 9px 13px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.trust-chip svg {
+  flex: 0 0 auto;
+  color: var(--gold-dark);
+}
+
+.trust-row--dark .trust-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.trust-row--dark .trust-chip svg {
+  color: var(--gold);
+}
+
+/* --- Maquette d'écran ----------------------------------------------------
+   Le hero montrait une photographie de diplôme ; il montre maintenant ce que
+   le produit fait réellement — un document ordinaire, et le certificat qui en
+   sort. Tout est dessiné en CSS : aucune image à charger, et le texte reste du
+   texte. Les barres et les lignes sont décoratives (aria-hidden côté HTML). */
+
+.mock {
+  position: relative;
+  padding-bottom: 46px;
+}
+
+.mock__win {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.mock__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 16px;
+  background: var(--navy);
+}
+
+.mock__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.mock__page {
+  padding: 26px 28px 34px;
+}
+
+.mock__line {
+  height: 9px;
+  border-radius: 5px;
+  background: #eef1f5;
+  margin-bottom: 13px;
+}
+
+.mock__line--t {
+  height: 13px;
+  width: 54%;
+  background: #dfe4eb;
+  margin-bottom: 22px;
+}
+
+.mock__line--a { width: 100%; }
+.mock__line--b { width: 92%; }
+.mock__line--c { width: 97%; }
+.mock__line--d { width: 64%; }
+
+.mock__pulse {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 46px;
+  margin-top: 26px;
+}
+
+.mock__pulse i {
+  flex: 1 1 auto;
+  background: var(--gold);
+  border-radius: 3px 3px 0 0;
+  opacity: 0.55;
+}
+
+/* Les hauteurs sont écrites ici plutôt qu'en attribut style : c'est du décor,
+   et le décor appartient à la feuille de style. La silhouette est irrégulière
+   à dessein — une cadence régulière est précisément ce que le produit
+   signale comme suspect. */
+.mock__pulse i:nth-child(1) { height: 38%; }
+.mock__pulse i:nth-child(2) { height: 62%; }
+.mock__pulse i:nth-child(3) { height: 47%; }
+.mock__pulse i:nth-child(4) { height: 88%; }
+.mock__pulse i:nth-child(5) { height: 54%; }
+.mock__pulse i:nth-child(6) { height: 26%; }
+.mock__pulse i:nth-child(7) { height: 71%; }
+.mock__pulse i:nth-child(8) { height: 44%; }
+.mock__pulse i:nth-child(9) { height: 96%; }
+.mock__pulse i:nth-child(10) { height: 33%; }
+.mock__pulse i:nth-child(11) { height: 58%; }
+.mock__pulse i:nth-child(12) { height: 42%; }
+
+.mock__cert {
+  position: absolute;
+  right: -8px;
+  bottom: 0;
+  width: 68%;
+  max-width: 330px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-overlay);
+  padding: 22px 24px;
+}
+
+.mock__cert img {
+  width: 42px;
+  margin-bottom: 10px;
+}
+
+.mock__title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+
+.mock__score {
+  font-size: 0.84rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.mock__score b {
+  color: var(--navy);
+  font-weight: 800;
+}
+
+/* Les trois sous-indicateurs sous le verdict : ce sont des chiffres, donc du
+   texte — ils restent nets au zoom et se lisent à la synthèse vocale. */
+.mock__meta {
+  margin: 12px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.verdict {
+  display: inline-flex;
+  margin: 0;
+  align-items: center;
+  gap: 7px;
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.verdict--ok {
+  /* Teinte du bleu de verdict : 5,76:1 sous --ok, au-dessus du seuil AA. */
+  background: #e8eefc;
+  color: var(--ok);
+}
+
+.meter {
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.meter i {
+  flex: 1 1 auto;
+  height: 6px;
+  border-radius: 3px;
+  background: #eef1f5;
+}
+
+.meter i.is-on {
+  background: var(--gold);
+}
+
+/* --- Les trois étapes ----------------------------------------------------- */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.step {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 34px 32px;
+}
+
+.step__num {
+  display: block;
+  font-size: 2.7rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--gold);
+}
+
+/* La ligne de progression de la maquette : elle part de l'or et s'éteint,
+   ce qui suggère la suite sans dessiner de flèche. */
+.step__rule {
+  height: 2px;
+  margin: 16px 0 24px;
+  border-radius: 1px;
+  background: linear-gradient(
+    to right,
+    var(--gold),
+    rgba(197, 160, 89, 0) 85%
+  );
+}
+
+.step p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.step p.step__note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.step__note svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--gold-dark);
+}
+
+/* --- Comparatif en trois colonnes ----------------------------------------
+   La colonne de gauche s'efface, celle de droite s'impose : c'est le contraste
+   asymétrique demandé. Le critère vit au centre, et passe au-dessus de la
+   paire une fois la grille repliée (order: -1). */
+
+.versus {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+}
+
+.versus__row {
+  display: grid;
+  grid-template-columns: 1fr 200px 1fr;
+}
+
+.versus__row + .versus__row {
+  border-top: 1px solid var(--line);
+}
+
+.versus__cell {
+  padding: 24px 28px;
+}
+
+.versus__cell p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.versus__cell h3 {
+  font-size: 1rem;
+  margin-bottom: 7px;
+}
+
+.versus__cell--old {
+  background: var(--bg-soft);
+  color: var(--muted);
+}
+
+.versus__cell--old h3 {
+  color: var(--navy-light);
+}
+
+.versus__cell--crit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  background: #fff;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin: 0;
+}
+
+.versus__cell--crit svg {
+  color: var(--gold-dark);
+}
+
+.versus__cell--us {
+  background: linear-gradient(180deg, #fffdf9 0%, #fcf7ec 100%);
+  border-left: 2px solid var(--gold);
+}
+
+.versus__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0;
+  padding: 22px 28px;
+}
+
+.versus__head--old {
+  background: var(--bg-soft);
+  color: var(--navy-light);
+}
+
+.versus__head--old svg {
+  color: var(--danger);
+}
+
+.versus__head--us {
+  background: var(--navy);
+  color: #fff;
+  border-left: 2px solid var(--gold);
+}
+
+.versus__head--us svg {
+  color: var(--gold);
+}
+
+.versus__head--crit {
+  justify-content: center;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+
+/* --- Sécurité, déploiement et conformité ---------------------------------- */
+
+.infra {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.guarantee {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+}
+
+.guarantee + .guarantee {
+  margin-top: 20px;
+}
+
+.guarantee h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.guarantee h3 svg {
+  flex: 0 0 auto;
+  color: var(--gold-dark);
+}
+
+.guarantee p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.guarantee strong {
+  color: var(--navy);
+}
+
+.guarantee p.tag {
+  display: inline-block;
+  border-radius: var(--radius-pill);
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* Le schéma de flux : quatre étapes, du poste de l'étudiant au correcteur.
+   C'est ce qu'un DSI demande en premier — où passent les données, et quoi. */
+.flow {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 30px;
+}
+
+.flow > h3 {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.flow__steps {
+  display: grid;
+  gap: 0;
+}
+
+.flow__step {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.flow__ico {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: var(--navy);
+  color: #fff;
+}
+
+.flow__step--us .flow__ico {
+  background: var(--gold);
+  color: var(--text);
+}
+
+.flow__txt b {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--navy);
+}
+
+.flow__txt span {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* Le trait qui relie deux étapes, et la mention qu'il porte (« chiffré », « LTI
+   1.3 »). Il est tracé par la bordure gauche d'un bloc vide aligné sous les
+   icônes, ce qui le garde parfaitement centré quelle que soit la hauteur. */
+.flow__link {
+  margin: 8px 0 8px 22px;
+  padding: 8px 0 8px 40px;
+  border-left: 2px dashed var(--line);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* --- Cas d'usage ---------------------------------------------------------- */
+
+.usecases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.usecase {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.usecase:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.usecase__ico {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+  margin-bottom: 24px;
+}
+
+.usecase p {
+  color: var(--muted);
+}
+
+.usecase p.usecase__foot {
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+/* --- Les quatre piliers du manifeste -------------------------------------- */
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.pillar {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+}
+
+.pillar b {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.pillar h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.pillar p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* --- Bandeau d'engagement ------------------------------------------------- */
+
+.cta-band {
+  background: var(--navy-dark);
+  border-radius: var(--radius-lg);
+  padding: 56px 56px 48px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.cta-band h2 {
+  font-size: clamp(1.7rem, 3.2vw, 2.2rem);
+  color: #fff;
+  letter-spacing: -0.03em;
+}
+
+.cta-band p {
+  max-width: 48em;
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 30px 0 32px;
+}
+
+/* --- Pages de destination (enseignants, étudiants) ------------------------ */
+
+.audience {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.audience h1 {
+  margin-bottom: 0.4em;
+}
+
+.audience .lead {
+  font-size: 1.14rem;
+  margin-bottom: 2em;
+}
+
+.audience__media {
+  position: relative;
+}
+
+.audience__media img {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* L'étiquette posée sur la photographie : elle dit ce que l'étudiant ou
+   l'enseignant verra réellement, et rien de plus. */
+.floating-badge {
+  position: absolute;
+  margin: 0;
+  left: -16px;
+  bottom: 28px;
+  max-width: 78%;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-overlay);
+  padding: 16px 20px;
+}
+
+.floating-badge b {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--navy);
+}
+
+.floating-badge b svg {
+  flex: 0 0 auto;
+  color: var(--ok);
+}
+
+.floating-badge span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.argument + .argument {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.argument h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.argument p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* --- Replis --------------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .versus__row {
+    grid-template-columns: 1fr 160px 1fr;
+  }
+
+  .versus__cell,
+  .versus__head {
+    padding: 20px 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .versus__row,
+  .versus__head-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Repliée, la grille remet le critère au-dessus de la paire qu'il compare. */
+  .versus__cell--crit {
+    order: -1;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 16px 22px;
+    background: var(--navy);
+    color: #fff;
+    border: 0;
+  }
+
+  .versus__cell--crit svg {
+    color: var(--gold);
+  }
+
+  .versus__cell--us {
+    border-left: 0;
+    border-top: 2px solid var(--gold);
+  }
+
+  .versus__head--crit {
+    display: none;
+  }
+
+  .versus__head--us {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 980px) {
+  .steps,
+  .usecases {
+    grid-template-columns: 1fr;
+  }
+
+  .infra,
+  .audience {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .cta-band {
+    padding: 40px 28px 34px;
+  }
+
+  .mock__cert {
+    position: static;
+    width: 100%;
+    max-width: none;
+    margin-top: 18px;
+  }
+
+  .mock {
+    padding-bottom: 0;
+  }
+
+  .floating-badge {
+    position: static;
+    max-width: none;
+    margin-top: -28px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  /* Le menu déroulant devient une sous-liste toujours dépliée : un panneau
+     flottant n'a aucun sens dans un menu qui occupe déjà toute la largeur. */
+  .nav-menu__trigger {
+    display: none;
+  }
+
+  .nav-menu {
+    display: block;
+    position: static;
+    min-width: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .nav-menu a {
+    padding: 14px 0;
+  }
+
+  .nav-menu a:hover {
+    background: none;
+  }
+
+  .nav-menu li + li {
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 600px) {
+  .pillars {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* --- Responsive ----------------------------------------------------------- */
@@ -909,8 +1874,7 @@ ul {
     order: -1;
   }
 
-  .grid-3,
-  .compare {
+  .grid-3 {
     grid-template-columns: 1fr;
   }
 
@@ -940,17 +1904,17 @@ ul {
     display: block;
   }
 
-  .site-nav ul {
+  .site-nav > ul {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
   }
 
-  .site-nav li {
+  .site-nav > ul > li {
     border-bottom: 1px solid var(--line);
   }
 
-  .site-nav li:last-child {
+  .site-nav > ul > li:last-child {
     border-bottom: 0;
   }
 
@@ -975,7 +1939,10 @@ ul {
 @media (max-width: 560px) {
   .form,
   .card,
-  .compare__col {
+  .step,
+  .usecase,
+  .pillar,
+  .guarantee {
     padding: 26px 22px;
   }
 

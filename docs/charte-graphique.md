@@ -25,11 +25,38 @@ lecteur ouvrira toujours — le moteur, lui, est privé.
 | Filet | `#E5E5E5` | Bordures de cartes et séparateurs. |
 | Or très clair | `#F3EAD9` | Surface d'un encart d'accent, où l'or sombre sert de texte. |
 
-Les couleurs de **verdict** portent du sens et non de la marque : vert `#137333`,
-orange `#B06000`, rouge `#C5221F`. Elles ne s'harmonisent pas et ne se
-remplacent pas par de l'or — c'est précisément ce qui les rend lisibles. Le
-rouge sert aussi aux messages d'erreur, aux marqueurs de champ obligatoire et
-aux croix d'un comparatif.
+Sur l'**ardoise du pied de page**, les en-têtes de colonne sont en or franc
+`#C5A059` (5,96:1) : c'est la hiérarchie obtenue sans ajouter le moindre
+élément. C'est aussi un rappel de la seconde moitié de la règle de l'or
+ci-dessous — or sombre sur blanc, or franc sur ardoise.
+
+### Les couleurs de verdict
+
+Elles portent du sens et non de la marque : **bleu** `#1D4ED8` (authentique),
+**ambre** `#B45309` (réserve), **rouge vineux** `#881337` (en défaut). Elles ne
+s'harmonisent pas et ne se remplacent pas par de l'or — c'est précisément ce qui
+les rend lisibles. Le rouge sert aussi aux messages d'erreur, aux marqueurs de
+champ obligatoire et aux croix d'un comparatif.
+
+**Elles étaient vert, orange et rouge, et ne le sont plus, à dessein.** Simulé
+(Machado 2009) et mesuré en CIEDE2000, l'ancien triplet s'effondrait pour les
+déficiences les plus répandues : `#137333` et `#C5221F` ne sont qu'à ΔE00 **9,2**
+l'un de l'autre sous **protanopie** et **11,2** sous deutéranopie, là où le
+nouveau couple est à 31,5 et 45,5. Un verdict que personne ne peut lire n'est pas
+un verdict, et ce produit se vend à l'enseignement supérieur public français, où
+c'est une obligation légale et non une préférence.
+
+Recolorer à l'intérieur du vert et du rouge n'y change rien : un dichromate n'a
+pas d'axe rouge-vert du tout, il ne lui reste que la clarté — déjà dépensée pour
+tenir les 4,5:1 dus au fond. D'où le **bleu** pour le verdict authentique. Le
+coût est réel et assumé : « vert = bon » est immédiat, « bleu = bon » s'apprend
+une fois. C'est **le mot à côté de la pastille** qui porte le sens, jamais la
+couleur seule.
+
+C'est le **seul endroit où le moteur mène et le site suit**, et c'est cohérent
+avec ce que dit l'en-tête de ce document : ces trois couleurs ne sont pas de la
+marque. Elles sont reprises telles quelles de `palette.success` / `warning` /
+`error` dans `ui/src/theme.ts`. Le site n'utilise pas l'ambre.
 
 ## La règle de l'or
 
@@ -56,7 +83,9 @@ intention — que l'accent reste lisible — appliquée à deux fonds.
 | `#1A202C` sur or `#C5A059` | 6,6:1 | AA |
 | `#705E3A` sur blanc | 6,3:1 | AA |
 | `#C5A059` sur ardoise `#1E293B` | 6,0:1 | AA |
-| `#C5221F` sur blanc | 5,8:1 | AA |
+| `#881337` sur blanc | 9,6:1 | AAA |
+| `#1D4ED8` sur blanc | 6,7:1 | AA |
+| `#1D4ED8` sur sa teinte `#E8EEFC` | 5,8:1 | AA |
 | `#705E3A` sur or clair `#F3EAD9` | 5,3:1 | AA |
 | ~~`#705E3A` sur ardoise~~ | 2,3:1 | **à proscrire** |
 | ~~`#C5A059` sur blanc~~ | 2,5:1 | **à proscrire** |
@@ -71,7 +100,12 @@ tout ce qui l'entoure au lieu de s'en détacher.
 **Un seul bouton plein par vue**, et c'est l'action pour laquelle la vue existe.
 Tout le reste — une action auxiliaire, un « Ajouter » posé à côté d'un
 sélecteur, un lien de connexion dans une barre de navigation — s'écrit en
-**contour ardoise**. L'or ne hiérarchise plus rien s'il est partout, et une page
+**contour ardoise**. Sur fond clair, ce contour porte une **surface blanche** et
+non du vide : posé sur le hero, dont le fond est une trame, un bouton
+transparent n'a plus de forme. Ce n'est pas pour autant un second bouton plein —
+« plein » veut dire ici *surface or*, et l'or reste l'exclusivité de l'appel à
+l'action. Sur l'ardoise, le même bouton redevient creux, libellé blanc : une
+surface blanche y serait plus visible que le bouton or qu'elle accompagne. L'or ne hiérarchise plus rien s'il est partout, et une page
 qui empile trois boutons pleins ne dit plus lequel on est venu presser. Deux
 assouplissements : une boîte de dialogue est une vue à elle seule et a droit à
 son propre bouton plein ; une même action répétée à l'identique dans une liste
@@ -79,7 +113,7 @@ reste pleine, puisque c'est la même action et non une action secondaire.
 
 Deux exceptions, et seulement deux :
 
-- une action **destructrice** reste **rouge** `#C5221F`, boutons-icônes
+- une action **destructrice** reste **rouge** `#881337`, boutons-icônes
   compris — un bouton plein ne doit jamais faire ressembler « Supprimer » à
   « Enregistrer » ;
 - un bouton **de contour ou de texte** reste **ardoise**, parce que l'or n'y
@@ -92,9 +126,14 @@ Deux exceptions, et seulement deux :
 **Plus Jakarta Sans** partout. Le trait le plus reconnaissable de la direction
 artistique est le contraste de graisses :
 
-- titres **800**, interlettrage resserré (`-0.02em` sur le `h1`) ;
-- corps de texte **500**, et non 400 ;
+- titres **800**, interlettrage resserré (`-0.035em` sur les titres d'affiche —
+  `h1` et `.section-title` —, `-0.02em` ailleurs) ;
+- corps de texte **500**, et non 400, à **17 px** et en interligne 1,65 ;
 - boutons et libellés **700**, sans majuscules forcées.
+
+Le corps est passé de 16 à 17 px et les titres d'affiche montent désormais à
+`3.6rem` : c'est le réglage qui sépare un site institutionnel d'un site
+institutionnel qui a l'air récent, et il ne coûte rien à la lisibilité.
 
 La police est **auto-hébergée** sur chaque support : `assets/fonts/` pour le
 site, `@fontsource` pour l'espace client — les mêmes fichiers `.woff2`, pour un
@@ -102,10 +141,20 @@ rendu identique et zéro appel à Google Fonts à l'exécution.
 
 ## Formes
 
-Rayon de **12 px** sur les surfaces. Les cartes sont **plates** : un filet
-`#E5E5E5`, pas d'ombre. La seule ombre admise est celle d'un élément qui flotte
-réellement au-dessus du contenu — un menu déroulant, une boîte de dialogue. Les
+Rayon de **16 px** sur les surfaces (`--radius`), **24 px** sur les grands
+bandeaux (`--radius-lg`), **10 px** sur les contrôles (`--radius-sm`) et
+**plein** sur les pastilles (`--radius-pill`) — surtitres, étiquettes de
+réassurance, badges d'état. Les cartes restent **plates** : un filet `#E5E5E5`,
+pas d'ombre. La seule ombre admise est celle d'un élément qui flotte réellement
+au-dessus du contenu — un menu déroulant, une boîte de dialogue, une étiquette
+posée sur une image. Un survol de carte a droit à un **déplacement** de deux
+pixels : c'est un mouvement, pas une élévation, et la règle tient toujours. Les
 barres d'application et de navigation sont blanches avec un filet en bas.
+
+Deux trames de fond, purement décoratives, donnent au site sa profondeur : un
+**quadrillage** très pâle (`rgba(30,41,59,.045)`, pas de 76 px) et une **lueur
+or** en dégradé radial. Elles ne portent aucune information et vivent en
+`background-image`, jamais en balise.
 
 ## Le mot-marque
 

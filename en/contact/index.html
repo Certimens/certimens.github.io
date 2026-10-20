@@ -70,13 +70,57 @@
 
         <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <ul>
-            <li><a href="/en/#certification">The Certification</a></li>
-            <li><a href="/en/#expertise">Our Expertise</a></li>
-            <li><a href="/en/#faq">FAQ</a></li>
+            <li class="nav-item">
+              <button
+                class="nav-menu__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="menu-solutions"
+              >
+                Solutions
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7" /></svg>
+              </button>
+              <ul class="nav-menu" id="menu-solutions">
+                <li>
+                  <a href="/en/#certification">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M4 21V10l8-5 8 5v11M9 21v-6h6v6" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Universities &amp; governance</b>
+                      <span>Protect the value of your degrees</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/en/teachers/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4M7 12l3-3 2.5 2.5L17 7" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Teachers &amp; markers</b>
+                      <span>The proof arrives with the paper</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/en/students/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Students</b>
+                      <span>Your writing stays yours</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="/en/#expertise">Our approach</a></li>
             <li><a href="/plugins/en/">Plugins</a></li>
             <li><a href="/en/contact/">Contact</a></li>
             <li class="nav-lang">
-              <a href="/contact/" lang="fr" hreflang="fr" aria-label="Basculer en français">FR</a>
+              <a href="/" lang="fr" hreflang="fr" aria-label="Basculer en français">FR</a>
             </li>
             <li class="nav-login">
               <a href="https://monespace.certimens.fr/">Sign in</a>
@@ -175,37 +219,52 @@
     <footer class="site-footer">
       <div class="container">
         <div class="site-footer__grid">
-          <div>
-            <img src="/assets/img/logo-footer.png" alt="Certimens" width="500" height="143" />
+          <div class="site-footer__brand">
+            <p class="site-footer__mark">
+              <img src="/assets/img/logo.png" alt="" width="300" height="300" />
+              <b>Certimens</b>
+            </p>
             <p>
-              The first label certifying genuine human cognitive effort.
+              The first certification infrastructure for human cognitive effort
+              in higher education.
             </p>
           </div>
 
           <div>
-            <h2>Navigation</h2>
+            <h2>Solutions by profile</h2>
             <ul>
-              <li><a href="/en/#certification">The Certification</a></li>
-              <li><a href="/en/#expertise">Our Expertise</a></li>
-              <li><a href="/en/#faq">FAQ</a></li>
-              <li><a href="/plugins/en/">Plugins</a></li>
-              <li><a href="/en/contact/">Contact</a></li>
+              <li><a href="/en/#certification">Universities &amp; governance</a></li>
+              <li><a href="/en/teachers/">Teachers &amp; markers</a></li>
+              <li><a href="/en/students/">Student space</a></li>
+              <li><a href="/en/contact/">University pilot programme</a></li>
             </ul>
           </div>
 
           <div>
-            <h2>Legal</h2>
+            <h2>Product &amp; approach</h2>
+            <ul>
+              <li><a href="/en/#steps">How it works</a></li>
+              <li><a href="/en/#expertise">Our approach &amp; the Certimens score</a></li>
+              <li><a href="/en/#security">Security, IT &amp; LTI architecture</a></li>
+              <li><a href="/en/#faq">FAQ</a></li>
+              <li><a href="/plugins/en/">Plugins</a></li>
+              <li><a href="https://monespace.certimens.fr/">Sign in to the dashboard</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2>Legal &amp; compliance</h2>
             <ul>
               <li><a href="/en/legal-notice/">Legal notice</a></li>
-              <li><a href="/en/privacy-policy/">Privacy policy</a></li>
-              <li><a href="/contact/" lang="fr" hreflang="fr">Version française</a></li>
-              <li><a href="https://monespace.certimens.fr/">Sign in</a></li>
+              <li><a href="/en/privacy-policy/">Privacy policy &amp; GDPR</a></li>
+              <li><a href="/en/contact/">Contact</a></li>
             </ul>
           </div>
         </div>
 
         <div class="site-footer__bottom">
-          © 2026 Certimens – All rights reserved.
+          © 2026 Certimens – All rights reserved. Hosted in France, at OVHcloud.
+          · <a href="/" lang="fr" hreflang="fr">Version française</a>
         </div>
       </div>
     </footer>

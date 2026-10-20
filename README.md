@@ -24,12 +24,18 @@ DNS basculé). Voir
 
 ```
 .
-├── index.html                          Accueil FR (ancres #certification, #expertise, #faq)
+├── index.html                          Accueil FR (ancres #certification, #etapes,
+│                                       #comparatif, #securite, #cas-usage, #expertise, #faq)
+├── enseignants/index.html              Page de destination « Enseignants & correcteurs »
+├── etudiants/index.html                Page de destination « Étudiants »
 ├── contact/index.html                  Formulaire de contact FR
 ├── mentions-legales/index.html
 ├── politique-de-confidentialite/index.html
 ├── en/                                 Version anglaise, même arborescence
-│   ├── index.html                      Accueil EN (mêmes ancres)
+│   ├── index.html                      Accueil EN (ancres traduites : #steps,
+│   │                                   #comparison, #security, #use-cases…)
+│   ├── teachers/index.html             Jumelle anglaise de /enseignants/
+│   ├── students/index.html             Jumelle anglaise de /etudiants/
 │   ├── contact/index.html
 │   ├── legal-notice/index.html
 │   └── privacy-policy/index.html
@@ -59,11 +65,16 @@ langue demandée, et renvoie vers l'accueil et le contact.
 ## Deux langues, deux domaines
 
 Le français est la langue par défaut et vit à la racine ; l'anglais occupe
-`/en/`, avec la même arborescence et les mêmes ancres :
+`/en/`, avec la même arborescence. Les ancres de l'accueil sont, elles,
+**traduites** — `#etapes` / `#steps`, `#securite` / `#security` — à l'exception
+des trois historiques (`#certification`, `#expertise`, `#faq`), gardées
+identiques des deux côtés parce qu'elles circulent déjà :
 
 | Français | Anglais |
 | --- | --- |
 | `/` | `/en/` |
+| `/enseignants/` | `/en/teachers/` |
+| `/etudiants/` | `/en/students/` |
 | `/contact/` | `/en/contact/` |
 | `/mentions-legales/` | `/en/legal-notice/` |
 | `/politique-de-confidentialite/` | `/en/privacy-policy/` |
@@ -73,8 +84,8 @@ Il n'y a **pas de détection automatique de la langue** : ni redirection sur
 `Accept-Language`, ni bascule en JavaScript. Un robot d'indexation n'envoie pas
 d'en-tête de langue et se verrait toujours servir la même version ; une
 redirection le priverait purement et simplement de l'autre. Le choix est donc
-explicite, par le lien `FR`/`EN` de la barre de navigation, présent sur les huit
-pages.
+explicite, par le lien `FR`/`EN` de la barre de navigation, présent sur les
+douze pages.
 
 ### Ce qui tient le référencement
 
@@ -86,7 +97,7 @@ pages.
   spécification. `x-default` désigne le français, langue par défaut du site.
   Les liens sont **réciproques** : une déclaration non rendue par la page cible
   est ignorée par Google.
-- **`sitemap.xml`** répète ces alternances en `xhtml:link` pour les huit URLs,
+- **`sitemap.xml`** répète ces alternances en `xhtml:link` pour les douze URLs,
   ce qui est le second canal accepté par Google pour hreflang.
 - **`404.html`** est servie par GitHub Pages pour toute URL manquante, `/en/…`
   comprise, sans qu'on puisse en connaître la langue : elle affiche donc les
@@ -122,6 +133,15 @@ donc être **reportée dans les deux langues**, sous peine de voir les deux
 versions diverger. Les chaînes du formulaire de contact, elles, sont dans
 `assets/js/site.js` et suivent le `lang` de la page.
 
+La barre de navigation porte un **menu déroulant « Solutions »**, qui mène aux
+trois publics : l'accueil pour un établissement, `/enseignants/` et
+`/etudiants/`. Son déclencheur est un `<button aria-expanded>` et non un lien,
+parce qu'il n'ouvre pas une page mais un panneau ; le survol l'ouvre aussi, avec
+un délai de 150 ms, mais rien ne dépend du survol seul — Entrée ouvre, Échap
+referme, et un focus qui sort du bloc referme. Sous 980 px, la feuille de style
+masque le déclencheur et le panneau redevient une sous-liste toujours dépliée.
+Le comportement est dans `assets/js/site.js`.
+
 Les deux pages légales anglaises sont des **traductions de courtoisie** : elles
 portent en tête un encart rappelant que seule la version française fait foi.
 Toute correction juridique se fait d'abord en français.
@@ -138,7 +158,7 @@ feuille unique, aucun doublon — et portent la même barre de navigation.
 
 Trois conséquences ici :
 
-- la navigation et le pied de page des **neuf pages** portent une entrée
+- la navigation et le pied de page des **treize pages** portent une entrée
   « Plugins » vers `/plugins/` ou `/plugins/en/` — le même libellé, à la même
   place, que la barre des pages d'en face, qui est copiée de celle-ci. Les liens
   sont **relatifs à la racine**, comme tout le reste du site : ils marchent sur

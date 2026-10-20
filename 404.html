@@ -52,9 +52,53 @@
 
         <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
           <ul>
-            <li><a href="/#certification">La Certification</a></li>
-            <li><a href="/#expertise">Notre Expertise</a></li>
-            <li><a href="/#faq">Questions Fréquentes</a></li>
+            <li class="nav-item">
+              <button
+                class="nav-menu__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="menu-solutions"
+              >
+                Solutions
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7" /></svg>
+              </button>
+              <ul class="nav-menu" id="menu-solutions">
+                <li>
+                  <a href="/#certification">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M4 21V10l8-5 8 5v11M9 21v-6h6v6" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Universités &amp; gouvernance</b>
+                      <span>Protéger la valeur de vos diplômes</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/enseignants/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4M7 12l3-3 2.5 2.5L17 7" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Enseignants &amp; correcteurs</b>
+                      <span>La preuve arrive avec la copie</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/etudiants/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Étudiants</b>
+                      <span>Vos écrits restent les vôtres</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="/#expertise">Notre approche</a></li>
             <li><a href="/plugins/">Plugins</a></li>
             <li><a href="/contact/">Contact</a></li>
             <li class="nav-lang">
@@ -106,7 +150,8 @@
     <footer class="site-footer">
       <div class="container">
         <div class="site-footer__bottom" style="border-top: 0">
-          © 2026 Certimens – Tous droits réservés.
+          © 2026 Certimens – Tous droits réservés. Hébergé en France, chez
+          OVHcloud.
         </div>
       </div>
     </footer>

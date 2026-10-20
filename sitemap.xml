@@ -23,6 +23,22 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://certimens.fr/enseignants/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://certimens.fr/enseignants/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://certimens.fr/en/teachers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://certimens.fr/enseignants/" />
+    <lastmod>2026-10-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://certimens.fr/etudiants/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://certimens.fr/etudiants/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://certimens.fr/en/students/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://certimens.fr/etudiants/" />
+    <lastmod>2026-10-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://certimens.fr/mentions-legales/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://certimens.fr/mentions-legales/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://certimens.fr/en/legal-notice/" />
@@ -52,6 +68,22 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://certimens.fr/en/contact/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://certimens.fr/contact/" />
     <lastmod>2026-09-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://certimens.fr/en/teachers/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://certimens.fr/enseignants/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://certimens.fr/en/teachers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://certimens.fr/enseignants/" />
+    <lastmod>2026-10-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://certimens.fr/en/students/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://certimens.fr/etudiants/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://certimens.fr/en/students/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://certimens.fr/etudiants/" />
+    <lastmod>2026-10-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
