@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1E293B" />
     <title>Privacy Policy — Certimens</title>
     <meta
       name="description"
@@ -13,6 +14,22 @@
     <link rel="alternate" hreflang="en" href="https://certimens.fr/en/privacy-policy/" />
     <link rel="alternate" hreflang="x-default" href="https://certimens.fr/politique-de-confidentialite/" />
     <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Certimens" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:url" content="https://certimens.fr/en/privacy-policy/" />
+    <meta property="og:title" content="Privacy Policy — Certimens" />
+    <meta property="og:description" content="Certimens privacy policy: data collected, purposes, legal basis, retention periods and your rights under the GDPR." />
+    <meta property="og:image" content="https://certimens.fr/assets/img/logo.png" />
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image:alt" content="Certimens" />
+    <!-- Le visuel partagé est l'écu, carré : « summary » l'affiche en
+         vignette entière, là où « summary_large_image » le rognerait en
+         bandeau. À rebasculer le jour où un visuel 1200×630 existera. -->
+    <meta name="twitter:card" content="summary" />
 
     <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -40,9 +57,81 @@
     <header class="site-header">
       <div class="container site-header__inner">
         <a class="site-logo" href="/en/" aria-label="Certimens — home">
-          <img src="/assets/img/logo.png" alt="Certimens" width="300" height="300" />
+          <img src="/assets/img/logo-128.png" alt="" width="128" height="128" />
+          <span class="site-logo__name">Certimens</span>
         </a>
 
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <ul>
+            <li class="nav-item">
+              <button
+                class="nav-menu__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="menu-solutions"
+              >
+                Solutions
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7" /></svg>
+              </button>
+              <ul class="nav-menu" id="menu-solutions">
+                <li>
+                  <a href="/en/#certification">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M4 21V10l8-5 8 5v11M9 21v-6h6v6" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Universities &amp; governance</b>
+                      <span>Protect the value of your degrees</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/en/teachers/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4M7 12l3-3 2.5 2.5L17 7" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Teachers &amp; markers</b>
+                      <span>The proof arrives with the paper</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/en/students/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Students</b>
+                      <span>Your writing stays yours</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/en/contact/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22V3M5 4h13l-2.5 4L18 12H5" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>University pilot programme</b>
+                      <span>Roll out Certimens on a first assessment</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="/en/#expertise">Our approach</a></li>
+            <li><a href="/plugins/en/">Plugins</a></li>
+            <li><a href="/en/contact/">Contact</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <a class="nav-actions__login" href="https://monespace.certimens.fr/">Sign in</a>
+            <a class="btn btn--primary btn--sm nav-actions__cta" href="/en/contact/">Request a demo</a>
+          </div>
+        </nav>
+
+        <a class="site-lang" href="/" lang="fr" hreflang="fr" aria-label="Basculer en français">FR</a>
         <button
           class="nav-toggle"
           type="button"
@@ -56,22 +145,6 @@
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
-
-        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-          <ul>
-            <li><a href="/en/#certification">The Certification</a></li>
-            <li><a href="/en/#expertise">Our Expertise</a></li>
-            <li><a href="/en/#faq">FAQ</a></li>
-            <li><a href="/plugins/en/">Plugins</a></li>
-            <li><a href="/en/contact/">Contact</a></li>
-            <li class="nav-lang">
-              <a href="/politique-de-confidentialite/" lang="fr" hreflang="fr" aria-label="Basculer en français">FR</a>
-            </li>
-            <li class="nav-login">
-              <a href="https://monespace.certimens.fr/">Sign in</a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </header>
 
@@ -92,19 +165,61 @@
             is the only one that prevails.
           </p>
 
-          <p class="lead">Last updated: 13 October 2026.</p>
+          <p class="lead">Last updated: 2 November 2026.</p>
 
-          <h2>1. Data controller</h2>
+
+          <!-- The page runs to more than twelve screens of continuous text on
+               a phone. These three cards state the commitment before the first
+               article begins, and the contents list gives a way in to anyone
+               looking for a particular section. -->
+          <ul class="legal-summary">
+            <li>
+              <b><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg> No capture of the text</b>
+              Neither the text typed nor the keys pressed are recorded: only
+              counters aggregated per measurement window.
+            </li>
+            <li>
+              <b><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg> Hosted in France</b>
+              Application data is hosted with OVHcloud, in France, and traffic
+              is encrypted with TLS.
+            </li>
+            <li>
+              <b><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg> No exploitation</b>
+              Your writing trains no AI and is sold to no one. No decision is
+              automated.
+            </li>
+          </ul>
+
+          <nav class="legal-toc" aria-label="Contents of the privacy policy">
+            <h2>Contents</h2>
+            <ol>
+              <li><a href="#art-1-data-controller">1. Data controller</a></li>
+              <li><a href="#art-2-scope">2. Scope</a></li>
+              <li><a href="#art-3-data-collected">3. Data collected</a></li>
+              <li><a href="#art-4-purposes-of-the-processing">4. Purposes of the processing</a></li>
+              <li><a href="#art-5-legal-basis">5. Legal basis</a></li>
+              <li><a href="#art-6-the-automated-score-and-what-it-is-not">6. The automated score, and what it is not</a></li>
+              <li><a href="#art-7-retention-periods">7. Retention periods</a></li>
+              <li><a href="#art-8-recipients-and-processors">8. Recipients and processors</a></li>
+              <li><a href="#art-9-security">9. Security</a></li>
+              <li><a href="#art-10-cookies-and-local-storage">10. Cookies and local storage</a></li>
+              <li><a href="#art-11-transfers-outside-the-european-union">11. Transfers outside the European Union</a></li>
+              <li><a href="#art-12-your-rights">12. Your rights</a></li>
+              <li><a href="#art-13-exercising-your-rights">13. Exercising your rights</a></li>
+            </ol>
+          </nav>
+          <h2 id="art-1-data-controller">1. Data controller</h2>
           <p>
-            The controller for the processing of personal data is Maxime
-            Sidorenko, for Certimens.
+            The controller for the processing of personal data is
+            <strong>Certimens</strong>, represented by its president Maxime
+            Sidorenko.
           </p>
           <ul>
             <li>Contact: <a href="mailto:contact@certimens.fr">contact@certimens.fr</a></li>
-            <li>Postal address: <span class="todo">[to be completed]</span></li>
+            <li>Postal address: Bry-sur-Marne (94360), France</li>
           </ul>
 
-          <h2>2. Scope</h2>
+          <h2 id="art-2-scope">2. Scope</h2>
           <p>This policy covers two distinct things:</p>
           <ul>
             <li>
@@ -112,7 +227,9 @@
               language versions, including the agents' installation pages under
               <code>/plugins/</code>), which is purely informational: it sets no
               cookies, uses no analytics and collects no data. Its contact form
-              opens your own mail application without recording anything.
+              opens your own mail application, or copies the message to your
+              clipboard if you ask it to: either way, nothing is recorded or
+              sent to any server.
             </li>
             <li>
               <strong>The certification application</strong>
@@ -121,7 +238,7 @@
             </li>
           </ul>
 
-          <h2>3. Data collected</h2>
+          <h2 id="art-3-data-collected">3. Data collected</h2>
 
           <h3>3.1 User account</h3>
           <p>
@@ -497,7 +614,7 @@
             other than an application they can no longer sign in to.
           </p>
 
-          <h2>4. Purposes of the processing</h2>
+          <h2 id="art-4-purposes-of-the-processing">4. Purposes of the processing</h2>
           <ul>
             <li>Providing the cognitive-effort certification service and producing the associated reports and certificates.</li>
             <li>Managing accounts, invitations, institutions, classes and assignments.</li>
@@ -509,7 +626,7 @@
             <li>Keeping the service secure and preventing abuse.</li>
           </ul>
 
-          <h2>5. Legal basis</h2>
+          <h2 id="art-5-legal-basis">5. Legal basis</h2>
           <ul>
             <li>
               <strong>Performance of a contract or of pre-contractual
@@ -527,7 +644,7 @@
             </li>
           </ul>
 
-          <h2>6. The automated score, and what it is not</h2>
+          <h2 id="art-6-the-automated-score-and-what-it-is-not">6. The automated score, and what it is not</h2>
           <p>
             The Cognitive Friction Index is computed <strong>automatically</strong>,
             by adding four sub-scores — the rhythm of cognitive pauses (30
@@ -570,7 +687,7 @@
             <a href="mailto:contact@certimens.fr">contact@certimens.fr</a>.
           </p>
 
-          <h2>7. Retention periods</h2>
+          <h2 id="art-7-retention-periods">7. Retention periods</h2>
           <ul>
             <li>
               <strong>Account and academic data:</strong> kept for the duration of
@@ -627,7 +744,7 @@
             the associated metrics and its notifications.
           </p>
 
-          <h2>8. Recipients and processors</h2>
+          <h2 id="art-8-recipients-and-processors">8. Recipients and processors</h2>
           <p>
             Your data is never sold, rented or transferred to third parties for
             commercial purposes. Within the application, access is strictly
@@ -653,7 +770,7 @@
             any analytics service.
           </p>
 
-          <h2>9. Security</h2>
+          <h2 id="art-9-security">9. Security</h2>
           <ul>
             <li>Communications encrypted end to end with TLS (HTTPS).</li>
             <li>Passwords stored as a bcrypt hash, access tokens as a SHA-256 hash.</li>
@@ -665,7 +782,7 @@
             <li>Services run without administrative privileges, with regular backups.</li>
           </ul>
 
-          <h2>10. Cookies and local storage</h2>
+          <h2 id="art-10-cookies-and-local-storage">10. Cookies and local storage</h2>
           <p>
             <strong>No cookie is set</strong>, neither on the public website nor
             in the application. No consent banner is therefore required.
@@ -677,7 +794,7 @@
             when you sign out.
           </p>
 
-          <h2>11. Transfers outside the European Union</h2>
+          <h2 id="art-11-transfers-outside-the-european-union">11. Transfers outside the European Union</h2>
           <p>
             Application data is hosted in France. Visiting the public website
             involves a United States company (GitHub,&nbsp;Inc., for hosting the
@@ -696,7 +813,7 @@
             ever sent to an identity provider.
           </p>
 
-          <h2>12. Your rights</h2>
+          <h2 id="art-12-your-rights">12. Your rights</h2>
           <p>
             Under the GDPR and the French Data Protection Act, you have the
             following rights:
@@ -716,7 +833,7 @@
             its behalf.
           </p>
 
-          <h2>13. Exercising your rights</h2>
+          <h2 id="art-13-exercising-your-rights">13. Exercising your rights</h2>
           <p>
             Two of them can be exercised <strong>directly from your
             workspace</strong>, without writing to us and without waiting:
@@ -756,40 +873,151 @@
     <footer class="site-footer">
       <div class="container">
         <div class="site-footer__grid">
-          <div>
-            <img src="/assets/img/logo-footer.png" alt="Certimens" width="500" height="143" />
+          <div class="site-footer__brand">
+            <p class="site-footer__mark">
+              <img src="/assets/img/logo-128.png" alt="" width="128" height="128" />
+              <b>Certimens</b>
+            </p>
             <p>
-              The first label certifying genuine human cognitive effort.
+              The first certification infrastructure for human cognitive effort
+              in higher education.
             </p>
           </div>
 
           <div>
-            <h2>Navigation</h2>
+            <h2>Solutions by profile</h2>
             <ul>
-              <li><a href="/en/#certification">The Certification</a></li>
-              <li><a href="/en/#expertise">Our Expertise</a></li>
+              <li><a href="/en/#certification">Universities &amp; governance</a></li>
+              <li><a href="/en/teachers/">Teachers &amp; markers</a></li>
+              <li><a href="/en/students/">Student space</a></li>
+              <li><a href="/en/contact/">University pilot programme</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2>Product &amp; approach</h2>
+            <ul>
+              <li><a href="/en/#steps">How it works</a></li>
+              <li><a href="/en/#expertise">Our approach &amp; the Certimens score</a></li>
+              <li><a href="/en/#security">Security, IT &amp; LTI architecture</a></li>
               <li><a href="/en/#faq">FAQ</a></li>
               <li><a href="/plugins/en/">Plugins</a></li>
+              <li><a href="https://monespace.certimens.fr/">Sign in to the dashboard</a></li>
               <li><a href="/en/contact/">Contact</a></li>
             </ul>
           </div>
 
           <div>
-            <h2>Legal</h2>
+            <h2>Legal &amp; compliance</h2>
             <ul>
               <li><a href="/en/legal-notice/">Legal notice</a></li>
-              <li><a href="/en/privacy-policy/">Privacy policy</a></li>
-              <li><a href="/politique-de-confidentialite/" lang="fr" hreflang="fr">Version française</a></li>
-              <li><a href="https://monespace.certimens.fr/">Sign in</a></li>
+              <li><a href="/en/privacy-policy/">Privacy policy &amp; GDPR</a></li>
             </ul>
           </div>
         </div>
 
         <div class="site-footer__bottom">
-          © 2026 Certimens – All rights reserved.
+          © 2026 Certimens – All rights reserved. Hosted in France, at OVHcloud.
+          · <a href="/" lang="fr" hreflang="fr">Version française</a>
         </div>
       </div>
     </footer>
+
+    <!-- Données structurées (schema.org) : identité de l'éditeur et fil
+         d'Ariane, pour que la page soit rattachée à la marque dans les
+         résultats de recherche. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://certimens.fr/#organization",
+            "name": "Certimens",
+            "url": "https://certimens.fr/",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://certimens.fr/#logo",
+              "url": "https://certimens.fr/assets/img/logo.png",
+              "contentUrl": "https://certimens.fr/assets/img/logo.png",
+              "width": 300,
+              "height": 300,
+              "caption": "Certimens"
+            },
+            "image": {
+              "@id": "https://certimens.fr/#logo"
+            },
+            "description": "The first certification infrastructure for human cognitive effort in higher education.",
+            "email": "contact@certimens.fr",
+            "sameAs": [
+              "https://github.com/Certimens"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "@id": "https://certimens.fr/#contact",
+              "contactType": "customer support",
+              "email": "contact@certimens.fr",
+              "availableLanguage": [
+                "fr",
+                "en"
+              ]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://certimens.fr/#website",
+            "url": "https://certimens.fr/",
+            "name": "Certimens",
+            "description": "The first certification infrastructure for human cognitive effort in higher education.",
+            "publisher": {
+              "@id": "https://certimens.fr/#organization"
+            },
+            "inLanguage": [
+              "fr-FR",
+              "en-GB"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://certimens.fr/en/privacy-policy/#webpage",
+            "url": "https://certimens.fr/en/privacy-policy/",
+            "name": "Privacy Policy — Certimens",
+            "description": "Certimens privacy policy: data collected, purposes, legal basis, retention periods and your rights under the GDPR.",
+            "isPartOf": {
+              "@id": "https://certimens.fr/#website"
+            },
+            "about": {
+              "@id": "https://certimens.fr/#organization"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://certimens.fr/#logo"
+            },
+            "inLanguage": "en-GB",
+            "breadcrumb": {
+              "@id": "https://certimens.fr/en/privacy-policy/#breadcrumb"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://certimens.fr/en/privacy-policy/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://certimens.fr/en/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Privacy Policy",
+                "item": "https://certimens.fr/en/privacy-policy/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
 
     <script src="/assets/js/site.js" defer></script>
   </body>

@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contact — Certimens</title>
+    <meta name="theme-color" content="#1E293B" />
+    <title>Nous contacter &amp; demander une démo — Certimens</title>
     <meta
       name="description"
       content="Une question sur le label Certimens ou besoin d'une démonstration ? Écrivez-nous à contact@certimens.fr."
@@ -18,13 +19,21 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Certimens" />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_GB" />
     <meta property="og:url" content="https://certimens.fr/contact/" />
-    <meta property="og:title" content="Contact — Certimens" />
+    <meta property="og:title" content="Nous contacter &amp; demander une démo — Certimens" />
     <meta
       property="og:description"
       content="Une question sur le label ou besoin d'une démonstration ? Écrivez-nous."
     />
     <meta property="og:image" content="https://certimens.fr/assets/img/logo.png" />
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image:alt" content="Certimens" />
+    <!-- Le visuel partagé est l'écu, carré : « summary » l'affiche en
+         vignette entière, là où « summary_large_image » le rognerait en
+         bandeau. À rebasculer le jour où un visuel 1200×630 existera. -->
+    <meta name="twitter:card" content="summary" />
 
     <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
@@ -52,9 +61,81 @@
     <header class="site-header">
       <div class="container site-header__inner">
         <a class="site-logo" href="/" aria-label="Certimens — accueil">
-          <img src="/assets/img/logo.png" alt="Certimens" width="300" height="300" />
+          <img src="/assets/img/logo-128.png" alt="" width="128" height="128" />
+          <span class="site-logo__name">Certimens</span>
         </a>
 
+        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="nav-item">
+              <button
+                class="nav-menu__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="menu-solutions"
+              >
+                Solutions
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7" /></svg>
+              </button>
+              <ul class="nav-menu" id="menu-solutions">
+                <li>
+                  <a href="/#certification">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M4 21V10l8-5 8 5v11M9 21v-6h6v6" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Universités &amp; gouvernance</b>
+                      <span>Protéger la valeur de vos diplômes</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/enseignants/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4M7 12l3-3 2.5 2.5L17 7" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Enseignants &amp; correcteurs</b>
+                      <span>La preuve arrive avec la copie</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/etudiants/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Étudiants</b>
+                      <span>Vos écrits restent les vôtres</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/contact/">
+                    <span class="nav-menu__ico">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22V3M5 4h13l-2.5 4L18 12H5" /></svg>
+                    </span>
+                    <span class="nav-menu__txt">
+                      <b>Programme pilote universitaire</b>
+                      <span>D&eacute;ployer Certimens sur une premi&egrave;re &eacute;preuve</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="/#expertise">Notre approche</a></li>
+            <li><a href="/plugins/">Plugins</a></li>
+            <li><a aria-current="page" href="/contact/">Contact</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <a class="nav-actions__login" href="https://monespace.certimens.fr/">Connexion</a>
+            <a class="btn btn--primary btn--sm nav-actions__cta" href="/contact/">Demander une démo</a>
+          </div>
+        </nav>
+
+        <a class="site-lang" href="/en/" lang="en" hreflang="en" aria-label="Switch to English">EN</a>
         <button
           class="nav-toggle"
           type="button"
@@ -68,22 +149,6 @@
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
-
-        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
-          <ul>
-            <li><a href="/#certification">La Certification</a></li>
-            <li><a href="/#expertise">Notre Expertise</a></li>
-            <li><a href="/#faq">Questions Fréquentes</a></li>
-            <li><a href="/plugins/">Plugins</a></li>
-            <li><a href="/contact/">Contact</a></li>
-            <li class="nav-lang">
-              <a href="/en/contact/" lang="en" hreflang="en" aria-label="Switch to English">EN</a>
-            </li>
-            <li class="nav-login">
-              <a href="https://monespace.certimens.fr/">Connexion</a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </header>
 
@@ -123,10 +188,37 @@
                 </div>
               </li>
             </ul>
+
+            <!-- La colonne était presque vide sous les deux coordonnées : ce
+                 qu'il se passe pendant une démonstration répond à la première
+                 question d'une direction qui hésite à prendre rendez-vous. -->
+            <div class="demo-steps">
+              <h3>Déroulement d'une démonstration (30 minutes)</h3>
+              <ul>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+                  <span>Le flux enseignant et le flux étudiant en direct, depuis Moodle (LTI 1.3) jusqu'aux agents</span>
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+                  <span>La lecture commentée d'un certificat&nbsp;: score, détail par dimension et rapport d'expert</span>
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+                  <span>Le point architecture, sécurité et conformité RGPD, avec votre DSI et votre DPO</span>
+                </li>
+              </ul>
+              <p class="demo-steps__sla">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+                Nous répondons sous 24&nbsp;heures ouvrées.
+              </p>
+            </div>
           </div>
 
           <!-- Le site est statique : la soumission ouvre le client mail de
-               l'utilisateur (voir assets/js/site.js). -->
+               l'utilisateur (voir assets/js/site.js), avec un bloc de repli
+               révélé juste après — sur un poste sans client mail configuré,
+               rien ne se passerait et le visiteur n'en saurait rien. -->
           <form class="form" data-mailto-form="contact@certimens.fr">
             <div class="field">
               <label for="name">Nom complet <span class="req">*</span></label>
@@ -152,6 +244,34 @@
               />
             </div>
 
+            <!-- Sans ces deux champs, un message de direction d'établissement
+                 et une question d'étudiant arrivent dans la même boîte sans
+                 rien qui les distingue. -->
+            <div class="field-row">
+              <div class="field">
+                <label for="organisation">Établissement / organisation</label>
+                <input
+                  type="text"
+                  id="organisation"
+                  name="organisation"
+                  autocomplete="organization"
+                  placeholder="Université, école, laboratoire…"
+                />
+              </div>
+
+              <div class="field">
+                <label for="profile">Votre profil</label>
+                <select id="profile" name="profile">
+                  <option value="">Sélectionnez…</option>
+                  <option>Direction d'établissement</option>
+                  <option>DSI / DPO</option>
+                  <option>Enseignant / responsable pédagogique</option>
+                  <option>Étudiant</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+            </div>
+
             <div class="field">
               <label for="message">Votre message <span class="req">*</span></label>
               <textarea
@@ -162,13 +282,35 @@
               ></textarea>
             </div>
 
-            <button class="btn btn--primary" type="submit">Envoyer</button>
+            <div class="form__actions">
+              <button class="btn btn--primary" type="submit">Envoyer</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-copy-address>
+                Copier l'adresse
+              </button>
+            </div>
 
             <p class="form__note">
               L'envoi ouvre votre logiciel de messagerie avec le message
               pré-rempli. Vous pouvez aussi nous écrire directement à
               <a href="mailto:contact@certimens.fr">contact@certimens.fr</a>.
             </p>
+
+            <div class="form__fallback" data-fallback>
+              <p>
+                <b>Votre logiciel de messagerie ne s'est pas ouvert&nbsp;?</b>
+                C'est le cas sur les postes qui utilisent un webmail dans le
+                navigateur. Copiez votre message et envoyez-le à
+                <a href="mailto:contact@certimens.fr">contact@certimens.fr</a>.
+              </p>
+              <div class="form__actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-copy-message>
+                  Copier le message
+                </button>
+                <button class="btn btn--ghost btn--sm" type="button" data-copy-address>
+                  Copier l'adresse
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       </section>
@@ -177,44 +319,155 @@
     <footer class="site-footer">
       <div class="container">
         <div class="site-footer__grid">
-          <div>
-            <img src="/assets/img/logo-footer.png" alt="Certimens" width="500" height="143" />
+          <div class="site-footer__brand">
+            <p class="site-footer__mark">
+              <img src="/assets/img/logo-128.png" alt="" width="128" height="128" />
+              <b>Certimens</b>
+            </p>
             <p>
-              Le premier label certifiant le véritable effort cognitif humain.
+              La première infrastructure de certification de l'effort cognitif
+              humain pour l'enseignement supérieur.
             </p>
           </div>
 
           <div>
-            <h2>Navigation</h2>
+            <h2>Solutions par profil</h2>
             <ul>
-              <li><a href="/#certification">La Certification</a></li>
-              <li><a href="/#expertise">Notre Expertise</a></li>
-              <li><a href="/#faq">Questions Fréquentes</a></li>
+              <li><a href="/#certification">Universités &amp; gouvernance</a></li>
+              <li><a href="/enseignants/">Enseignants &amp; correcteurs</a></li>
+              <li><a href="/etudiants/">Espace étudiants</a></li>
+              <li><a href="/contact/">Programme pilote universitaire</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2>Produit &amp; approche</h2>
+            <ul>
+              <li><a href="/#etapes">Comment ça marche</a></li>
+              <li><a href="/#expertise">Notre approche &amp; le score Certimens</a></li>
+              <li><a href="/#securite">Sécurité, DSI &amp; architecture LTI</a></li>
+              <li><a href="/#faq">Questions fréquentes</a></li>
               <li><a href="/plugins/">Plugins</a></li>
+              <li><a href="https://monespace.certimens.fr/">Connexion au tableau de bord</a></li>
               <li><a href="/contact/">Contact</a></li>
             </ul>
           </div>
 
           <div>
-            <h2>Légal</h2>
+            <h2>Légal &amp; conformité</h2>
             <ul>
-              <li><a href="/mentions-legales/">Mentions Légales</a></li>
+              <li><a href="/mentions-legales/">Mentions légales</a></li>
               <li>
                 <a href="/politique-de-confidentialite/">
-                  Politique de confidentialité
+                  Politique de confidentialité &amp; RGPD
                 </a>
               </li>
-              <li><a href="/en/contact/" lang="en" hreflang="en">English version</a></li>
-              <li><a href="https://monespace.certimens.fr/">Connexion</a></li>
             </ul>
           </div>
         </div>
 
         <div class="site-footer__bottom">
-          © 2026 Certimens – Tous droits réservés.
+          © 2026 Certimens – Tous droits réservés. Hébergé en France, chez
+          OVHcloud. · <a href="/en/" lang="en" hreflang="en">English version</a>
         </div>
       </div>
     </footer>
+
+    <!-- Données structurées (schema.org) : identité de l'éditeur et fil
+         d'Ariane, pour que la page soit rattachée à la marque dans les
+         résultats de recherche. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://certimens.fr/#organization",
+            "name": "Certimens",
+            "url": "https://certimens.fr/",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://certimens.fr/#logo",
+              "url": "https://certimens.fr/assets/img/logo.png",
+              "contentUrl": "https://certimens.fr/assets/img/logo.png",
+              "width": 300,
+              "height": 300,
+              "caption": "Certimens"
+            },
+            "image": {
+              "@id": "https://certimens.fr/#logo"
+            },
+            "description": "La première infrastructure de certification de l'effort cognitif humain pour l'enseignement supérieur.",
+            "email": "contact@certimens.fr",
+            "sameAs": [
+              "https://github.com/Certimens"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "@id": "https://certimens.fr/#contact",
+              "contactType": "customer support",
+              "email": "contact@certimens.fr",
+              "availableLanguage": [
+                "fr",
+                "en"
+              ]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://certimens.fr/#website",
+            "url": "https://certimens.fr/",
+            "name": "Certimens",
+            "description": "La première infrastructure de certification de l'effort cognitif humain pour l'enseignement supérieur.",
+            "publisher": {
+              "@id": "https://certimens.fr/#organization"
+            },
+            "inLanguage": [
+              "fr-FR",
+              "en-GB"
+            ]
+          },
+          {
+            "@type": "ContactPage",
+            "@id": "https://certimens.fr/contact/#webpage",
+            "url": "https://certimens.fr/contact/",
+            "name": "Contact — Certimens",
+            "description": "Une question sur le label Certimens ou besoin d'une démonstration ? Écrivez-nous à contact@certimens.fr.",
+            "isPartOf": {
+              "@id": "https://certimens.fr/#website"
+            },
+            "about": {
+              "@id": "https://certimens.fr/#organization"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://certimens.fr/#logo"
+            },
+            "inLanguage": "fr-FR",
+            "breadcrumb": {
+              "@id": "https://certimens.fr/contact/#breadcrumb"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://certimens.fr/contact/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://certimens.fr/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Contact",
+                "item": "https://certimens.fr/contact/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
 
     <script src="/assets/js/site.js" defer></script>
   </body>
